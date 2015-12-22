@@ -69,10 +69,23 @@ static NSString *kEntryStr  = @"entry";
     // desirable because it gives less control over the network, particularly in responding to
     // connection errors.
     //
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.dataToParse];
-    [parser setDelegate:self];
-    [parser parse];
-    
+//    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:self.dataToParse];
+//    [parser setDelegate:self];
+//    [parser parse];
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization
+                          JSONObjectWithData:self.dataToParse //1
+                          
+                          options:kNilOptions
+                          error:&error];
+
+    if(error){
+        NSLog(@"Error when parse json string %@",error);
+    }else{
+        NSArray* lstAudio = [json objectForKey:@"audio"];
+        NSArray* lstMusic = [json objectForKey:@"music"];
+    }
     if (![self isCancelled])
     {
         // Set appRecordList to the result of our parsing
@@ -87,83 +100,83 @@ static NSString *kEntryStr  = @"entry";
 
 #pragma mark - RSS processing
 
-// -------------------------------------------------------------------------------
-//	parser:didStartElement:namespaceURI:qualifiedName:attributes:
-// -------------------------------------------------------------------------------
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
-                                        namespaceURI:(NSString *)namespaceURI
-                                       qualifiedName:(NSString *)qName
-                                          attributes:(NSDictionary *)attributeDict
-{
-    // entry: { id (link), im:name (app name), im:image (variable height) }
-    //
-    if ([elementName isEqualToString:kEntryStr])
-	{
-        self.workingEntry = [[Genre alloc] init];
-    }
-    self.storingCharacterData = [self.elementsToParse containsObject:elementName];
-}
-
-// -------------------------------------------------------------------------------
-//	parser:didEndElement:namespaceURI:qualifiedName:
-// -------------------------------------------------------------------------------
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
-                                      namespaceURI:(NSString *)namespaceURI
-                                     qualifiedName:(NSString *)qName
-{
-    if (self.workingEntry != nil)
-	{
-        if (self.storingCharacterData)
-        {
-            NSString *trimmedString =
-                [self.workingPropertyString stringByTrimmingCharactersInSet:
-                 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            [self.workingPropertyString setString:@""];  // clear the string for next time
-            if ([elementName isEqualToString:kIDStr])
-            {
-//                self.workingEntry.appURLString = trimmedString;
-            }
-            else if ([elementName isEqualToString:kNameStr])
-            {        
-//                self.workingEntry.appName = trimmedString;
-            }
-            else if ([elementName isEqualToString:kImageStr])
-            {
-//                self.workingEntry.imageURLString = trimmedString;
-            }
-            else if ([elementName isEqualToString:kArtistStr])
-            {
-//                self.workingEntry.artist = trimmedString;
-            }
-        }
-        else if ([elementName isEqualToString:kEntryStr])
-        {
-            [self.workingArray addObject:self.workingEntry];  
-            self.workingEntry = nil;
-        }
-    }
-}
-
-// -------------------------------------------------------------------------------
-//	parser:foundCharacters:
-// -------------------------------------------------------------------------------
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    if (self.storingCharacterData)
-    {
-        [self.workingPropertyString appendString:string];
-    }
-}
-
-// -------------------------------------------------------------------------------
-//	parser:parseErrorOccurred:
-// -------------------------------------------------------------------------------
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
-{
-    if (self.errorHandler)
-    {
-        self.errorHandler(parseError);
-    }
-}
+//// -------------------------------------------------------------------------------
+////	parser:didStartElement:namespaceURI:qualifiedName:attributes:
+//// -------------------------------------------------------------------------------
+//- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName
+//                                        namespaceURI:(NSString *)namespaceURI
+//                                       qualifiedName:(NSString *)qName
+//                                          attributes:(NSDictionary *)attributeDict
+//{
+//    // entry: { id (link), im:name (app name), im:image (variable height) }
+//    //
+//    if ([elementName isEqualToString:kEntryStr])
+//	{
+//        self.workingEntry = [[Genre alloc] init];
+//    }
+//    self.storingCharacterData = [self.elementsToParse containsObject:elementName];
+//}
+//
+//// -------------------------------------------------------------------------------
+////	parser:didEndElement:namespaceURI:qualifiedName:
+//// -------------------------------------------------------------------------------
+//- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+//                                      namespaceURI:(NSString *)namespaceURI
+//                                     qualifiedName:(NSString *)qName
+//{
+//    if (self.workingEntry != nil)
+//	{
+//        if (self.storingCharacterData)
+//        {
+//            NSString *trimmedString =
+//                [self.workingPropertyString stringByTrimmingCharactersInSet:
+//                 [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//            [self.workingPropertyString setString:@""];  // clear the string for next time
+//            if ([elementName isEqualToString:kIDStr])
+//            {
+////                self.workingEntry.appURLString = trimmedString;
+//            }
+//            else if ([elementName isEqualToString:kNameStr])
+//            {        
+////                self.workingEntry.appName = trimmedString;
+//            }
+//            else if ([elementName isEqualToString:kImageStr])
+//            {
+////                self.workingEntry.imageURLString = trimmedString;
+//            }
+//            else if ([elementName isEqualToString:kArtistStr])
+//            {
+////                self.workingEntry.artist = trimmedString;
+//            }
+//        }
+//        else if ([elementName isEqualToString:kEntryStr])
+//        {
+//            [self.workingArray addObject:self.workingEntry];  
+//            self.workingEntry = nil;
+//        }
+//    }
+//}
+//
+//// -------------------------------------------------------------------------------
+////	parser:foundCharacters:
+//// -------------------------------------------------------------------------------
+//- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+//{
+//    if (self.storingCharacterData)
+//    {
+//        [self.workingPropertyString appendString:string];
+//    }
+//}
+//
+//// -------------------------------------------------------------------------------
+////	parser:parseErrorOccurred:
+//// -------------------------------------------------------------------------------
+//- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+//{
+//    if (self.errorHandler)
+//    {
+//        self.errorHandler(parseError);
+//    }
+//}
 
 @end

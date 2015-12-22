@@ -12,12 +12,13 @@
 #import "MyTableViewCell.h"
 #import "TabBarViewController.h"
 #import "SongTableViewController.h"
+#import "BTCategory.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 
 @property MusicManager *genreMusicManager;
 //@property TabBarViewController *tabBarController;
-@property NSArray* genres;
+@property NSArray* lstCategories;
 
 @end
 
@@ -30,9 +31,9 @@ static NSString *MyIdentifier = @"MyTableView";
 - (void)reload:(__unused id)sender {
     self.navigationItem.rightBarButtonItem.enabled = NO;
 
-    NSURLSessionTask *task = [Genre loadGenresWithBlock:^(NSArray *genres, NSError *error) {
+    NSURLSessionTask *task = [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
         if (!error) {
-            self.genres = genres;
+            self.lstCategories = lstCategories;
             [self.tableView reloadData];
         }
     }];
@@ -80,11 +81,12 @@ static NSString *MyIdentifier = @"MyTableView";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.lstCategories count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.genres count];//[self.genreMusicManager getCountItem];
+    BTCategory *category = [self.lstCategories objectAtIndex:section];
+    return [category.lstGenres count];//[self.genreMusicManager getCountItem];
 }
 
 

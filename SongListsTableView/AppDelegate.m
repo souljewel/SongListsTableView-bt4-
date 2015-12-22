@@ -42,4 +42,26 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// -------------------------------------------------------------------------------
+//	handleError:error
+//  Reports any error with an alert which was received from connection or loading failures.
+// -------------------------------------------------------------------------------
+- (void)handleError:(NSError *)error
+{
+    NSString *errorMessage = [error localizedDescription];
+    
+    // alert user that our current record was deleted, and then we leave this view controller
+    //
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot Show Categories"
+                                                                   message:errorMessage
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                         // dissmissal of alert completed
+                                                     }];
+    
+    [alert addAction:OKAction];
+    [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
+}
 @end

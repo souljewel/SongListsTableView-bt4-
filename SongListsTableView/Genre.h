@@ -20,7 +20,6 @@
 -(id) initGenre:(NSInteger) genreId genreTitle:(NSString*) genreTitle genreImage:(UIImage*)image;
 
 #pragma mark class methods
-//load the category from api
-+ (NSURLSessionDataTask *)loadGenresWithBlock:(void (^)(NSArray *genres, NSError *error))block;
+
 
 @end

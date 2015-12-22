@@ -38,6 +38,7 @@
 		05EB5E7F1C1ECFF600007660 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E781C1ECFF600007660 /* FMDatabaseQueue.m */; };
 		05EB5E801C1ECFF600007660 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E7B1C1ECFF600007660 /* FMResultSet.m */; };
 		05EB5E821C1ED09F00007660 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB5E811C1ED09F00007660 /* libsqlite3.tbd */; };
+		05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EF83A01C297DE5006080E5 /* BTCategory.m */; };
 		05EFE3E41C296677000BE950 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E01C296677000BE950 /* IconDownloader.m */; };
 		05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E21C296677000BE950 /* ParseOperation.m */; };
 		05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F31D941C1AD4BD0087B173 /* SongTableViewController.m */; };
@@ -91,6 +92,8 @@
 		05EB5E7A1C1ECFF600007660 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		05EB5E7B1C1ECFF600007660 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		05EB5E811C1ED09F00007660 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		05EF839F1C297DE5006080E5 /* BTCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCategory.h; sourceTree = "<group>"; };
+		05EF83A01C297DE5006080E5 /* BTCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCategory.m; sourceTree = "<group>"; };
 		05EFE3DF1C296677000BE950 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
 		05EFE3E01C296677000BE950 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
 		05EFE3E11C296677000BE950 /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
@@ -297,6 +300,8 @@
 			children = (
 				054444DB1C19201300297601 /* Genre.h */,
 				054444DC1C19201300297601 /* Genre.m */,
+				05EF839F1C297DE5006080E5 /* BTCategory.h */,
+				05EF83A01C297DE5006080E5 /* BTCategory.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 				054444E01C19202400297601 /* Song.m in Sources */,
 				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
+				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
 				05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */,
 				05EB5E7F1C1ECFF600007660 /* FMDatabaseQueue.m in Sources */,
