@@ -17,6 +17,7 @@
 
 @property MusicManager *genreMusicManager;
 //@property TabBarViewController *tabBarController;
+@property NSArray* genres;
 
 @end
 
@@ -25,18 +26,39 @@
 static NSString *MyIdentifier = @"MyTableView";
 
 // ----------------------
+// reload category from the api
+- (void)reload:(__unused id)sender {
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+
+    NSURLSessionTask *task = [Genre loadGenresWithBlock:^(NSArray *genres, NSError *error) {
+        if (!error) {
+            self.genres = genres;
+            [self.tableView reloadData];
+        }
+    }];
+    
+//    [self.refreshControl setRefreshingWithStateOfTask:task];
+
+}
+
+// ----------------------
 // init TableView
 - (void) initData{
     
     TabBarViewController*  tabBarController= (TabBarViewController*)self.tabBarController;
-    self.genreMusicManager = [tabBarController getGenresManager];
     tabBarController.delegate = self;
+    
+    self.genreMusicManager = [tabBarController getGenresManager];
+    
+    //init loading icon
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 100.0f)];
+    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView.tableHeaderView addSubview:self.refreshControl];
 
     // Add an observer that will respond to loginComplete
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +84,7 @@ static NSString *MyIdentifier = @"MyTableView";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.genreMusicManager getCountItem];
+    return [self.genres count];//[self.genreMusicManager getCountItem];
 }
 
 

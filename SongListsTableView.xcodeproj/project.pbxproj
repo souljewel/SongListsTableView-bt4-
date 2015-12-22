@@ -38,6 +38,8 @@
 		05EB5E7F1C1ECFF600007660 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E781C1ECFF600007660 /* FMDatabaseQueue.m */; };
 		05EB5E801C1ECFF600007660 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E7B1C1ECFF600007660 /* FMResultSet.m */; };
 		05EB5E821C1ED09F00007660 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EB5E811C1ED09F00007660 /* libsqlite3.tbd */; };
+		05EFE3E41C296677000BE950 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E01C296677000BE950 /* IconDownloader.m */; };
+		05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E21C296677000BE950 /* ParseOperation.m */; };
 		05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F31D941C1AD4BD0087B173 /* SongTableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +91,10 @@
 		05EB5E7A1C1ECFF600007660 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		05EB5E7B1C1ECFF600007660 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		05EB5E811C1ED09F00007660 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		05EFE3DF1C296677000BE950 /* IconDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconDownloader.h; sourceTree = "<group>"; };
+		05EFE3E01C296677000BE950 /* IconDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconDownloader.m; sourceTree = "<group>"; };
+		05EFE3E11C296677000BE950 /* ParseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseOperation.h; sourceTree = "<group>"; };
+		05EFE3E21C296677000BE950 /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
 		05F31D931C1AD4BD0087B173 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
 		05F31D941C1AD4BD0087B173 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +203,7 @@
 		0581BCEE1C181EBF006C0113 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				05EFE3DC1C296665000BE950 /* DownloadHelper */,
 				05EB5E191C1EABC200007660 /* FMDBManager.h */,
 				05EB5E1A1C1EABC200007660 /* FMDBManager.m */,
 			);
@@ -336,6 +343,17 @@
 			name = fmdb;
 			sourceTree = "<group>";
 		};
+		05EFE3DC1C296665000BE950 /* DownloadHelper */ = {
+			isa = PBXGroup;
+			children = (
+				05EFE3DF1C296677000BE950 /* IconDownloader.h */,
+				05EFE3E01C296677000BE950 /* IconDownloader.m */,
+				05EFE3E11C296677000BE950 /* ParseOperation.h */,
+				05EFE3E21C296677000BE950 /* ParseOperation.m */,
+			);
+			name = DownloadHelper;
+			sourceTree = "<group>";
+		};
 		ADE23862FAD4C7B04AC8AA2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				054444E01C19202400297601 /* Song.m in Sources */,
+				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
 				05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */,
@@ -436,6 +455,7 @@
 				0581BCDC1C181C63006C0113 /* AppDelegate.m in Sources */,
 				05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */,
 				0581BCD91C181C63006C0113 /* main.m in Sources */,
+				05EFE3E41C296677000BE950 /* IconDownloader.m in Sources */,
 				05EB5E7D1C1ECFF600007660 /* FMDatabaseAdditions.m in Sources */,
 				05E8B3961C197E9A006372E6 /* GenresTableViewController.m in Sources */,
 				05485EDA1C1A64AB00ED62D9 /* MyTableViewCell.m in Sources */,
