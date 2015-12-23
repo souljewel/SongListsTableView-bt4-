@@ -198,13 +198,8 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//     Get the new view controller using [segue destinationViewController].
-//     Pass the selected object to the new view controller.
-    UINavigationController *navigationControllerForPlaylist = segue.destinationViewController;
-    PlaylistTableViewController *playlistController = (PlaylistTableViewController*)navigationControllerForPlaylist.topViewController;
-    
+    PlaylistTableViewController *playlistController = segue.destinationViewController;
     //get the selected genre
-//    RWTScaryBugDoc *bug = [self.bugs objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     BTCategory *selectedCategory = [self.lstCategories objectAtIndex:self.tableView.indexPathForSelectedRow.section];
     Genre *selectedGenre  = [selectedCategory.lstGenres objectAtIndex:self.tableView.indexPathForSelectedRow.row];
     

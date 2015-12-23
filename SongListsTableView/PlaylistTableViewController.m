@@ -19,14 +19,33 @@
 #pragma mark - class methods implematation
 
 // ----------------------
+// reload category from the api
+- (void)reload:(__unused id)sender {
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    __weak PlaylistTableViewController *weakSelf = self;
+    
+//    [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
+//        if (!error) {
+//            [weakSelf.refreshControl endRefreshing];
+//            self.lstCategories = lstCategories;
+//            [self.tableView reloadData];
+//            
+//        }
+//    }];
+    
+    [self.refreshControl beginRefreshing];
+}
+
+// ----------------------
 // init data
 -(void) initData{
+    //set the title of navigation item
     NSString *genreTitle = playlistGenre.genreTitle;
-    
-    self.navigationController.navigationBar.topItem.title = genreTitle;
-   
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Categories" style: UIBarButtonItemStyleBordered target:self action:@selector(Back)];
+    self.navigationItem.title = genreTitle;
 
+    //load data
+    [self reload:nil];
 }
 
 - (void)viewDidLoad {
