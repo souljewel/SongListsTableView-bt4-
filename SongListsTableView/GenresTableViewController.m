@@ -13,6 +13,7 @@
 #import "TabBarViewController.h"
 #import "SongTableViewController.h"
 #import "BTCategory.h"
+#import "PlaylistTableViewController.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 
@@ -34,7 +35,7 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 
     __weak GenresTableViewController *weakSelf = self;
     
-    NSURLSessionTask *task = [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
+    [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
         if (!error) {
             [weakSelf.refreshControl endRefreshing];
             self.lstCategories = lstCategories;
@@ -43,20 +44,18 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
         }
     }];
     
-//    [self.refreshControl setRefreshingWithStateOfTask:task];
-
+    [self.refreshControl beginRefreshing];
 }
 
 // ----------------------
 // init TableView
 - (void) initData{
-    
     TabBarViewController*  tabBarController= (TabBarViewController*)self.tabBarController;
     tabBarController.delegate = self;
     
     self.genreMusicManager = [tabBarController getGenresManager];
     
-    //init loading icon
+    //init refresh control
     self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 100.0f)];
     [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
@@ -65,7 +64,11 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
+    
+    //load data
+    [self reload:nil];
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -169,6 +172,10 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 //    return view;
 //}
 
+-(void) didMoveToParentViewController:(UIViewController *)parent{
+    [self.tableView reloadData];
+}
+
 #pragma mark - Alert View Delegate
 
 // ----------------------
@@ -188,13 +195,22 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 }
 
 #pragma mark - Navigation
-/*
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+//     Get the new view controller using [segue destinationViewController].
+//     Pass the selected object to the new view controller.
+    UINavigationController *navigationControllerForPlaylist = segue.destinationViewController;
+    PlaylistTableViewController *playlistController = (PlaylistTableViewController*)navigationControllerForPlaylist.topViewController;
+    
+    //get the selected genre
+//    RWTScaryBugDoc *bug = [self.bugs objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    BTCategory *selectedCategory = [self.lstCategories objectAtIndex:self.tableView.indexPathForSelectedRow.section];
+    Genre *selectedGenre  = [selectedCategory.lstGenres objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+    
+    playlistController.playlistGenre = selectedGenre;
 }
-*/
+
 
 // ----------------------
 // touch Add Track button

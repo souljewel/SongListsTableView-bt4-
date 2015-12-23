@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053DF20A1C2AA545006BACB4 /* PlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053DF2091C2AA545006BACB4 /* PlaylistTableViewController.m */; };
 		054444CA1C190FFA00297601 /* addGenres@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444BE1C190FFA00297601 /* addGenres@2x.png */; };
 		054444CB1C190FFA00297601 /* addToSong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444BF1C190FFA00297601 /* addToSong@2x.png */; };
 		054444CC1C190FFA00297601 /* icon_artwork_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444C01C190FFA00297601 /* icon_artwork_default.png */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053DF2081C2AA545006BACB4 /* PlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistTableViewController.h; sourceTree = "<group>"; };
+		053DF2091C2AA545006BACB4 /* PlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistTableViewController.m; sourceTree = "<group>"; };
 		054444BE1C190FFA00297601 /* addGenres@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addGenres@2x.png"; sourceTree = "<group>"; };
 		054444BF1C190FFA00297601 /* addToSong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToSong@2x.png"; sourceTree = "<group>"; };
 		054444C01C190FFA00297601 /* icon_artwork_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_artwork_default.png; sourceTree = "<group>"; };
@@ -114,6 +117,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		053DF2041C2AA4DF006BACB4 /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				053DF2071C2AA4FA006BACB4 /* Controller */,
+				053DF2061C2AA4F5006BACB4 /* View */,
+				053DF2051C2AA4EF006BACB4 /* Model */,
+			);
+			name = Playlist;
+			sourceTree = "<group>";
+		};
+		053DF2051C2AA4EF006BACB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		053DF2061C2AA4F5006BACB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		053DF2071C2AA4FA006BACB4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				053DF2081C2AA545006BACB4 /* PlaylistTableViewController.h */,
+				053DF2091C2AA545006BACB4 /* PlaylistTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		054444BD1C190FE500297601 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,7 +277,7 @@
 		05E8B3801C19564C006372E6 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				05E8B3871C1956F3006372E6 /* Genre */,
+				05E8B3871C1956F3006372E6 /* Category */,
 				05E8B3821C195682006372E6 /* Song */,
 				054444DA1C191FB100297601 /* Controller */,
 				054444D91C191FAB00297601 /* View */,
@@ -285,14 +321,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		05E8B3871C1956F3006372E6 /* Genre */ = {
+		05E8B3871C1956F3006372E6 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				05E8B38A1C19570C006372E6 /* Controller */,
 				05E8B3891C195707006372E6 /* View */,
 				05E8B3881C195700006372E6 /* Model */,
+				053DF2041C2AA4DF006BACB4 /* Playlist */,
 			);
-			name = Genre;
+			name = Category;
 			sourceTree = "<group>";
 		};
 		05E8B3881C195700006372E6 /* Model */ = {
@@ -450,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053DF20A1C2AA545006BACB4 /* PlaylistTableViewController.m in Sources */,
 				054444E01C19202400297601 /* Song.m in Sources */,
 				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
