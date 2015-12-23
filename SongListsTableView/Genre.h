@@ -14,10 +14,11 @@
 
 @property NSInteger genreId;
 @property NSString* genreTitle;
-@property UIImage* genreImage;
+@property UIImage* genreImageName;
+@property NSString* genreCategory;
 
 #pragma mark instance methods
--(id) initGenre:(NSInteger) genreId genreTitle:(NSString*) genreTitle genreImage:(UIImage*)image;
+-(id) initGenre:(NSString*) genreTitle genreImage:(UIImage*)image genreCategory:(NSString*)genreCategory;
 
 #pragma mark class methods
 

@@ -7,6 +7,7 @@
  */
 #import <Foundation/Foundation.h>
 
+
 @interface ParseOperation : NSOperation
 
 // A block to call when an error is encountered during parsing.
@@ -15,7 +16,7 @@
 // NSArray containing AppRecord instances for each entry parsed
 // from the input data.
 // Only meaningful after the operation has completed.
-@property (nonatomic, strong, readonly) NSArray *lstCategories;
+@property (nonatomic, strong) NSArray *lstCategories;
 
 // The initializer for this NSOperation subclass.  
 - (instancetype)initWithData:(NSData *)data;

@@ -25,16 +25,21 @@
 @implementation GenresTableViewController
 
 static NSString *MyIdentifier = @"MyTableView";
+static NSString *CategoryIdentifier = @"CategoryTableView";
 
 // ----------------------
 // reload category from the api
 - (void)reload:(__unused id)sender {
     self.navigationItem.rightBarButtonItem.enabled = NO;
 
+    __weak GenresTableViewController *weakSelf = self;
+    
     NSURLSessionTask *task = [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
         if (!error) {
+            [weakSelf.refreshControl endRefreshing];
             self.lstCategories = lstCategories;
             [self.tableView reloadData];
+            
         }
     }];
     
@@ -86,18 +91,22 @@ static NSString *MyIdentifier = @"MyTableView";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     BTCategory *category = [self.lstCategories objectAtIndex:section];
-    return [category.lstGenres count];//[self.genreMusicManager getCountItem];
+    
+    return [[category lstGenres] count];//[self.genreMusicManager getCountItem];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CategoryIdentifier];
     
     // Configure the cell...
-    Song *songItem = [_genreMusicManager.lstItems objectAtIndex:indexPath.row];
+    
 
-    [cell setSong:songItem];
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    BTCategory *category = [self.lstCategories objectAtIndex:section];
+    cell.label.text = [(Genre*)[category.lstGenres objectAtIndex:row] genreTitle] ;
     
     return cell;
 }
@@ -138,6 +147,27 @@ static NSString *MyIdentifier = @"MyTableView";
 }
 */
 
+// ----------------------
+// set title for section
+-(NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    BTCategory* category = [self.lstCategories objectAtIndex:section];
+    return category.categoryName;
+}
+
+
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    //put your values, this is part of my code
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30.0f)];
+//    [view setBackgroundColor:[UIColor redColor]];
+//    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 150, 20)];
+//    [lbl setFont:[UIFont systemFontOfSize:18]];
+//    [lbl setTextColor:[UIColor blueColor]];
+//    [view addSubview:lbl];
+//    
+//    [lbl setText:[NSString stringWithFormat:@"Section: %ld",(long)section]];
+//    
+//    return view;
+//}
 
 #pragma mark - Alert View Delegate
 
@@ -145,13 +175,13 @@ static NSString *MyIdentifier = @"MyTableView";
 // alertView delegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){ //Touch OK
-        NSString *songName = [alertView textFieldAtIndex:0].text;
-        
-        Genre *genre = [[Genre alloc] initGenre:1 genreTitle:@"" genreImage:nil];
-        Song *newSong = [[Song alloc] initSong:songName songImageName:nil songGenre:genre];
-       
-
-        [_genreMusicManager addSong:newSong];
+//        NSString *songName = [alertView textFieldAtIndex:0].text;
+//        
+//        Genre *genre = [[Genre alloc] initGenre:1 genreTitle:@"" genreImage:nil];
+//        Song *newSong = [[Song alloc] initSong:songName songImageName:nil songGenre:genre];
+//       
+//
+//        [_genreMusicManager addSong:newSong];
         
 
     }

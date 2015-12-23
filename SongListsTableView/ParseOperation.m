@@ -8,16 +8,15 @@
 
 #import "ParseOperation.h"
 #import "Genre.h"
+#import "BTCategory.h"
 
 // string contants found in the RSS feed
-static NSString *kIDStr     = @"id";
-static NSString *kNameStr   = @"im:name";
-static NSString *kImageStr  = @"im:image";
-static NSString *kArtistStr = @"im:artist";
-static NSString *kEntryStr  = @"entry";
+static NSString *key1     = @"audio";
+static NSString *key2   = @"music";
 
 
-@interface ParseOperation () <NSXMLParserDelegate>
+
+@interface ParseOperation ()
 
 // Redeclare appRecordList so we can modify it within this class
 @property (nonatomic, strong) NSArray *appRecordList;
@@ -45,7 +44,7 @@ static NSString *kEntryStr  = @"entry";
     if (self != nil)
     {
         _dataToParse = data;
-        _elementsToParse = @[kIDStr, kNameStr, kImageStr, kArtistStr];
+        _elementsToParse = @[key1,key2];
     }
     return self;
 }
@@ -83,15 +82,19 @@ static NSString *kEntryStr  = @"entry";
     if(error){
         NSLog(@"Error when parse json string %@",error);
     }else{
-        NSArray* lstAudio = [json objectForKey:@"audio"];
-        NSArray* lstMusic = [json objectForKey:@"music"];
+        NSArray* lstAudio = [json objectForKey:key1];
+        NSArray* lstMusic = [json objectForKey:key2];
+      
+        BTCategory* categoryAudio = [[BTCategory alloc] initWithListNames:lstAudio categoryName:key1];
+        BTCategory* categoryMusic = [[BTCategory alloc] initWithListNames:lstMusic categoryName:key2];
+        self.lstCategories = [NSArray arrayWithObjects:categoryAudio, categoryMusic, nil];
     }
-    if (![self isCancelled])
-    {
-        // Set appRecordList to the result of our parsing
-        self.appRecordList = [NSArray arrayWithArray:self.workingArray];
-    }
-    
+//    if (![self isCancelled])
+//    {
+//        // Set appRecordList to the result of our parsing
+//        self.appRecordList = [NSArray arrayWithArray:self.workingArray];
+//    }
+
     self.workingArray = nil;
     self.workingPropertyString = nil;
     self.dataToParse = nil;

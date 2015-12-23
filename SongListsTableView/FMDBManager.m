@@ -101,7 +101,8 @@ static NSString *const DB_NAME = @"MusicDatabase";
             
             song.songId = [rs intForColumn:@"SongId"];
             song.songTitle = [rs stringForColumn:@"SongTitle"];
-            Genre *genre = [[Genre alloc]  initGenre:genreId genreTitle:@"" genreImage:nil];
+//            Genre *genre = [[Genre alloc]  initGenre:genreId genreTitle:@"" genreImage:nil genreCategory:@""];
+            Genre *genre = [[Genre alloc] initGenre:@"" genreImage:nil genreCategory:@""];
             song.songGenre = genre;
             NSString *imageName = [rs stringForColumn:@"SongImage"];
             

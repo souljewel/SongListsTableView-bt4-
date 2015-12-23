@@ -10,10 +10,15 @@
 #import "ParseOperation.h"
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "Genre.h"
 
 @interface BTCategory : NSObject
 
+@property NSString* categoryName;
 @property NSMutableArray *lstGenres;
+
+#pragma mark - instance methods
+- (id) initWithListNames:(NSArray*) lstNames categoryName:(NSString*) categoryName;
 
 #pragma mark - class methods
 //load the category from api

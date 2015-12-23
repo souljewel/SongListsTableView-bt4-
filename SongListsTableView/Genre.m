@@ -14,14 +14,15 @@
 
 // ----------------------
 // init genre
--(id) initGenre:(NSInteger) genreId genreTitle:(NSString*) genreTitle genreImage:(UIImage*)image{
+-(id) initGenre:(NSString*) genreTitle genreImage:(UIImage*)image genreCategory:(NSString*)genreCategory{
     self = [super init];
     
     if(self){
-        self.genreId = genreId;
         self.genreTitle = genreTitle;
+        self.genreCategory = genreCategory;
+        
         if(image == nil){
-            self.genreImage = [UIImage imageNamed: @"icon_artwork_default.png"];
+            self.genreImageName = [UIImage imageNamed: @"icon_artwork_default.png"];
         }
     }
     

@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[GenresTableViewController tableView:cellForRowAtIndexPath:]:GenresTableViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[[[self.lstCategories objectAtIndex:section] lstGenres ]objectAtIndex:row]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[GenresTableViewController tabBarController:didSelectViewController:]:GenresTableViewController.m">
       </ContextState>
       <ContextState

@@ -15,6 +15,7 @@ static NSString *const GetAllCategoriesLinks = @"https://api-v2.soundcloud.com/e
 
 #pragma mark class implementation
 
+@synthesize lstGenres;
 // ----------------------
 // init
 -(id) init{
@@ -25,26 +26,28 @@ static NSString *const GetAllCategoriesLinks = @"https://api-v2.soundcloud.com/e
     }
     return self;
 }
+
+// ----------------------
+// init with list names and category name
+- (id) initWithListNames:(NSArray*) lstNames categoryName:(NSString*) categoryName{
+    self = [super init];
+    
+    if(self){
+        self.categoryName = categoryName;
+        lstGenres = [[NSMutableArray alloc] init];
+        for(NSString* name in lstNames){
+            Genre *newGenre = [[Genre alloc] initGenre:name genreImage:nil genreCategory:categoryName];
+            
+            [lstGenres addObject:newGenre];
+        }
+    }
+    
+    return self;
+}
+
 // ----------------------
 // load the category from api
 + (NSURLSessionDataTask *)loadGenresWithBlock:(void (^)(NSArray* lstCategories, NSError *error))block {
-    
-    //    return [[AFAppDotNetAPIClient sharedClient] GET:@"stream/0/posts/stream/global" parameters:nil progress:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
-    //        NSArray *postsFromResponse = [JSON valueForKeyPath:@"data"];
-    //        NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
-    //        for (NSDictionary *attributes in postsFromResponse) {
-    //            Post *post = [[Post alloc] initWithAttributes:attributes];
-    //            [mutablePosts addObject:post];
-    //        }
-    //
-    //        if (block) {
-    //            block([NSArray arrayWithArray:mutablePosts], nil);
-    //        }
-    //    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-    //        if (block) {
-    //            block([NSArray array], error);
-    //        }
-    //    }];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GetAllCategoriesLinks]];
     
@@ -112,6 +115,7 @@ static NSString *const GetAllCategoriesLinks = @"https://api-v2.soundcloud.com/e
 //                        
 //                        // tell our table view to reload its data, now that parsing has completed
 //                        [rootViewController.tableView reloadData];
+                        block(weakParser.lstCategories,nil);
                     });
                 }
                 
