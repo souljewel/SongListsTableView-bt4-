@@ -20,8 +20,6 @@
 #pragma mark - instance methods
 - (id) initWithListNames:(NSArray*) lstNames categoryName:(NSString*) categoryName;
 
-#pragma mark - class methods
-//load the category from api
-+ (NSURLSessionDataTask *)loadGenresWithBlock:(void (^)(NSArray *lstCategories, NSError *error))block;
+
 
 @end

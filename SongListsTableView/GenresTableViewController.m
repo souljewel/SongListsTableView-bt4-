@@ -14,6 +14,7 @@
 #import "SongTableViewController.h"
 #import "BTCategory.h"
 #import "PlaylistTableViewController.h"
+#import "DownloadManager.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 
@@ -34,11 +35,11 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
     self.navigationItem.rightBarButtonItem.enabled = NO;
 
     __weak GenresTableViewController *weakSelf = self;
-    
-    [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
+
+    [[DownloadManager sharedManager] loadGenresWithBlock:^(NSArray *lstResults, NSError *error) {
         if (!error) {
             [weakSelf.refreshControl endRefreshing];
-            self.lstCategories = lstCategories;
+            self.lstCategories = lstResults;
             [self.tableView reloadData];
             
         }

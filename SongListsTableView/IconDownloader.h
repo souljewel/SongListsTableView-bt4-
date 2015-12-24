@@ -9,11 +9,11 @@
  */
 #import <Foundation/Foundation.h>
 
-@class Genre;
+@class Song;
 
 @interface IconDownloader : NSObject
 
-@property (nonatomic, strong) Genre *genre;
+@property (nonatomic, strong) Song *song;
 @property (nonatomic, copy) void (^completionHandler)(void);
 
 - (void)startDownload;

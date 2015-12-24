@@ -9,24 +9,13 @@
 #import "ParseOperation.h"
 #import "Genre.h"
 #import "BTCategory.h"
+#import "Song.h"
 
-// string contants found in the RSS feed
-static NSString *CategoryKey1     = @"audio";
-static NSString *CategoryKey2   = @"music";
-
-static NSString *SongKey1 = @"tracks";
-static NSString *SongKey2 = @"title";
-static NSString *SongKey3 = @"likes_count";
-static NSString *SongKey4 = @"playback_count";
-static NSString *SongKey5 = @"artwork_url";
 @interface ParseOperation ()
-
-// Redeclare appRecordList so we can modify it within this class
-@property (nonatomic, strong) NSArray *appRecordList;
 
 @property (nonatomic, strong) NSData *dataToParse;
 @property (nonatomic, strong) NSArray *elementsToParse;
-
+@property enum TypeOfDownload typeOfDownload;
 @end
 
 
@@ -37,13 +26,14 @@ static NSString *SongKey5 = @"artwork_url";
 // -------------------------------------------------------------------------------
 //	initWithData:
 // -------------------------------------------------------------------------------
-- (instancetype)initWithData:(NSData *)data
+- (instancetype)initWithData:(NSData *)data keyArray:(NSArray*)keyArray typeOfDownload:(enum TypeOfDownload)typeOfDownload
 {
     self = [super init];
     if (self != nil)
     {
         _dataToParse = data;
-        _elementsToParse = @[CategoryKey1,CategoryKey2];
+        _elementsToParse = keyArray;
+        _typeOfDownload = typeOfDownload;
     }
     return self;
 }
@@ -65,14 +55,38 @@ static NSString *SongKey5 = @"artwork_url";
     if(error){
         NSLog(@"Error when parse json string %@",error);
     }else{
-        NSArray* lstAudio = [json objectForKey:CategoryKey1];
-        NSArray* lstMusic = [json objectForKey:CategoryKey2];
-      
-        BTCategory* categoryAudio = [[BTCategory alloc] initWithListNames:lstAudio categoryName:CategoryKey1];
-        BTCategory* categoryMusic = [[BTCategory alloc] initWithListNames:lstMusic categoryName:CategoryKey2];
-        self.lstCategories = [NSArray arrayWithObjects:categoryAudio, categoryMusic, nil];
-    }
+        
+        if(_typeOfDownload == TYPE_SONG){
+            NSArray* lstTracks = [json objectForKey:[_elementsToParse objectAtIndex:0]];
+            
+            NSMutableArray *songs = [[NSMutableArray alloc] init];
+            for(int i=0;i<[lstTracks count];i++){
+                NSDictionary* track = [lstTracks objectAtIndex:i];
+                
+                NSString* trackTitle = [[track valueForKey:[_elementsToParse objectAtIndex:1]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:1]];
+                NSInteger trackLikesCount = [[track valueForKey:[_elementsToParse objectAtIndex:2]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:2]] integerValue];
+                NSInteger trackPlayCount = [[track valueForKey:[_elementsToParse objectAtIndex:3]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:3]] integerValue];
+                NSString* trackImageUrl = [[track valueForKey:[_elementsToParse objectAtIndex:4]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:4]];
+                
+#warning load song from image to set button download state
+                Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:STATE_NOT_DOWNLOAD];
+                [songs addObject:newSong];
+            }
+            
+            self.lstResult = [NSArray arrayWithArray:songs];
+        }else{
+            if(_typeOfDownload == TYPE_CATEGORY){
+                NSArray* lstAudio = [json objectForKey:[_elementsToParse objectAtIndex:0]];
+                NSArray* lstMusic = [json objectForKey:[_elementsToParse objectAtIndex:1]];
+                
+                BTCategory* categoryAudio = [[BTCategory alloc] initWithListNames:lstAudio categoryName:[_elementsToParse objectAtIndex:0]];
+                BTCategory* categoryMusic = [[BTCategory alloc] initWithListNames:lstMusic categoryName:[_elementsToParse objectAtIndex:1]];
+                self.lstResult = [NSArray arrayWithObjects:categoryAudio, categoryMusic, nil];
+            }
+        }
 
+    }
+    
 }
 
 @end

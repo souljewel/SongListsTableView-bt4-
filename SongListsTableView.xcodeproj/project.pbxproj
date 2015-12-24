@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		053DF20A1C2AA545006BACB4 /* PlaylistTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053DF2091C2AA545006BACB4 /* PlaylistTableViewController.m */; };
+		0541E1871C2B820400081A19 /* DownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0541E1861C2B820400081A19 /* DownloadManager.m */; };
 		054444CA1C190FFA00297601 /* addGenres@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444BE1C190FFA00297601 /* addGenres@2x.png */; };
 		054444CB1C190FFA00297601 /* addToSong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444BF1C190FFA00297601 /* addToSong@2x.png */; };
 		054444CC1C190FFA00297601 /* icon_artwork_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 054444C01C190FFA00297601 /* icon_artwork_default.png */; };
@@ -29,6 +30,13 @@
 		0581BCE21C181C63006C0113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0581BCE01C181C63006C0113 /* Main.storyboard */; };
 		0581BCE41C181C63006C0113 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0581BCE31C181C63006C0113 /* Assets.xcassets */; };
 		0581BCE71C181C63006C0113 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0581BCE51C181C63006C0113 /* LaunchScreen.storyboard */; };
+		05A505491C2BD6280038BCA9 /* CommonHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A505481C2BD6280038BCA9 /* CommonHelper.m */; };
+		05A5054D1C2BEFB70038BCA9 /* icon_plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A5054A1C2BEFB70038BCA9 /* icon_plus.png */; };
+		05A5054E1C2BEFB70038BCA9 /* icon_plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A5054B1C2BEFB70038BCA9 /* icon_plus@2x.png */; };
+		05A5054F1C2BEFB70038BCA9 /* icon_plus@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A5054C1C2BEFB70038BCA9 /* icon_plus@3x.png */; };
+		05A505531C2BFE670038BCA9 /* icon_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505501C2BFE670038BCA9 /* icon_check.png */; };
+		05A505541C2BFE670038BCA9 /* icon_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505511C2BFE670038BCA9 /* icon_check@2x.png */; };
+		05A505551C2BFE670038BCA9 /* icon_check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505521C2BFE670038BCA9 /* icon_check@3x.png */; };
 		05E8B3791C195410006372E6 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3781C195410006372E6 /* TabBarViewController.m */; };
 		05E8B3961C197E9A006372E6 /* GenresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3951C197E9A006372E6 /* GenresTableViewController.m */; };
 		05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E1A1C1EABC200007660 /* FMDBManager.m */; };
@@ -48,6 +56,8 @@
 /* Begin PBXFileReference section */
 		053DF2081C2AA545006BACB4 /* PlaylistTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaylistTableViewController.h; sourceTree = "<group>"; };
 		053DF2091C2AA545006BACB4 /* PlaylistTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaylistTableViewController.m; sourceTree = "<group>"; };
+		0541E1851C2B820400081A19 /* DownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadManager.h; sourceTree = "<group>"; };
+		0541E1861C2B820400081A19 /* DownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadManager.m; sourceTree = "<group>"; };
 		054444BE1C190FFA00297601 /* addGenres@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addGenres@2x.png"; sourceTree = "<group>"; };
 		054444BF1C190FFA00297601 /* addToSong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addToSong@2x.png"; sourceTree = "<group>"; };
 		054444C01C190FFA00297601 /* icon_artwork_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_artwork_default.png; sourceTree = "<group>"; };
@@ -76,6 +86,14 @@
 		0581BCE31C181C63006C0113 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0581BCE61C181C63006C0113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0581BCE81C181C63006C0113 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05A505471C2BD6280038BCA9 /* CommonHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHelper.h; sourceTree = "<group>"; };
+		05A505481C2BD6280038BCA9 /* CommonHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHelper.m; sourceTree = "<group>"; };
+		05A5054A1C2BEFB70038BCA9 /* icon_plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plus.png; sourceTree = "<group>"; };
+		05A5054B1C2BEFB70038BCA9 /* icon_plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plus@2x.png"; sourceTree = "<group>"; };
+		05A5054C1C2BEFB70038BCA9 /* icon_plus@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plus@3x.png"; sourceTree = "<group>"; };
+		05A505501C2BFE670038BCA9 /* icon_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_check.png; sourceTree = "<group>"; };
+		05A505511C2BFE670038BCA9 /* icon_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@2x.png"; sourceTree = "<group>"; };
+		05A505521C2BFE670038BCA9 /* icon_check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@3x.png"; sourceTree = "<group>"; };
 		05E8B3771C195410006372E6 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		05E8B3781C195410006372E6 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		05E8B3941C197E9A006372E6 /* GenresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenresTableViewController.h; sourceTree = "<group>"; };
@@ -153,6 +171,12 @@
 		054444BD1C190FE500297601 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				05A505501C2BFE670038BCA9 /* icon_check.png */,
+				05A505511C2BFE670038BCA9 /* icon_check@2x.png */,
+				05A505521C2BFE670038BCA9 /* icon_check@3x.png */,
+				05A5054A1C2BEFB70038BCA9 /* icon_plus.png */,
+				05A5054B1C2BEFB70038BCA9 /* icon_plus@2x.png */,
+				05A5054C1C2BEFB70038BCA9 /* icon_plus@3x.png */,
 				054444BE1C190FFA00297601 /* addGenres@2x.png */,
 				054444BF1C190FFA00297601 /* addToSong@2x.png */,
 				054444C01C190FFA00297601 /* icon_artwork_default.png */,
@@ -245,6 +269,8 @@
 				05EFE3DC1C296665000BE950 /* DownloadHelper */,
 				05EB5E191C1EABC200007660 /* FMDBManager.h */,
 				05EB5E1A1C1EABC200007660 /* FMDBManager.m */,
+				05A505471C2BD6280038BCA9 /* CommonHelper.h */,
+				05A505481C2BD6280038BCA9 /* CommonHelper.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -392,6 +418,8 @@
 				05EFE3E01C296677000BE950 /* IconDownloader.m */,
 				05EFE3E11C296677000BE950 /* ParseOperation.h */,
 				05EFE3E21C296677000BE950 /* ParseOperation.m */,
+				0541E1851C2B820400081A19 /* DownloadManager.h */,
+				0541E1861C2B820400081A19 /* DownloadManager.m */,
 			);
 			name = DownloadHelper;
 			sourceTree = "<group>";
@@ -462,17 +490,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				054444D21C190FFA00297601 /* icon_tab_genres.png in Resources */,
+				05A5054F1C2BEFB70038BCA9 /* icon_plus@3x.png in Resources */,
 				054444D51C190FFA00297601 /* moveToGenres@2x.png in Resources */,
 				05EB5E211C1EB66D00007660 /* MusicDatabase in Resources */,
 				054444D11C190FFA00297601 /* icon_tab_download@3x.png in Resources */,
 				0581BCE71C181C63006C0113 /* LaunchScreen.storyboard in Resources */,
 				054444D31C190FFA00297601 /* icon_tab_genres@2x.png in Resources */,
+				05A505531C2BFE670038BCA9 /* icon_check.png in Resources */,
 				054444CC1C190FFA00297601 /* icon_artwork_default.png in Resources */,
+				05A5054D1C2BEFB70038BCA9 /* icon_plus.png in Resources */,
 				0581BCE41C181C63006C0113 /* Assets.xcassets in Resources */,
+				05A505541C2BFE670038BCA9 /* icon_check@2x.png in Resources */,
+				05A5054E1C2BEFB70038BCA9 /* icon_plus@2x.png in Resources */,
 				054444D41C190FFA00297601 /* icon_tab_genres@3x.png in Resources */,
 				054444CF1C190FFA00297601 /* icon_tab_download.png in Resources */,
 				054444CB1C190FFA00297601 /* addToSong@2x.png in Resources */,
 				054444CD1C190FFA00297601 /* icon_artwork_default@2x.png in Resources */,
+				05A505551C2BFE670038BCA9 /* icon_check@3x.png in Resources */,
 				054444CA1C190FFA00297601 /* addGenres@2x.png in Resources */,
 				0581BCE21C181C63006C0113 /* Main.storyboard in Resources */,
 				054444CE1C190FFA00297601 /* icon_artwork_default@3x.png in Resources */,
@@ -490,6 +524,7 @@
 				053DF20A1C2AA545006BACB4 /* PlaylistTableViewController.m in Sources */,
 				054444E01C19202400297601 /* Song.m in Sources */,
 				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
+				0541E1871C2B820400081A19 /* DownloadManager.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
@@ -499,6 +534,7 @@
 				0581BCDC1C181C63006C0113 /* AppDelegate.m in Sources */,
 				05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */,
 				0581BCD91C181C63006C0113 /* main.m in Sources */,
+				05A505491C2BD6280038BCA9 /* CommonHelper.m in Sources */,
 				05EFE3E41C296677000BE950 /* IconDownloader.m in Sources */,
 				05EB5E7D1C1ECFF600007660 /* FMDatabaseAdditions.m in Sources */,
 				05E8B3961C197E9A006372E6 /* GenresTableViewController.m in Sources */,

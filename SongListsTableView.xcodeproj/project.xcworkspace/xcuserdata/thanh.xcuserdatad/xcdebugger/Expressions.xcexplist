@@ -3,10 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[GenresTableViewController tableView:cellForRowAtIndexPath:]:GenresTableViewController.m">
+         contextName = "-[TabBarViewController moveSong:fromTabItemIndex:toTabItemIndex:]:TabBarViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "[[[self.lstCategories objectAtIndex:section] lstGenres ]objectAtIndex:row]">
+               value = "self.tabBarItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ParseOperation main]:ParseOperation.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[track valueForKey:[_elementsToParse objectAtIndex:2]]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -28,10 +36,10 @@
          contextName = "-[GenresTableViewController initData]:GenresTableViewController.m">
       </ContextState>
       <ContextState
-         contextName = "-[TabBarViewController moveSong:fromTabItemIndex:toTabItemIndex:]:TabBarViewController.m">
+         contextName = "-[GenresTableViewController tableView:cellForRowAtIndexPath:]:GenresTableViewController.m">
          <PersistentStrings>
             <PersistentString
-               value = "self.tabBarItem">
+               value = "[[[self.lstCategories objectAtIndex:section] lstGenres ]objectAtIndex:row]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

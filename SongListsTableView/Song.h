@@ -11,10 +11,11 @@
 
 #import "Genre.h"
 
-enum songState{
-    DOWNLOADED,
-    NOT_DOWNLOAD
-} SongState;
+enum StateOfSong{
+    STATE_DOWNLOADED,
+    STATE_NOT_DOWNLOAD
+} ;
+
 @interface Song : NSObject
 
 @property NSInteger songId;
@@ -23,5 +24,10 @@ enum songState{
 @property Genre* songGenre;
 @property NSString* songImageName;
 
--(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre;
+@property NSInteger songLikesCount;
+@property NSInteger songPlaysCount;
+
+@property enum StateOfSong songState;
+
+-(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState;
 @end

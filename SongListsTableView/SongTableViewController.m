@@ -10,6 +10,7 @@
 #import "MusicManager.h"
 #import "MyTableViewCell.h"
 #import "TabBarViewController.h"
+#import "CommonHelper.h"
 
 @interface SongTableViewController ()
 
@@ -19,7 +20,7 @@
 
 @implementation SongTableViewController
 
-static NSString *MyIdentifier = @"MyTableViewSong";
+
 
 // ----------------------
 // init TableView
@@ -67,7 +68,7 @@ static NSString *MyIdentifier = @"MyTableViewSong";
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] MyIdentifier]];
     
     // Configure the cell...
     Song *songItem = [self.songMusicManager.lstItems objectAtIndex:indexPath.row];

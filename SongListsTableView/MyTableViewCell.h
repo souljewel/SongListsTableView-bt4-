@@ -16,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UILabel *label;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *lblDetailText;
 
 #pragma mark - class methods
 

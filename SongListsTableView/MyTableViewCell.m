@@ -7,6 +7,7 @@
 //
 
 #import "MyTableViewCell.h"
+#import <UIKit/UIKit.h>
 
 @implementation MyTableViewCell
 
@@ -31,7 +32,15 @@
         self.tag = song.songId;
         self.button.tag = song.songId;
         [self.button addTarget:self action:@selector(moveSong:) forControlEvents:UIControlEventTouchUpInside];
-        
+        self.lblDetailText.text = [[@"Like: " stringByAppendingString:[NSString stringWithFormat:@"%ld",song.songLikesCount] ] stringByAppendingString:[@"   Play: " stringByAppendingString:[NSString stringWithFormat:@"%ld",song.songPlaysCount] ]];
+        if(self.songItem.songState == STATE_DOWNLOADED)
+        {
+            UIImage *btnImage = [UIImage imageNamed:@"icon_check.png"];
+            [self.button setImage:btnImage forState:UIControlStateNormal];
+        }else{
+            UIImage *btnImage = [UIImage imageNamed:@"icon_plus.png"];
+            [self.button setImage:btnImage forState:UIControlStateNormal];
+        }
         [self setNeedsDisplay];
     }
 }

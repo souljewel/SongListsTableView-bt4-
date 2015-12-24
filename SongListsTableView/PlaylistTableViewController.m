@@ -7,8 +7,19 @@
 //
 
 #import "PlaylistTableViewController.h"
+#import "DownloadManager.h"
+#import "MyTableViewCell.h"
+#import "CommonHelper.h"
+#import "Song.h"
+#import "IconDownloader.h"
+#import "MusicManager.h"
 
-@interface PlaylistTableViewController ()
+#define kCustomRowCount 7
+@interface PlaylistTableViewController ()<UIScrollViewDelegate>
+
+// the set of IconDownloader objects for each app
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+@property MusicManager* songManager;//manage insert update delete song to database
 
 @end
 
@@ -25,14 +36,14 @@
     
     __weak PlaylistTableViewController *weakSelf = self;
     
-//    [BTCategory loadGenresWithBlock:^(NSArray *lstCategories, NSError *error) {
-//        if (!error) {
-//            [weakSelf.refreshControl endRefreshing];
-//            self.lstCategories = lstCategories;
-//            [self.tableView reloadData];
-//            
-//        }
-//    }];
+    [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle onComplete:^(NSArray *lstResultSongs, NSError *error) {
+        if (!error) {
+            [weakSelf.refreshControl endRefreshing];
+            self.lstSongs = lstResultSongs;
+            [self.tableView reloadData];
+            
+        }
+    }];
     
     [self.refreshControl beginRefreshing];
 }
@@ -44,6 +55,13 @@
     NSString *genreTitle = playlistGenre.genreTitle;
     self.navigationItem.title = genreTitle;
 
+    _imageDownloadsInProgress = [NSMutableDictionary dictionary];
+    
+    //init refresh control
+    self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 100.0f)];
+    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView.tableHeaderView addSubview:self.refreshControl];
+    
     //load data
     [self reload:nil];
 }
@@ -59,9 +77,37 @@
     [self initData];
 }
 
-- (void)didReceiveMemoryWarning {
+// -------------------------------------------------------------------------------
+//	terminateAllDownloads
+// -------------------------------------------------------------------------------
+- (void)terminateAllDownloads
+{
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
+    
+    [self.imageDownloadsInProgress removeAllObjects];
+}
+
+// -------------------------------------------------------------------------------
+//	dealloc
+//  If this view controller is going away, we need to cancel all outstanding downloads.
+// -------------------------------------------------------------------------------
+- (void)dealloc
+{
+    // terminate all pending download connections
+    [self terminateAllDownloads];
+}
+
+// -------------------------------------------------------------------------------
+//	didReceiveMemoryWarning
+// -------------------------------------------------------------------------------
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    // terminate all pending download connections
+    [self terminateAllDownloads];
 }
 
 #pragma mark - Table view data source
@@ -71,18 +117,52 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [lstSongs count];
+    NSInteger count = [lstSongs count];
+//    // if there's no data yet, return enough rows to fill the screen
+//    if (count == 0)
+//    {
+//        return kCustomRowCount;
+//    }
+    return count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+//     Configure the cell...
+    MyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] MyIdentifier] forIndexPath:indexPath];
+    NSUInteger nodeCount = [lstSongs count];
+    // Leave cells empty if there's no data yet
+    if (nodeCount > 0)
+    {
+        // Set up the cell representing the app
+        Song *songEntry = (self.lstSongs)[indexPath.row];
+        
+        [cell setSong:songEntry];
+//        cell.songItem = songEntry;
+//        cell.label.text = songEntry.songTitle;
+//        cell.lblDetailText.text = [[@"Like: " stringByAppendingString:[NSString stringWithFormat:@"%ld",songEntry.songLikesCount] ] stringByAppendingString:[@"   Play: " stringByAppendingString:[NSString stringWithFormat:@"%ld",songEntry.songPlaysCount] ]];
+        
+        
+        // Only load cached images; defer new downloads until scrolling ends
+        if (!songEntry.songImage)
+        {
+            if (self.tableView.dragging == NO && self.tableView.decelerating == NO)
+            {
+                [self startIconDownload:songEntry forIndexPath:indexPath];
+            }
+            // if a download is deferred or in progress, return a placeholder image
+            cell.image.image = [UIImage imageNamed:@"icon_artwork_default.png"];
+        }
+        else
+        {
+            cell.image.image = songEntry.songImage;
+        }
+    }
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -128,4 +208,79 @@
 }
 */
 
+#pragma mark - Table cell image support
+
+// -------------------------------------------------------------------------------
+//	startIconDownload:forIndexPath:
+// -------------------------------------------------------------------------------
+- (void)startIconDownload:(Song *)song forIndexPath:(NSIndexPath *)indexPath
+{
+    IconDownloader *iconDownloader = (self.imageDownloadsInProgress)[indexPath];
+    if (iconDownloader == nil)
+    {
+        iconDownloader = [[IconDownloader alloc] init];
+        iconDownloader.song = song;
+        [iconDownloader setCompletionHandler:^{
+            
+            MyTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+            
+            // Display the newly loaded image
+            cell.image.image = song.songImage;
+            
+            // Remove the IconDownloader from the in progress list.
+            // This will result in it being deallocated.
+            [self.imageDownloadsInProgress removeObjectForKey:indexPath];
+            
+        }];
+        (self.imageDownloadsInProgress)[indexPath] = iconDownloader;
+        [iconDownloader startDownload];
+    }
+}
+
+// -------------------------------------------------------------------------------
+//	loadImagesForOnscreenRows
+//  This method is used in case the user scrolled into a set of cells that don't
+//  have their app icons yet.
+// -------------------------------------------------------------------------------
+- (void)loadImagesForOnscreenRows
+{
+    if (self.lstSongs.count > 0)
+    {
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            Song *song = (self.lstSongs)[indexPath.row];
+            
+            if (!song.songImage)
+                // Avoid the app icon download if the app already has an icon
+            {
+                [self startIconDownload:song forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDragging:willDecelerate:
+//  Load images for all onscreen rows when scrolling is finished.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDecelerating:scrollView
+//  When scrolling stops, proceed to load the app icons that are on screen.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
 @end
