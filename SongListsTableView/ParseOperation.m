@@ -11,11 +11,14 @@
 #import "BTCategory.h"
 
 // string contants found in the RSS feed
-static NSString *key1     = @"audio";
-static NSString *key2   = @"music";
+static NSString *CategoryKey1     = @"audio";
+static NSString *CategoryKey2   = @"music";
 
-
-
+static NSString *SongKey1 = @"tracks";
+static NSString *SongKey2 = @"title";
+static NSString *SongKey3 = @"likes_count";
+static NSString *SongKey4 = @"playback_count";
+static NSString *SongKey5 = @"artwork_url";
 @interface ParseOperation ()
 
 // Redeclare appRecordList so we can modify it within this class
@@ -40,7 +43,7 @@ static NSString *key2   = @"music";
     if (self != nil)
     {
         _dataToParse = data;
-        _elementsToParse = @[key1,key2];
+        _elementsToParse = @[CategoryKey1,CategoryKey2];
     }
     return self;
 }
@@ -62,11 +65,11 @@ static NSString *key2   = @"music";
     if(error){
         NSLog(@"Error when parse json string %@",error);
     }else{
-        NSArray* lstAudio = [json objectForKey:key1];
-        NSArray* lstMusic = [json objectForKey:key2];
+        NSArray* lstAudio = [json objectForKey:CategoryKey1];
+        NSArray* lstMusic = [json objectForKey:CategoryKey2];
       
-        BTCategory* categoryAudio = [[BTCategory alloc] initWithListNames:lstAudio categoryName:key1];
-        BTCategory* categoryMusic = [[BTCategory alloc] initWithListNames:lstMusic categoryName:key2];
+        BTCategory* categoryAudio = [[BTCategory alloc] initWithListNames:lstAudio categoryName:CategoryKey1];
+        BTCategory* categoryMusic = [[BTCategory alloc] initWithListNames:lstMusic categoryName:CategoryKey2];
         self.lstCategories = [NSArray arrayWithObjects:categoryAudio, categoryMusic, nil];
     }
 

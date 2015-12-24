@@ -11,6 +11,10 @@
 
 #import "Genre.h"
 
+enum songState{
+    DOWNLOADED,
+    NOT_DOWNLOAD
+} SongState;
 @interface Song : NSObject
 
 @property NSInteger songId;
