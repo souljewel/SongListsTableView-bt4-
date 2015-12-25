@@ -33,7 +33,8 @@ static NSArray *songKeysArray;
 - (id)init {
     if (self = [super init]) {
         categoryKeysArray = @[@"audio",@"music"];
-        songKeysArray = @[@"tracks",@"title",@"likes_count",@"playback_count",@"artwork_url"];
+        songKeysArray = @[@"tracks",@"title",@"likes_count",@"playback_count",@"artwork_url",@"urn"];
+        self.numberOfDownload = 50;
     }
     return self;
 }
@@ -125,7 +126,7 @@ static NSArray *songKeysArray;
 - (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle onComplete:(void (^)(NSArray *lstCategories, NSError *error))block
 {
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:@"?limit=50&offset=0"]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",self.numberOfDownload] stringByAppendingString:@"&offset=0"]]]]];
     
     // create an session data task to obtain and the XML feed
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request

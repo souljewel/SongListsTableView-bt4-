@@ -15,7 +15,7 @@
 
 //@property NSInteger nextIndex;
 
--(void) addSong:(Song*) song;
++(void) addSong:(Song*) song;
 -(void) deleteSongBySongId:(NSInteger) songId;
 -(void) deleteSongBySongId:(NSInteger) songId indexPath:(NSIndexPath*)indexPath;
 -(Song*) getSongAtIndex:(NSInteger) index;
@@ -25,4 +25,6 @@
 -(NSInteger) getCountItem;
 
 -(void) loadSongFromDatabase:(NSInteger)genreId;
+-(void) loadAllSongFromDatabase;
+
 @end

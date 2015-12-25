@@ -8,6 +8,7 @@
 
 #import "MyTableViewCell.h"
 #import <UIKit/UIKit.h>
+#import "MusicManager.h"
 
 @implementation MyTableViewCell
 
@@ -48,12 +49,21 @@
 #pragma mark - button event
 
 -(void) moveSong:(UIButton *)sender {
-    NSLog(@"move song %d", (int)sender.tag);
-    
+    NSLog(@"add song to database %@", self.songItem.songSoundCloudId);
+    [MusicManager addSong:self.songItem];
     //delete in database
 //    [(TabBarViewController*)self.tabBarController moveSong:(int)sender.tag fromTabItemIndex:0 toTabItemIndex:1];
     
-    
+    //set badge Value
+    UITabBarController *topController = (UITabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+    UITabBar* tabBar = topController.tabBar;
+    UITabBarItem *toTabbarItem = [tabBar.items objectAtIndex:1];
+    if(toTabbarItem.badgeValue == nil){
+        toTabbarItem.badgeValue = [NSString stringWithFormat:@"%d", 1];
+    }else{
+        int currentBadgeValue = [toTabbarItem.badgeValue intValue];
+        toTabbarItem.badgeValue = [NSString stringWithFormat:@"%d", ++currentBadgeValue];
+    }
     
 }
 @end

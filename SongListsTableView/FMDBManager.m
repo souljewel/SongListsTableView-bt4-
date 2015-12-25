@@ -48,10 +48,13 @@ static NSString *const DB_NAME = @"MusicDatabase";
     
     NSString *songTitle = song.songTitle == nil ? @"" : song.songTitle;
     NSString *songImageName = song.songImageName == nil ? @"" : song.songImageName;
-    NSString *songGenreId = [NSString stringWithFormat:@"%ld", (long)song.songGenre.genreId];
+    NSString *songGenreId = @"1";//[NSString stringWithFormat:@"%ld", (long)song.songGenre.genreId];
+    NSString *songPlayCount = [NSString stringWithFormat:@"%ld", (long)song.songPlaysCount];
+    NSString *songLikeCount = [NSString stringWithFormat:@"%ld", (long)song.songLikesCount];
+    NSString *soundCloudId = song.songSoundCloudId == nil ? @"" : song.songSoundCloudId;
     
-    [db executeUpdate:@"INSERT INTO Song(SongTitle, SongImage, GenreId) VALUES(?, ?, ?)",
-     songTitle, songImageName, songGenreId];
+    [db executeUpdate:@"INSERT INTO Song(SongTitle, SongImage, GenreId,SongPlayCount,SongLikeCount,SoundCloudId) VALUES(?, ?, ?, ?, ?, ?)",
+     songTitle, songImageName, songGenreId,songPlayCount,songLikeCount,soundCloudId];
     long lastId = db.lastInsertRowId;
     song.songId = lastId;
     [db close];
@@ -68,7 +71,8 @@ static NSString *const DB_NAME = @"MusicDatabase";
     NSString *songTitle = song.songTitle == nil ? @"" : song.songTitle;
     NSString *songId = [NSString stringWithFormat:@"%ld", (long)song.songId];
     NSString *songImageName = song.songImageName == nil ? @"" : song.songImageName;
-    NSString *songGenreId = [NSString stringWithFormat:@"%ld", (long)song.songGenre.genreId];
+#warning change when implement Genre
+    NSString *songGenreId = [NSString stringWithFormat:@"%d", 1];
     
     [db executeUpdate:@"UPDATE Song SET SongTitle = ?, SongImage = ?, GenreId = ? WHERE SongId = ?", songTitle, songImageName, songGenreId, songId];
     [db close];
@@ -120,6 +124,38 @@ static NSString *const DB_NAME = @"MusicDatabase";
     return result;
 }
 
-
+// ----------------------
+// Load all songs
++ (NSMutableArray*) getAllSongs
+{
+    FMDatabase *db = [FMDBManager openDatabase];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    FMResultSet *rs = [db executeQuery: @"SELECT * FROM Song"];
+    while ([rs next]) {
+        Song *song = [[Song alloc] init];
+        
+        song.songId = [rs intForColumn:@"SongId"];
+        song.songTitle = [rs stringForColumn:@"SongTitle"];
+        //            Genre *genre = [[Genre alloc]  initGenre:genreId genreTitle:@"" genreImage:nil genreCategory:@""];
+        Genre *genre = [[Genre alloc] initGenre:@"" genreImage:nil genreCategory:@""];
+        song.songGenre = genre;
+        NSString *imageName = [rs stringForColumn:@"SongImage"];
+        
+        if(imageName != nil){
+            song.songImageName = imageName;
+            if([song.songImageName compare:@"icon_artwork_default.png"] == 0){
+                song.songImage = [UIImage imageNamed:imageName];
+            }
+        }
+        
+        song.songPlaysCount = [rs intForColumn:@"SongPlayCount"];
+        song.songLikesCount = [rs intForColumn:@"SongLikeCount"];
+        song.songSoundCloudId = [rs stringForColumn:@"SoundCloudId"];
+        [result addObject: song];
+    }
+    [rs close];
+    [db close];
+    return result;
+}
 
 @end

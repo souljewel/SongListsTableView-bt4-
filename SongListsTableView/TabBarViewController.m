@@ -46,7 +46,7 @@
     [genresManager loadSongFromDatabase:1];
     
     MusicManager *songManager = [[MusicManager alloc] init ];
-    [songManager loadSongFromDatabase:2];
+//    [songManager loadAllSongFromDatabase];
     
     [_musicManagers addObject:genresManager];
     [_musicManagers addObject:songManager];
@@ -61,6 +61,7 @@
 // ----------------------
 // get Song Items Manager
 - (MusicManager*) getSongManager {
+    [[self.musicManagers objectAtIndex:1] loadAllSongFromDatabase];
     return [self.musicManagers objectAtIndex:1];
 }
 

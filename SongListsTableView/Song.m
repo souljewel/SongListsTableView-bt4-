@@ -12,12 +12,13 @@
 
 // ----------------------
 // init song with title, image name, genre
--(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState
+-(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId
 {
     self = [super init];
     
     if(self){
-        self.songState = STATE_NOT_DOWNLOAD;
+        self.songSoundCloudId = soundCloudId;
+        self.songState = songState;
         self.songTitle = songTitle;
         self.songImageName = songImageName;
         self.songLikesCount = likesCount;

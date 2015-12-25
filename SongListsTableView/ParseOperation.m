@@ -10,6 +10,7 @@
 #import "Genre.h"
 #import "BTCategory.h"
 #import "Song.h"
+#import "MusicManager.h"
 
 @interface ParseOperation ()
 
@@ -67,9 +68,25 @@
                 NSInteger trackLikesCount = [[track valueForKey:[_elementsToParse objectAtIndex:2]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:2]] integerValue];
                 NSInteger trackPlayCount = [[track valueForKey:[_elementsToParse objectAtIndex:3]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:3]] integerValue];
                 NSString* trackImageUrl = [[track valueForKey:[_elementsToParse objectAtIndex:4]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:4]];
-                
+                NSString* soundCloudId = [[track valueForKey:[_elementsToParse objectAtIndex:5]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:5]];
+                if(soundCloudId.length > 0){
+                    soundCloudId = [soundCloudId stringByReplacingOccurrencesOfString:@"soundcloud:tracks:" withString:@""];
+                }
 #warning load song from image to set button download state
-                Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:STATE_NOT_DOWNLOAD];
+                enum StateOfSong newSongState = STATE_NOT_DOWNLOAD;
+                //load song from database to set State of list song
+                MusicManager *musicSongManager = [[MusicManager alloc] init];
+                [musicSongManager loadAllSongFromDatabase];
+                
+                for (int i =0;i < [musicSongManager getCountItem]; i++){
+                    Song* databaseSong = [[musicSongManager lstItems] objectAtIndex:i];
+                    if([soundCloudId compare:databaseSong.songSoundCloudId] == 0){
+                        newSongState = STATE_DOWNLOADED;
+                        break;
+                    }
+                }
+                
+                Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:newSongState soundCloudId:soundCloudId];
                 [songs addObject:newSong];
             }
             

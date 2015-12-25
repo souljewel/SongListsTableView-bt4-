@@ -25,11 +25,9 @@
 
 // ----------------------
 // add song to library
--(void) addSong:(Song *)song{
++(void) addSong:(Song *)song{
     //insert song to database
-    song.songId = [FMDBManager insertSong:song];//    song.songId = self.nextIndex;
-    [self.lstItems addObject:song];
-    
+    song.songId = [FMDBManager insertSong:song];//    song.songId = self.nextIndex;    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"insertSong" object:nil];
 }
 
@@ -105,6 +103,12 @@
 // get song from db
 -(void) loadSongFromDatabase:(NSInteger)genreId{
     self.lstItems = [FMDBManager getSongsByGenreId:genreId];
+}
+
+// ----------------------
+// get song from db
+-(void) loadAllSongFromDatabase{
+    self.lstItems = [FMDBManager getAllSongs];
 }
 
 // ----------------------

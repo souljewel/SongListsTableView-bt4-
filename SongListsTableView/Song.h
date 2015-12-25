@@ -26,8 +26,9 @@ enum StateOfSong{
 
 @property NSInteger songLikesCount;
 @property NSInteger songPlaysCount;
+@property NSString* songSoundCloudId;
 
 @property enum StateOfSong songState;
 
--(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState;
+-(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId;
 @end

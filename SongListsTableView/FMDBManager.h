@@ -21,5 +21,5 @@
 + (void) deleteSong:(NSInteger) songId;
 + (void) updateSong:(Song*) song;
 + (NSMutableArray*) getSongsByGenreId:(NSInteger)genreId;
-
++ (NSMutableArray*) getAllSongs;
 @end

@@ -10,6 +10,8 @@
 
 @interface DownloadManager : NSObject
 
+@property NSInteger numberOfDownload;
+
 + (id)sharedManager;
 
 #pragma mark - class methods
@@ -24,5 +26,6 @@
 // ----------------------------------------
 // load songs with genre title from api
 - (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle onComplete:(void (^)(NSArray *lstCategories, NSError *error))block;
+
 
 @end

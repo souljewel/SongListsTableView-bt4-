@@ -60,11 +60,6 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
     self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 100.0f)];
     [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
-
-    // Add an observer that will respond to loginComplete
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
     
     //load data
     [self reload:nil];
@@ -236,36 +231,6 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
             UINavigationController *naviController = tabBarController.selectedViewController;
             SongTableViewController *songController = [naviController.viewControllers objectAtIndex:0];
             [songController.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
-        }
-    }
-}
-
-#pragma mark Database change notifications
-
-- (void)didDatabaseChange:(NSNotification *)notification {
-    NSLog(@"Database did change");
-    if ([notification.name isEqualToString:@"insertSong"])
-    {
-        NSArray *insertIndexPaths = [NSArray arrayWithObjects:
-                                     [NSIndexPath indexPathForRow:([_genreMusicManager getCountItem]-1) inSection:0],
-                                     nil];
-        UITableView *tv = (UITableView *)self.view;
-        [tv beginUpdates];
-        [tv insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
-        [tv endUpdates];
-
-    }else{
-        if ([notification.name isEqualToString:@"updateSong"])
-        {
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
-        }else{
-            if ([notification.name isEqualToString:@"deleteSong"])
-            {
-                NSDictionary *dic = notification.userInfo;
-                NSIndexPath* indexPath = [dic objectForKey:@"indexPath"];
-                // Delete the row from the data source
-                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
         }
     }
 }

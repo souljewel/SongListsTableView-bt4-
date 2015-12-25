@@ -20,6 +20,7 @@
 // the set of IconDownloader objects for each app
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @property MusicManager* songManager;//manage insert update delete song to database
+@property MusicManager *songMusicManager;
 
 @end
 
@@ -62,6 +63,8 @@
     [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
     
+    //load more refresh control
+    UI
     //load data
     [self reload:nil];
 }
