@@ -17,7 +17,7 @@
 
 +(void) addSong:(Song*) song;
 -(void) deleteSongBySongId:(NSInteger) songId;
--(void) deleteSongBySongId:(NSInteger) songId indexPath:(NSIndexPath*)indexPath;
+-(void) deleteSongBySongCloudId:(NSString*) soundCloudId indexPath:(NSIndexPath*)indexPath;
 -(Song*) getSongAtIndex:(NSInteger) index;
 -(Song*) getSongBySongId:(NSInteger) songId;
 

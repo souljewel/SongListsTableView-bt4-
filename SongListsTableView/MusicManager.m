@@ -55,19 +55,19 @@
 
 // ----------------------
 // delete song by songId
--(void) deleteSongBySongId:(NSInteger) songId indexPath:(NSIndexPath*)indexPath{
+-(void) deleteSongBySongCloudId:(NSString*) soundCloudId indexPath:(NSIndexPath*)indexPath{
     for(int i= 0;i < _lstItems.count;i++){
         id item = [_lstItems objectAtIndex:i];
         if([item isKindOfClass:[Song class]]){
             Song* songTemp = (Song*) item;
-            if(songTemp.songId == songId){
+            if([songTemp.songSoundCloudId  compare:soundCloudId] == 0){
                 [_lstItems removeObjectAtIndex:i];
                 
                 //delete song in database
-                [FMDBManager deleteSong:songId];
+                [FMDBManager deleteSongBySoundCloudId:soundCloudId];
                 
                 // Post a notification to insertSong
-                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:indexPath forKey:@"indexPath"];
+                NSDictionary *userInfo = [NSDictionary dictionaryWithObject:soundCloudId forKey:@"soundCloudId"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteSong" object:nil userInfo:userInfo];
             }
         }

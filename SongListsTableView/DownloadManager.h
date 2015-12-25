@@ -10,22 +10,16 @@
 
 @interface DownloadManager : NSObject
 
-@property NSInteger numberOfDownload;
-
 + (id)sharedManager;
 
 #pragma mark - class methods
 // ----------------------------------------
 // Category Download
 // ----------------------------------------
-//load the category from api
 - (NSURLSessionDataTask *)loadGenresWithBlock:(void (^)(NSArray *lstResults, NSError *error))block;
 
 // ----------------------------------------
 // Song Download
 // ----------------------------------------
-// load songs with genre title from api
-- (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle onComplete:(void (^)(NSArray *lstCategories, NSError *error))block;
-
-
+- (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad onComplete:(void (^)(NSArray *lstCategories, NSError *error))block;
 @end

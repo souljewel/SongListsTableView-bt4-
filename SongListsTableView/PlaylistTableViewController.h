@@ -12,6 +12,5 @@
 @interface PlaylistTableViewController : UITableViewController
 
 @property Genre* playlistGenre;
-@property NSArray *lstSongs;
-
+@property NSMutableArray *lstSongs;
 @end

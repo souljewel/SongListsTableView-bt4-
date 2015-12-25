@@ -17,12 +17,28 @@
 
 @property MusicManager *songMusicManager;
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic) NSInteger numberOfSongs;//songs get from database
 
 @end
 
 @implementation SongTableViewController
 
+@synthesize numberOfSongs;
 
+// ----------------------
+// reload song from the database
+- (void)reload:(__unused id)sender {
+    numberOfSongs = numberOfSongs + 10;
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+#warning load more from database
+        [self.songMusicManager loadAllSongFromDatabase];
+        [self.tableView reloadData];
+    });
+    
+//    [self.refreshControl beginRefreshing];
+}
 
 // ----------------------
 // init TableView
@@ -33,7 +49,7 @@
 
     // Add an observer that will respond to loginComplete
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
     
     //init refresh control
@@ -41,6 +57,8 @@
 //    [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
 //    [self.tableView.tableHeaderView addSubview:self.refreshControl];
     
+    //number of row
+    numberOfSongs = 10;
     
     //init edit button on the right
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -146,9 +164,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         Song *song = [self.songMusicManager getSongAtIndex:indexPath.row];
-        [self.songMusicManager deleteSongBySongId:song.songId];
+        [self.songMusicManager deleteSongBySongCloudId:song.songSoundCloudId indexPath:indexPath];
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        //set badge Value decrease
+        UITabBarController *topController = (UITabBarController*)[UIApplication sharedApplication].keyWindow.rootViewController;
+        UITabBar* tabBar = topController.tabBar;
+        UITabBarItem *toTabbarItem = [tabBar.items objectAtIndex:1];
+        if(toTabbarItem.badgeValue != nil){
+            int currentBadgeValue = [toTabbarItem.badgeValue intValue];
+            if(currentBadgeValue >= 1){
+                toTabbarItem.badgeValue = [NSString stringWithFormat:@"%d", --currentBadgeValue];
+            }
+        }
     }
 }
 
@@ -273,7 +302,7 @@
 //        [tv beginUpdates];
 //        [tv insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
 //        [tv endUpdates];
-        [self.tableView reloadData];
+        [self reload:nil];
         
     }else{
         if ([notification.name isEqualToString:@"updateSong"])

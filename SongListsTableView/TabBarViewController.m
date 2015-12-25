@@ -50,6 +50,11 @@
     
     [_musicManagers addObject:genresManager];
     [_musicManagers addObject:songManager];
+    
+    //init initial value for badge value's Song tab item
+#warning fix index when add or remove tab item
+    UITabBarItem* toTabbarItem = [self.tabBar.items objectAtIndex:1];
+    toTabbarItem.badgeValue = @"0";
 }
 
 // ----------------------
@@ -93,8 +98,8 @@
 }
 
 - (void) tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    item.badgeValue = nil;
-    NSLog(@"tab item");
+//    item.badgeValue = nil;
+//    NSLog(@"tab item");
 }
 
 @end

@@ -18,6 +18,7 @@ static NSString *const GetAllSongsByCategoryTitleLinks = @"https://api-v2.soundc
 static NSArray *categoryKeysArray;
 static NSArray *songKeysArray;
 
+
 #pragma mark Singleton Methods
 + (id)sharedManager {
     static DownloadManager *sharedMyManager = nil;
@@ -34,7 +35,6 @@ static NSArray *songKeysArray;
     if (self = [super init]) {
         categoryKeysArray = @[@"audio",@"music"];
         songKeysArray = @[@"tracks",@"title",@"likes_count",@"playback_count",@"artwork_url",@"urn"];
-        self.numberOfDownload = 50;
     }
     return self;
 }
@@ -123,10 +123,10 @@ static NSArray *songKeysArray;
 
 // ----------------------
 // load the songs with genre title from api
-- (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle onComplete:(void (^)(NSArray *lstCategories, NSError *error))block
+- (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad onComplete:(void (^)(NSArray *lstCategories, NSError *error))block
 {
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",self.numberOfDownload] stringByAppendingString:@"&offset=0"]]]]];
+    NSString *stringURL = [[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",numberOfDownload] stringByAppendingString:[@"&offset=" stringByAppendingString:[NSString stringWithFormat:@"%ld",offsetToLoad]]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
     
     // create an session data task to obtain and the XML feed
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request

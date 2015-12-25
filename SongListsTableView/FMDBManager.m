@@ -71,7 +71,7 @@ static NSString *const DB_NAME = @"MusicDatabase";
     NSString *songTitle = song.songTitle == nil ? @"" : song.songTitle;
     NSString *songId = [NSString stringWithFormat:@"%ld", (long)song.songId];
     NSString *songImageName = song.songImageName == nil ? @"" : song.songImageName;
-#warning change when implement Genre
+#warning fix when implement Genre
     NSString *songGenreId = [NSString stringWithFormat:@"%d", 1];
     
     [db executeUpdate:@"UPDATE Song SET SongTitle = ?, SongImage = ?, GenreId = ? WHERE SongId = ?", songTitle, songImageName, songGenreId, songId];
@@ -88,6 +88,14 @@ static NSString *const DB_NAME = @"MusicDatabase";
 
     NSString *songIdStr = [NSString stringWithFormat:@"%ld", songId];
     [db executeUpdate:@"DELETE FROM Song WHERE SongId = ?", songIdStr];
+    
+    [db close];
+}
+
++ (void)deleteSongBySoundCloudId:(NSString*)soundCloudID{
+    FMDatabase *db = [FMDBManager openDatabase];
+    
+    [db executeUpdate:@"DELETE FROM Song WHERE SoundCloudId = ?", soundCloudID];
     
     [db close];
 }

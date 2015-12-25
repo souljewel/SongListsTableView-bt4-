@@ -121,11 +121,12 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Song *song = [self.genreMusicManager getSongAtIndex:indexPath.row];
-        [self.genreMusicManager deleteSongBySongId:song.songId indexPath:indexPath];
-
-    }
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        Song *song = [self.genreMusicManager getSongAtIndex:indexPath.row];
+////        [self.genreMusicManager deleteSongBySongId:song.songId indexPath:indexPath];
+//
+//
+//    }
 //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
 //        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //    }   

@@ -72,7 +72,7 @@
                 if(soundCloudId.length > 0){
                     soundCloudId = [soundCloudId stringByReplacingOccurrencesOfString:@"soundcloud:tracks:" withString:@""];
                 }
-#warning load song from image to set button download state
+
                 enum StateOfSong newSongState = STATE_NOT_DOWNLOAD;
                 //load song from database to set State of list song
                 MusicManager *musicSongManager = [[MusicManager alloc] init];

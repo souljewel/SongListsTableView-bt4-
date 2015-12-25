@@ -13,6 +13,7 @@
 #import "Song.h"
 #import "IconDownloader.h"
 #import "MusicManager.h"
+#import "SVPullToRefresh.h"
 
 #define kCustomRowCount 7
 @interface PlaylistTableViewController ()<UIScrollViewDelegate>
@@ -21,28 +22,29 @@
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @property MusicManager* songManager;//manage insert update delete song to database
 @property MusicManager *songMusicManager;
-
+@property (nonatomic) NSInteger numberOfDownload;
+@property (nonatomic) NSInteger offsetToLoad;
 @end
 
 @implementation PlaylistTableViewController
 
-@synthesize lstSongs,playlistGenre;
+@synthesize lstSongs,playlistGenre,numberOfDownload,offsetToLoad;
 
 #pragma mark - class methods implematation
 
 // ----------------------
 // reload category from the api
 - (void)reload:(__unused id)sender {
+//    numberOfDownload = numberOfDownload + 10;
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     __weak PlaylistTableViewController *weakSelf = self;
     
-    [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle onComplete:^(NSArray *lstResultSongs, NSError *error) {
+    [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:numberOfDownload offset:0 onComplete:^(NSArray *lstResultSongs, NSError *error) {
         if (!error) {
             [weakSelf.refreshControl endRefreshing];
             self.lstSongs = lstResultSongs;
             [self.tableView reloadData];
-            
         }
     }];
     
@@ -63,10 +65,24 @@
     [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
     
-    //load more refresh control
-    UI
+    //set number of download
+    self.numberOfDownload = 40;
+    self.offsetToLoad = 0;
+    
     //load data
     [self reload:nil];
+    
+    // Add an observer that will respond to loginComplete
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
+    
+
+    // setup load More
+    __weak PlaylistTableViewController *weakSelf = self;
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
 }
 
 - (void)viewDidLoad {
@@ -78,6 +94,40 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initData];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView triggerPullToRefresh];
+}
+
+// ----------------------------------------
+// load more
+// ----------------------------------------
+- (void)insertRowAtBottom {
+    __weak PlaylistTableViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.offsetToLoad = self.numberOfDownload-1;
+        
+#warning fix number of download
+        [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:numberOfDownload offset:offsetToLoad onComplete:^(NSArray *lstResultSongs, NSError *error) {
+            if (!error) {
+                [weakSelf.tableView beginUpdates];
+                for(int i=0; [lstResultSongs count];i++){
+                    [weakSelf.lstSongs addObject:[lstResultSongs objectAtIndex:i]];
+                    [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[weakSelf.lstSongs count] -1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                }
+                [weakSelf.tableView endUpdates];
+            }
+            
+        }];
+        
+        
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
 }
 
 // -------------------------------------------------------------------------------
@@ -285,5 +335,46 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     [self loadImagesForOnscreenRows];
+}
+
+#pragma mark Database change notifications
+
+- (void)didDatabaseChange:(NSNotification *)notification {
+    NSLog(@"Database did change Playlist");
+    if ([notification.name isEqualToString:@"insertSong"])
+    {
+        //        NSArray *insertIndexPaths = [NSArray arrayWithObjects:
+        //                                     [NSIndexPath indexPathForRow:([_songMusicManager getCountItem]-1) inSection:0],
+        //                                     nil];
+        //        UITableView *tv = (UITableView *)self.view;
+        //        [tv beginUpdates];
+        //        [tv insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationRight];
+        //        [tv endUpdates];
+        [self reload:nil];
+        
+    }else{
+        if ([notification.name isEqualToString:@"updateSong"])
+        {
+            //            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationBottom];
+        }else
+        {
+            if ([notification.name isEqualToString:@"deleteSong"])
+            {
+                NSDictionary *dic = notification.userInfo;
+                NSString* soundCloudId = [dic objectForKey:@"soundCloudId"];
+                
+                for (UIView *view in self.tableView.subviews) {
+                    for (MyTableViewCell *cell in view.subviews) {
+                        //do
+                        if([cell isKindOfClass:[MyTableViewCell class]]){
+                            if([cell.songItem.songSoundCloudId compare:soundCloudId] == 0){
+                                [cell refreshButtonState:STATE_NOT_DOWNLOAD];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 @end

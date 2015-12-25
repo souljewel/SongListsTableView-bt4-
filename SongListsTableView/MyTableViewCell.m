@@ -48,6 +48,9 @@
 
 #pragma mark - button event
 
+// ----------------------------------------
+// move song from category to library
+// ----------------------------------------
 -(void) moveSong:(UIButton *)sender {
     NSLog(@"add song to database %@", self.songItem.songSoundCloudId);
     [MusicManager addSong:self.songItem];
@@ -65,5 +68,23 @@
         toTabbarItem.badgeValue = [NSString stringWithFormat:@"%d", ++currentBadgeValue];
     }
     
+    //refresh button state
+    [self refreshButtonState:STATE_DOWNLOADED];
+    
+}
+
+// ----------------------------------------
+// set button state
+// ----------------------------------------
+- (void)refreshButtonState:(enum StateOfSong)stateOfSong{
+    self.songItem.songState = stateOfSong;
+    if(self.songItem.songState == STATE_DOWNLOADED)
+    {
+        UIImage *btnImage = [UIImage imageNamed:@"icon_check.png"];
+        [self.button setImage:btnImage forState:UIControlStateNormal];
+    }else{
+        UIImage *btnImage = [UIImage imageNamed:@"icon_plus.png"];
+        [self.button setImage:btnImage forState:UIControlStateNormal];
+    }
 }
 @end

@@ -23,4 +23,5 @@
 
 #pragma mark - instance methods
 - (void) setSong:(Song *)song;
+- (void) refreshButtonState:(enum StateOfSong)stateOfSong;
 @end

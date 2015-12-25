@@ -19,6 +19,7 @@
 #pragma mark - Song
 + (long) insertSong:(Song*) song;
 + (void) deleteSong:(NSInteger) songId;
++ (void)deleteSongBySoundCloudId:(NSString*)soundCloudID;
 + (void) updateSong:(Song*) song;
 + (NSMutableArray*) getSongsByGenreId:(NSInteger)genreId;
 + (NSMutableArray*) getAllSongs;
