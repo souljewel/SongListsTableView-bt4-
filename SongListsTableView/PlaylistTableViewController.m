@@ -24,6 +24,7 @@
 @property MusicManager *songMusicManager;
 @property (nonatomic) NSInteger numberOfDownload;
 @property (nonatomic) NSInteger offsetToLoad;
+@property (nonatomic) NSInteger downloadsPerOne;
 @end
 
 @implementation PlaylistTableViewController
@@ -43,7 +44,7 @@
     [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:numberOfDownload offset:0 onComplete:^(NSArray *lstResultSongs, NSError *error) {
         if (!error) {
             [weakSelf.refreshControl endRefreshing];
-            self.lstSongs = lstResultSongs;
+            self.lstSongs = [NSMutableArray arrayWithArray:lstResultSongs];
             [self.tableView reloadData];
         }
     }];
@@ -68,6 +69,7 @@
     //set number of download
     self.numberOfDownload = 40;
     self.offsetToLoad = 0;
+    self.downloadsPerOne = 40;
     
     //load data
     [self reload:nil];
@@ -110,13 +112,13 @@
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        self.offsetToLoad = self.numberOfDownload-1;
-        
+        self.offsetToLoad = self.numberOfDownload;
+        self.numberOfDownload = self.numberOfDownload + 40;
 #warning fix number of download
-        [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:numberOfDownload offset:offsetToLoad onComplete:^(NSArray *lstResultSongs, NSError *error) {
+        [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:self.downloadsPerOne offset:offsetToLoad onComplete:^(NSArray *lstResultSongs, NSError *error) {
             if (!error) {
                 [weakSelf.tableView beginUpdates];
-                for(int i=0; [lstResultSongs count];i++){
+                for(int i=0;i < [lstResultSongs count];i++){
                     [weakSelf.lstSongs addObject:[lstResultSongs objectAtIndex:i]];
                     [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[weakSelf.lstSongs count] -1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
                 }
