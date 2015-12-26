@@ -14,6 +14,7 @@
 #import "IconDownloader.h"
 #import "MusicManager.h"
 #import "SVPullToRefresh.h"
+#import "MBProgressHUD.h"
 
 #define kCustomRowCount 7
 @interface PlaylistTableViewController ()<UIScrollViewDelegate>
@@ -22,14 +23,16 @@
 @property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
 @property MusicManager* songManager;//manage insert update delete song to database
 @property MusicManager *songMusicManager;
-@property (nonatomic) NSInteger numberOfDownload;
+@property (nonatomic) NSInteger numberOfDownload;// total number of downloads
 @property (nonatomic) NSInteger offsetToLoad;
-@property (nonatomic) NSInteger downloadsPerOne;
+@property (nonatomic) NSInteger downloadsPerOne;// number of downloads
+
+@property (nonatomic) MBProgressHUD *hud;
 @end
 
 @implementation PlaylistTableViewController
 
-@synthesize lstSongs,playlistGenre,numberOfDownload,offsetToLoad;
+@synthesize lstSongs,playlistGenre,numberOfDownload,offsetToLoad,hud;
 
 #pragma mark - class methods implematation
 
@@ -41,15 +44,16 @@
     
     __weak PlaylistTableViewController *weakSelf = self;
     
-    [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:numberOfDownload offset:0 onComplete:^(NSArray *lstResultSongs, NSError *error) {
+    [[DownloadManager sharedManager] loadSongWithBlock:self.playlistGenre.genreTitle numberOfDownload:self.numberOfDownload offset:0 onComplete:^(NSArray *lstResultSongs, NSError *error) {
         if (!error) {
             [weakSelf.refreshControl endRefreshing];
             self.lstSongs = [NSMutableArray arrayWithArray:lstResultSongs];
             [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         }
     }];
     
-    [self.refreshControl beginRefreshing];
+//    [self.refreshControl beginRefreshing];
 }
 
 // ----------------------
@@ -67,12 +71,9 @@
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
     
     //set number of download
-    self.numberOfDownload = 40;
+    self.numberOfDownload = 400;
     self.offsetToLoad = 0;
-    self.downloadsPerOne = 40;
-    
-    //load data
-    [self reload:nil];
+    self.downloadsPerOne = 400;
     
     // Add an observer that will respond to loginComplete
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
@@ -85,6 +86,12 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
     }];
+    
+    //show loading progress
+    hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    
+    //load data
+    [self reload:nil];
 }
 
 - (void)viewDidLoad {
@@ -97,7 +104,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self initData];
 }
-
 
 - (void)viewDidAppear:(BOOL)animated {
     [self.tableView triggerPullToRefresh];

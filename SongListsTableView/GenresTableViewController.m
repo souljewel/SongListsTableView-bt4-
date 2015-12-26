@@ -15,6 +15,7 @@
 #import "BTCategory.h"
 #import "PlaylistTableViewController.h"
 #import "DownloadManager.h"
+#import "MBProgressHUD.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 
@@ -38,14 +39,14 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 
     [[DownloadManager sharedManager] loadGenresWithBlock:^(NSArray *lstResults, NSError *error) {
         if (!error) {
-            [weakSelf.refreshControl endRefreshing];
             self.lstCategories = lstResults;
             [self.tableView reloadData];
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [weakSelf.refreshControl endRefreshing];
         }
     }];
     
-    [self.refreshControl beginRefreshing];
+//    [self.refreshControl beginRefreshing];
 }
 
 // ----------------------
@@ -63,6 +64,9 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
     
     //load data
     [self reload:nil];
+    
+    //show loading progress
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void)viewDidLoad {

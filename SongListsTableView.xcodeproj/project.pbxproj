@@ -53,6 +53,7 @@
 		05EFE3E41C296677000BE950 /* IconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E01C296677000BE950 /* IconDownloader.m */; };
 		05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E21C296677000BE950 /* ParseOperation.m */; };
 		05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F31D941C1AD4BD0087B173 /* SongTableViewController.m */; };
+		05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F8A0381C2E2AAC00CDE156 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +129,8 @@
 		05EFE3E21C296677000BE950 /* ParseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseOperation.m; sourceTree = "<group>"; };
 		05F31D931C1AD4BD0087B173 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
 		05F31D941C1AD4BD0087B173 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
+		05F8A0371C2E2AAC00CDE156 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		05F8A0381C2E2AAC00CDE156 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +288,7 @@
 		0581BCEF1C181ECC006C0113 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				05F8A0361C2E2A8600CDE156 /* MBProgressHUD */,
 				05DA29661C2D410F00A93A18 /* SVPullToRefresh */,
 				05EB5E601C1ECFB700007660 /* fmdb */,
 			);
@@ -444,6 +448,15 @@
 			name = DownloadHelper;
 			sourceTree = "<group>";
 		};
+		05F8A0361C2E2A8600CDE156 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				05F8A0371C2E2AAC00CDE156 /* MBProgressHUD.h */,
+				05F8A0381C2E2AAC00CDE156 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		ADE23862FAD4C7B04AC8AA2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +561,7 @@
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
+				05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */,
 				05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */,
 				05EB5E7F1C1ECFF600007660 /* FMDatabaseQueue.m in Sources */,
 				05EB5E801C1ECFF600007660 /* FMResultSet.m in Sources */,

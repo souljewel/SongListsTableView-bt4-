@@ -12,6 +12,7 @@
 #import "TabBarViewController.h"
 #import "CommonHelper.h"
 #import "IconDownloader.h"
+#import "MBProgressHUD.h"
 
 @interface SongTableViewController ()
 
@@ -33,8 +34,12 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
 #warning load more from database
+        //show loading progress
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self.songMusicManager loadAllSongFromDatabase];
         [self.tableView reloadData];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
     });
     
 //    [self.refreshControl beginRefreshing];
@@ -49,7 +54,6 @@
 
     // Add an observer that will respond to loginComplete
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
     
     //init refresh control
