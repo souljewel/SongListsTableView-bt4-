@@ -41,6 +41,7 @@
 		05DA296D1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */; };
 		05E8B3791C195410006372E6 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3781C195410006372E6 /* TabBarViewController.m */; };
 		05E8B3961C197E9A006372E6 /* GenresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3951C197E9A006372E6 /* GenresTableViewController.m */; };
+		05EA21B91C2F9198001B353C /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EA21B81C2F9198001B353C /* SearchTableViewController.m */; };
 		05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E1A1C1EABC200007660 /* FMDBManager.m */; };
 		05EB5E211C1EB66D00007660 /* MusicDatabase in Resources */ = {isa = PBXBuildFile; fileRef = 05EB5E201C1EB66D00007660 /* MusicDatabase */; };
 		05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E721C1ECFF600007660 /* FMDatabase.m */; };
@@ -106,6 +107,8 @@
 		05E8B3781C195410006372E6 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		05E8B3941C197E9A006372E6 /* GenresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenresTableViewController.h; sourceTree = "<group>"; };
 		05E8B3951C197E9A006372E6 /* GenresTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenresTableViewController.m; sourceTree = "<group>"; };
+		05EA21B71C2F9198001B353C /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		05EA21B81C2F9198001B353C /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		05EB5E191C1EABC200007660 /* FMDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBManager.h; sourceTree = "<group>"; };
 		05EB5E1A1C1EABC200007660 /* FMDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBManager.m; sourceTree = "<group>"; };
 		05EB5E201C1EB66D00007660 /* MusicDatabase */ = {isa = PBXFileReference; lastKnownFileType = file; path = MusicDatabase; sourceTree = "<group>"; };
@@ -327,6 +330,7 @@
 		05E8B3801C19564C006372E6 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				05EA21B31C2F910A001B353C /* Search */,
 				05E8B3871C1956F3006372E6 /* Category */,
 				05E8B3821C195682006372E6 /* Song */,
 				054444DA1C191FB100297601 /* Controller */,
@@ -407,6 +411,39 @@
 				05E8B3951C197E9A006372E6 /* GenresTableViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		05EA21B31C2F910A001B353C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				05EA21B61C2F9130001B353C /* Model */,
+				05EA21B51C2F9129001B353C /* View */,
+				05EA21B41C2F9122001B353C /* Controller */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		05EA21B41C2F9122001B353C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05EA21B71C2F9198001B353C /* SearchTableViewController.h */,
+				05EA21B81C2F9198001B353C /* SearchTableViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		05EA21B51C2F9129001B353C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		05EA21B61C2F9130001B353C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		05EB5E1F1C1EB23300007660 /* db */ = {
@@ -562,6 +599,7 @@
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
 				05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */,
+				05EA21B91C2F9198001B353C /* SearchTableViewController.m in Sources */,
 				05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */,
 				05EB5E7F1C1ECFF600007660 /* FMDatabaseQueue.m in Sources */,
 				05EB5E801C1ECFF600007660 /* FMResultSet.m in Sources */,
