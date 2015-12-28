@@ -208,20 +208,20 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
 }
 
 
-// ----------------------
-// touch Add Track button
-- (IBAction)touchAddTrack:(UIBarButtonItem *)sender {
-    
-    //show alert input add track
-    UIAlertView *inputTrackAlertView = [[UIAlertView alloc] initWithTitle:@"Add Track"
-                                                                  message:@"Enter Track Name"
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"Cancel"
-                                                        otherButtonTitles:@"OK",nil];
-    [inputTrackAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [inputTrackAlertView show];
-    
-}
+//// ----------------------
+//// touch Add Track button
+//- (IBAction)touchAddTrack:(UIBarButtonItem *)sender {
+//    
+//    //show alert input add track
+//    UIAlertView *inputTrackAlertView = [[UIAlertView alloc] initWithTitle:@"Add Track"
+//                                                                  message:@"Enter Track Name"
+//                                                                 delegate:self
+//                                                        cancelButtonTitle:@"Cancel"
+//                                                        otherButtonTitles:@"OK",nil];
+//    [inputTrackAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//    [inputTrackAlertView show];
+//    
+//}
 
 
 #pragma mark - tab bar item click

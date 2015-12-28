@@ -13,4 +13,8 @@
 
 @property NSString *MyIdentifier;
 
+//common table cell
+@property NSString *kCellIdentifier;
+@property NSString *kTableCellNibName;
+
 @end

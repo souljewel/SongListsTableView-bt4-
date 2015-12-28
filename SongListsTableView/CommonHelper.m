@@ -25,6 +25,8 @@
 - (id)init {
     if (self = [super init]) {
         self.MyIdentifier = @"MyTableViewSong";
+        self.kCellIdentifier = @"cellID";
+        self.kTableCellNibName = @"TableCell";
     }
     return self;
 }

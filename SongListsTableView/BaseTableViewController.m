@@ -1,36 +1,20 @@
 //
-//  SearchTableViewController.m
+//  BaseTableViewController.m
 //  SongListsTableView
 //
-//  Created by thanh on 12/27/15.
+//  Created by Pham Thanh on 12/28/15.
 //  Copyright © 2015 hdapps. All rights reserved.
 //
 
-#import "SearchTableViewController.h"
+#import "BaseTableViewController.h"
+#import "CommonHelper.h"
 
-@interface SearchTableViewController ()<UISearchBarDelegate,UISearchResultsUpdating>
-
-@property (nonatomic) UISearchController *searchController;
+@interface BaseTableViewController ()
 
 @end
 
-@implementation SearchTableViewController
+@implementation BaseTableViewController
 
-
-- (void) initData{
-    // Create the search results controller and store a reference to it.
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self];
-    
-    // Use the current view controller to update the search results.
-    self.searchController.searchResultsUpdater = self;
-    
-    // Install the search bar as the table header.
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    
-    // It is usually good to set the presentation context.
-    self.definesPresentationContext = YES;
-    
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -39,7 +23,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self initData];
+    // we use a nib which contains the cell's view and this class as the files owner
+    [self.tableView registerNib:[UINib nibWithNibName:[[CommonHelper sharedManager] kTableCellNibName] bundle:nil] forCellReuseIdentifier:[[CommonHelper sharedManager] kCellIdentifier]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,26 +98,4 @@
 }
 */
 
-#pragma Search Bar Event
--(void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"searchBarCancelButtonClicked");
-}
--(void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    NSLog(@"textDidChange");
-}
--(void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    NSLog(@"searchBarTextDidBeginEditing");
-}
-
--(void) searchBarTextDidEndEditing:(UISearchBar *)searchBar{
-    NSLog(@"searchBarTextDidEndEditing");
-}
-
--(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"searchBarSearchButtonClicked");
-}
-
-- (void) updateSearchResultsForSearchController:(UISearchController *)searchController{
-    NSLog(@"updateSearchResultsForSearchController");
-}
 @end
