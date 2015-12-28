@@ -10,7 +10,7 @@
 #import "SearchResultTableViewController.h"
 #import "CommonHelper.h"
 
-@interface SearchViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating>
+@interface SearchViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
 
@@ -21,6 +21,7 @@
 @property BOOL searchControllerWasActive;
 @property BOOL searchControllerSearchFieldWasFirstResponder;
 
+@property (nonatomic, strong) NSMutableArray* lstArrays;
 @end
 
 @implementation SearchViewController
@@ -30,17 +31,17 @@
     _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
-    float height  = self.navigationController.navigationBar.frame.size.height;
-    self.searchController.searchBar.frame = CGRectMake(0,self.navigationController.navigationBar.frame.size.height+22, self.view.frame.size.width, 40);
+    self.searchController.searchBar.frame = CGRectMake(0,144+22, self.view.frame.size.width, 40);
     self.searchController.searchBar.placeholder = @"Type your search here";
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
     [self.view addSubview:self.searchController.searchBar];
     
     // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
     self.resultsTableController.tableView.delegate = self;
     self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
+    self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
-    
+  
     // Search is now just presenting a view controller. As such, normal view controller
     // presentation semantics apply. Namely that presentation will walk up the view controller
     // hierarchy until it finds the root view controller or one that defines a presentation context.
@@ -86,9 +87,24 @@
 #pragma mark - UISearchBarDelegate
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"searchBarSearchButtonClicked");
+
     [searchBar resignFirstResponder];
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    NSLog(@"searchBarTextDidBeginEditing");
+    self.searchController.active = YES;
+}
+
+- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    NSLog(@"textDidChange");
+    self.searchController.active = YES;
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
+    NSLog(@"searchBarTextDidEndEditing");
+}
 
 #pragma mark - UISearchControllerDelegate
 
@@ -101,36 +117,49 @@
 //
 - (void)presentSearchController:(UISearchController *)searchController {
     
+    NSLog(@"presentSearchController");
 }
 
 - (void)willPresentSearchController:(UISearchController *)searchController {
     // do something before the search controller is presented
+    NSLog(@"willPresentSearchController");
+
 }
 
 - (void)didPresentSearchController:(UISearchController *)searchController {
     // do something after the search controller is presented
+    
+    NSLog(@"didPresentSearchController");
+
 }
 
 - (void)willDismissSearchController:(UISearchController *)searchController {
     // do something before the search controller is dismissed
+    NSLog(@"willDismissSearchController");
+
 }
 
 - (void)didDismissSearchController:(UISearchController *)searchController {
     // do something after the search controller is dismissed
+    NSLog(@"didDismissSearchController");
+
 }
 
 #pragma mark - UITableViewDelegate
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"numberOfRowsInSection");
+
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = (UITableViewCell *)[self.resultsTableController.tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] kCellIdentifier] forIndexPath:indexPath];
     
-//    APLProduct *product = self.products[indexPath.row];
-//    [self configureCell:cell forProduct:product];
-    
+    cell.textLabel.text = @"abc";
+    NSLog(@"cellForRowAtIndexPath");
+
     return cell;
 }
 
@@ -139,6 +168,8 @@
 // is not this UINavigationController)
 //
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"didSelectRowAtIndexPath");
+
 //    APLProduct *selectedProduct = (tableView == self.tableView) ?
 //    self.products[indexPath.row] : self.resultsTableController.filteredProducts[indexPath.row];
 //    
@@ -155,8 +186,12 @@
 #pragma mark - UISearchResultsUpdating
 
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSLog(@"updateSearchResultsForSearchController");
+
     // update the filtered array based on the search text
     NSString *searchText = searchController.searchBar.text;
+    
+    [((SearchResultTableViewController*)self.searchController.searchResultsController).tableView reloadData];
 //    NSMutableArray *searchResults = [self.products mutableCopy];
 //    
 //    // strip out all the leading and trailing spaces
@@ -254,7 +289,8 @@ NSString *const SearchBarIsFirstResponderKey = @"SearchBarIsFirstResponderKey";
 
 - (void)encodeRestorableStateWithCoder:(NSCoder *)coder {
     [super encodeRestorableStateWithCoder:coder];
-    
+    NSLog(@"encodeRestorableStateWithCoder");
+
     // encode the view state so it can be restored later
     
     // encode the title
@@ -277,7 +313,8 @@ NSString *const SearchBarIsFirstResponderKey = @"SearchBarIsFirstResponderKey";
 
 - (void)decodeRestorableStateWithCoder:(NSCoder *)coder {
     [super decodeRestorableStateWithCoder:coder];
-    
+    NSLog(@"decodeRestorableStateWithCoder");
+
     // restore the title
     self.title = [coder decodeObjectForKey:ViewControllerTitleKey];
     
