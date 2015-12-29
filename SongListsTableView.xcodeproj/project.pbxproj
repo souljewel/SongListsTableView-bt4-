@@ -25,6 +25,7 @@
 		054444E01C19202400297601 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 054444DF1C19202400297601 /* Song.m */; };
 		054444E31C192BF800297601 /* MusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 054444E21C192BF800297601 /* MusicManager.m */; };
 		05485EDA1C1A64AB00ED62D9 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05485ED91C1A64AB00ED62D9 /* MyTableViewCell.m */; };
+		055E80E01C321B6500BFFFFC /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 055E80DF1C321B6500BFFFFC /* SearchTableViewCell.m */; };
 		055F61881C30CC2C002045E6 /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055F61871C30CC2C002045E6 /* TableCell.xib */; };
 		055F618B1C311977002045E6 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F618A1C311977002045E6 /* BaseTableViewController.m */; };
 		055F618E1C3119C1002045E6 /* SearchResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F618D1C3119C1002045E6 /* SearchResultTableViewController.m */; };
@@ -85,6 +86,8 @@
 		054444E21C192BF800297601 /* MusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicManager.m; sourceTree = "<group>"; };
 		05485ED81C1A64AB00ED62D9 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		05485ED91C1A64AB00ED62D9 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		055E80DE1C321B6500BFFFFC /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
+		055E80DF1C321B6500BFFFFC /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		055F61871C30CC2C002045E6 /* TableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCell.xib; sourceTree = "<group>"; };
 		055F61891C311977002045E6 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		055F618A1C311977002045E6 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
@@ -455,6 +458,8 @@
 		05EA21B61C2F9130001B353C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				055E80DE1C321B6500BFFFFC /* SearchTableViewCell.h */,
+				055E80DF1C321B6500BFFFFC /* SearchTableViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
 				0541E1871C2B820400081A19 /* DownloadManager.m in Sources */,
 				055F61911C312A79002045E6 /* SearchViewController.m in Sources */,
+				055E80E01C321B6500BFFFFC /* SearchTableViewCell.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
@@ -744,7 +750,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SongListsTableView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = hdapps.SongListsTableView;
@@ -757,7 +763,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SongListsTableView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = hdapps.SongListsTableView;

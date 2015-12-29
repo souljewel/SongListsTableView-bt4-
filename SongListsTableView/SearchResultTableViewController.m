@@ -7,6 +7,8 @@
 //
 
 #import "SearchResultTableViewController.h"
+#import "CommonHelper.h"
+#import "Song.h"
 
 @interface SearchResultTableViewController ()
 
@@ -22,14 +24,31 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // we use a nib which contains the cell's view and this class as the files owner
+    
+    [self.tableView setRowHeight:60];
+    [self.tableView setFrame:CGRectMake(0, 0, 100, 100)];
+    [self.tableView setNeedsDisplay];
 }
 
 #pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.lstResults.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SearchTableViewCell *cell = (SearchTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] kCellIdentifier]];
+    
+    Song* cellSong = [self.lstResults objectAtIndex:indexPath.row];
+    [cell setSong:cellSong];
+    
+    return cell;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 1050;
+}
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 //#warning Incomplete implementation, return the number of sections

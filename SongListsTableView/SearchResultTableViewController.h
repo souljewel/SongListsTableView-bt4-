@@ -10,5 +10,5 @@
 #import "BaseTableViewController.h"
 
 @interface SearchResultTableViewController : BaseTableViewController
-
+@property (nonatomic) NSArray *lstResults;
 @end

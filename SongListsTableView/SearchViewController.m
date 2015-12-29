@@ -31,9 +31,12 @@
     _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
-    self.searchController.searchBar.frame = CGRectMake(0,144+22, self.view.frame.size.width, 40);
+    self.searchController.searchBar.frame = CGRectMake(0,44+22, self.view.frame.size.width, 40);
     self.searchController.searchBar.placeholder = @"Type your search here";
     self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.searchController.view.frame = self.view.bounds;
+    [self.view addSubview:self.searchController.view];
     [self.view addSubview:self.searchController.searchBar];
     
     // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
@@ -41,12 +44,12 @@
     self.searchController.delegate = self;
     self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
-  
+    
     // Search is now just presenting a view controller. As such, normal view controller
     // presentation semantics apply. Namely that presentation will walk up the view controller
     // hierarchy until it finds the root view controller or one that defines a presentation context.
     //
-    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+//    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,18 +91,20 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"searchBarSearchButtonClicked");
-
     [searchBar resignFirstResponder];
 }
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarTextDidBeginEditing");
-    self.searchController.active = YES;
+    UISearchBar* searchBarrr = self.searchController.searchBar;
+//    CGRect rect = CGRectMake(searchBarrr.frame.origin.x, searchBarrr.frame.origin.y, searchBarrr.frame.size.width, searchBarrr.frame.size.height);
+//    [self.view bringSubviewToFront:searchBarrr];
+//    [self.view setNeedsLayout];
 }
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     NSLog(@"textDidChange");
-    self.searchController.active = YES;
+
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
@@ -142,7 +147,7 @@
 - (void)didDismissSearchController:(UISearchController *)searchController {
     // do something after the search controller is dismissed
     NSLog(@"didDismissSearchController");
-
+    
 }
 
 #pragma mark - UITableViewDelegate
@@ -190,8 +195,7 @@
 
     // update the filtered array based on the search text
     NSString *searchText = searchController.searchBar.text;
-    
-    [((SearchResultTableViewController*)self.searchController.searchResultsController).tableView reloadData];
+    NSLog(@"--- %@" , searchText);
 //    NSMutableArray *searchResults = [self.products mutableCopy];
 //    
 //    // strip out all the leading and trailing spaces
@@ -268,10 +272,13 @@
 //    [NSCompoundPredicate andPredicateWithSubpredicates:andMatchPredicates];
 //    searchResults = [[searchResults filteredArrayUsingPredicate:finalCompoundPredicate] mutableCopy];
 //    
-//    // hand over the filtered results to our search results table
-//    APLResultsTableController *tableController = (APLResultsTableController *)self.searchController.searchResultsController;
-//    tableController.filteredProducts = searchResults;
-//    [tableController.tableView reloadData];
+    // hand over the filtered results to our search results table
+    SearchResultTableViewController *resultTableController = self.resultsTableController;
+    
+    Song *songItem = [[Song alloc] initSong:@"Title" songImageName:nil songGenre:nil likesCount:0 playsCount:0 songState:STATE_NOT_DOWNLOAD soundCloudId:@"sadfsadfsdfasd"];
+    NSArray *array = [NSArray arrayWithObjects:songItem, nil];
+    resultTableController.lstResults = array;
+    [resultTableController.tableView reloadData];
 }
 
 

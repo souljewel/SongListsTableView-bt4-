@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Song.h"
+#import "SearchTableViewCell.h"
 
 @interface BaseTableViewController : UITableViewController
 
