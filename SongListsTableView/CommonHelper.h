@@ -16,5 +16,5 @@
 //common table cell
 @property NSString *kCellIdentifier;
 @property NSString *kTableCellNibName;
-
+@property NSString *searchSongSoundCloudAPI;
 @end

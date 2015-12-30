@@ -184,9 +184,26 @@
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="XZY-pJ-5GV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BLj-g6-aN3">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="yei-K5-muw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BLj-g6-aN3" secondAttribute="trailing" id="FW5-gz-Y6F"/>
+                            <constraint firstItem="BLj-g6-aN3" firstAttribute="top" secondItem="qXj-oj-WUu" secondAttribute="bottom" id="KtY-xU-4EG"/>
+                            <constraint firstItem="BLj-g6-aN3" firstAttribute="leading" secondItem="XZY-pJ-5GV" secondAttribute="leading" id="h9Y-RU-3MQ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="u7T-U3-Jd0"/>
+                    <connections>
+                        <outlet property="topView" destination="BLj-g6-aN3" id="9GE-0r-lbg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5W-8j-tXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

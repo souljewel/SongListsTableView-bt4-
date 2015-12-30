@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIView *topView;
 
 @end

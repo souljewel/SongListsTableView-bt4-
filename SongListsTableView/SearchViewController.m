@@ -31,13 +31,11 @@
     _searchController = [[UISearchController alloc] initWithSearchResultsController:self.resultsTableController];
     self.searchController.searchResultsUpdater = self;
     [self.searchController.searchBar sizeToFit];
-    self.searchController.searchBar.frame = CGRectMake(0,44+22, self.view.frame.size.width, 40);
     self.searchController.searchBar.placeholder = @"Type your search here";
-    self.searchController.searchBar.searchBarStyle = UISearchBarStyleMinimal;
+    self.searchController.searchBar.searchBarStyle = UISearchBarStyleDefault;
     self.searchController.hidesNavigationBarDuringPresentation = NO;
-    self.searchController.view.frame = self.view.bounds;
-    [self.view addSubview:self.searchController.view];
-    [self.view addSubview:self.searchController.searchBar];
+//    self.searchController.view.frame = self.view.bounds;
+    [self.topView addSubview:self.searchController.searchBar];
     
     // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
     self.resultsTableController.tableView.delegate = self;
@@ -48,8 +46,20 @@
     // Search is now just presenting a view controller. As such, normal view controller
     // presentation semantics apply. Namely that presentation will walk up the view controller
     // hierarchy until it finds the root view controller or one that defines a presentation context.
-    //
-//    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
+    
+    //set search text color
+
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBackgroundColor:[UIColor colorWithRed:0.824f green:0.824f blue:0.824f alpha:0.8f]];
+    self.searchController.searchBar.barTintColor = [UIColor clearColor];//[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:0.1];
+    self.searchController.searchBar.backgroundImage = [UIImage new];
+    //        [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setOpaque:YES];
+    //    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTextColor:[UIColor lightGrayColor]];
+//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil].layer setBorderColor:[UIColor redColor].CGColor];
+//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil].layer setMasksToBounds:YES];
+//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setBorderStyle:UITextBorderStyleRoundedRect];
+//    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil].layer setCornerRadius:1.0f];
+    
+    self.definesPresentationContext = YES;  // know where you want UISearchController to be displayed
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -96,19 +106,21 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarTextDidBeginEditing");
-    UISearchBar* searchBarrr = self.searchController.searchBar;
-//    CGRect rect = CGRectMake(searchBarrr.frame.origin.x, searchBarrr.frame.origin.y, searchBarrr.frame.size.width, searchBarrr.frame.size.height);
-//    [self.view bringSubviewToFront:searchBarrr];
-//    [self.view setNeedsLayout];
 }
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     NSLog(@"textDidChange");
-
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar{
     NSLog(@"searchBarTextDidEndEditing");
+}
+
+- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    NSString *str = [searchBar.text stringByReplacingCharactersInRange:range withString:text];
+    NSLog(@"String:%@",str);
+    return YES;
 }
 
 #pragma mark - UISearchControllerDelegate
@@ -121,7 +133,6 @@
 // Implement this method if the default presentation is not adequate for your purposes.
 //
 - (void)presentSearchController:(UISearchController *)searchController {
-    
     NSLog(@"presentSearchController");
 }
 
