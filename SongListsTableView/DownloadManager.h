@@ -22,4 +22,9 @@
 // Song Download
 // ----------------------------------------
 - (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad onComplete:(void (^)(NSArray *lstCategories, NSError *error))block;
+
+// ----------------------------------------
+// Search Song
+// ----------------------------------------
+- (NSURLSessionDataTask *)searchSongWithText:(NSString*) searchText numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad onComplete:(void (^)(NSArray *lstCategories, NSError *error))block;
 @end

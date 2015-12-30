@@ -9,13 +9,30 @@
 #import "SearchResultTableViewController.h"
 #import "CommonHelper.h"
 #import "Song.h"
+#import "DownloadManager.h"
 
 @interface SearchResultTableViewController ()
+
+@property (nonatomic) NSInteger numberOfDownload;// total number of downloads
+@property (nonatomic) NSInteger offsetToLoad;
+@property (nonatomic) NSInteger downloadsPerOne;// number of downloads
 
 @end
 
 @implementation SearchResultTableViewController
 
+@synthesize lstResults;
+
+- (void) initData{
+    
+    //set number of download
+    self.numberOfDownload = 40;
+    self.offsetToLoad = 0;
+    self.downloadsPerOne = 40;
+    
+    //set row height
+    [self.tableView setRowHeight:60];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -26,9 +43,25 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     // we use a nib which contains the cell's view and this class as the files owner
     
-    [self.tableView setRowHeight:60];
-    [self.tableView setFrame:CGRectMake(0, 0, 100, 100)];
-    [self.tableView setNeedsDisplay];
+    [self initData];
+}
+
+// ----------------------
+// search song with Text
+- (void) searchSongWithText:(NSString *)searchText{
+    if(searchText == nil || [searchText length] == 0){
+        return;
+    }
+    __weak SearchResultTableViewController *weakSelf = self;
+    
+    [[DownloadManager sharedManager] searchSongWithText:searchText numberOfDownload:self.numberOfDownload offset:0 onComplete:^(NSArray *lstResultSongs, NSError *error) {
+        if (!error) {
+//            [weakSelf.refreshControl endRefreshing];
+            self.lstResults = [NSMutableArray arrayWithArray:lstResultSongs];
+            [self.tableView reloadData];
+//            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        }
+    }];
 }
 
 #pragma mark - Table view data source
@@ -38,10 +71,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SearchTableViewCell *cell = (SearchTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] kCellIdentifier]];
+    SearchTableViewCell *cell = (SearchTableViewCell*)[self.tableView dequeueReusableCellWithIdentifier:[[CommonHelper sharedManager] kCellIdentifier]];
     
-    Song* cellSong = [self.lstResults objectAtIndex:indexPath.row];
-    [cell setSong:cellSong];
+    Song* song = [self.lstResults objectAtIndex:indexPath.row];
+    [cell setNewSong:song];
     
     return cell;
 }

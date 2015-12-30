@@ -71,9 +71,9 @@
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
     
     //set number of download
-    self.numberOfDownload = 400;
+    self.numberOfDownload = 40;
     self.offsetToLoad = 0;
-    self.downloadsPerOne = 400;
+    self.downloadsPerOne = 40;
     
     // Add an observer that will respond to loginComplete
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];

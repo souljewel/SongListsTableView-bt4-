@@ -10,6 +10,7 @@
 
 @implementation SearchTableViewCell
 
+@synthesize cellSong,cellBtnAdd,cellImage,cellLblDetail,cellLblMaster;
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -20,15 +21,16 @@
     // Configure the view for the selected state
 }
 
-- (void)setSong:(Song *)song{
-    if (song != nil) {
-        self.cellSong  = song;
-        self.cellImage.image = song.songImage;
-        self.cellLblMaster.text = song.songTitle;
-        self.tag = song.songId;
-        self.cellBtnAdd.tag = song.songId;
+- (void) setNewSong:(Song*)newSong
+{
+    if (newSong != nil) {
+        self.cellSong  = newSong;
+        self.cellImage.image = newSong.songImage;
+        self.cellLblMaster.text = newSong.songTitle;
+        self.tag = newSong.songId;
+        self.cellBtnAdd.tag = newSong.songId;
         [self.cellBtnAdd addTarget:self action:@selector(moveSong:) forControlEvents:UIControlEventTouchUpInside];
-        self.cellLblDetail.text = [[@"Like: " stringByAppendingString:[NSString stringWithFormat:@"%ld",song.songLikesCount] ] stringByAppendingString:[@"   Play: " stringByAppendingString:[NSString stringWithFormat:@"%ld",song.songPlaysCount] ]];
+        self.cellLblDetail.text = [[@"Like: " stringByAppendingString:[NSString stringWithFormat:@"%ld",newSong.songLikesCount] ] stringByAppendingString:[@"   Play: " stringByAppendingString:[NSString stringWithFormat:@"%ld",newSong.songPlaysCount] ]];
         if(self.cellSong.songState == STATE_DOWNLOADED)
         {
             UIImage *btnImage = [UIImage imageNamed:@"icon_check.png"];

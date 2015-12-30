@@ -9,7 +9,8 @@
 
 enum TypeOfDownload{
     TYPE_CATEGORY,
-    TYPE_SONG
+    TYPE_SONG,
+    TYPE_SEARCH_SONG
 };
 
 @interface ParseOperation : NSOperation

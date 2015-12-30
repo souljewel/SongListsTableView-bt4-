@@ -11,4 +11,7 @@
 
 @interface SearchResultTableViewController : BaseTableViewController
 @property (nonatomic) NSArray *lstResults;
+
+- (void)searchSongWithText:(NSString*)searchText;
+
 @end

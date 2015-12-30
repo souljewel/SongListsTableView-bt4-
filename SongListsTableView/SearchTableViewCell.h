@@ -17,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *cellBtnAdd;
 @property (nonatomic) Song* cellSong;
 
-- (void) setSong:(Song*)song;
+- (void) setNewSong:(Song*)newSong;
 @end

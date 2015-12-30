@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "SearchResultTableViewController.h"
 #import "CommonHelper.h"
+#import "DownloadManager.h"
 
 @interface SearchViewController ()<UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, UITableViewDelegate>
 
@@ -284,12 +285,16 @@
 //    searchResults = [[searchResults filteredArrayUsingPredicate:finalCompoundPredicate] mutableCopy];
 //    
     // hand over the filtered results to our search results table
-    SearchResultTableViewController *resultTableController = self.resultsTableController;
     
-    Song *songItem = [[Song alloc] initSong:@"Title" songImageName:nil songGenre:nil likesCount:0 playsCount:0 songState:STATE_NOT_DOWNLOAD soundCloudId:@"sadfsadfsdfasd"];
-    NSArray *array = [NSArray arrayWithObjects:songItem, nil];
-    resultTableController.lstResults = array;
-    [resultTableController.tableView reloadData];
+
+    
+    SearchResultTableViewController *resultTableController = self.resultsTableController;
+    [resultTableController searchSongWithText:searchText];
+    
+//    Song *songItem = [[Song alloc] initSong:@"Title" songImageName:nil songGenre:nil likesCount:0 playsCount:0 songState:STATE_NOT_DOWNLOAD soundCloudId:@"sadfsadfsdfasd"];
+//    NSArray *array = [NSArray arrayWithObjects:songItem, nil];
+//    self.resultsTableController.lstResults = array;
+//    [self.resultsTableController.tableView reloadData];
 }
 
 
