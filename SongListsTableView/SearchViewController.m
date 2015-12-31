@@ -37,11 +37,11 @@
     self.searchController.hidesNavigationBarDuringPresentation = NO;
 //    self.searchController.view.frame = self.view.bounds;
     [self.topView addSubview:self.searchController.searchBar];
-    
+    self.searchController.searchBar.backgroundColor = [UIColor whiteColor];
     // we want to be the delegate for our filtered table so didSelectRowAtIndexPath is called for both tables
     self.resultsTableController.tableView.delegate = self;
     self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
+    self.searchController.dimsBackgroundDuringPresentation = NO; // default is YES
     self.searchController.searchBar.delegate = self; // so we can monitor text changes + others
     
     // Search is now just presenting a view controller. As such, normal view controller

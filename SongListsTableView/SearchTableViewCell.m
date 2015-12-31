@@ -13,6 +13,7 @@
 @synthesize cellSong,cellBtnAdd,cellImage,cellLblDetail,cellLblMaster;
 - (void)awakeFromNib {
     // Initialization code
+    [self.cellLblMaster sizeThatFits:CGSizeMake(10, 30)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

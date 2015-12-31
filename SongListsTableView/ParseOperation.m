@@ -110,9 +110,10 @@
                         NSInteger trackPlayCount = [[track valueForKey:[_elementsToParse objectAtIndex:2]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:2]] integerValue];
                         NSString* trackImageUrl = [[track valueForKey:[_elementsToParse objectAtIndex:3]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:3]];
                         NSString* soundCloudId = [[track valueForKey:[_elementsToParse objectAtIndex:4]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:4]];
-//                        if(soundCloudId.length > 0){
-//                            soundCloudId = [soundCloudId stringByReplacingOccurrencesOfString:@"soundcloud:tracks:" withString:@""];
-//                        }
+                        
+                        if([soundCloudId isKindOfClass:[NSNumber class]]){
+                            soundCloudId = [NSString stringWithFormat:@"%ld",[soundCloudId integerValue ]];
+                        }
                         
                         enum StateOfSong newSongState = STATE_NOT_DOWNLOAD;
                         //load song from database to set State of list song

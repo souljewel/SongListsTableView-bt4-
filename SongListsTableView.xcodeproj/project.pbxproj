@@ -59,6 +59,7 @@
 		05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EFE3E21C296677000BE950 /* ParseOperation.m */; };
 		05F31D951C1AD4BD0087B173 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F31D941C1AD4BD0087B173 /* SongTableViewController.m */; };
 		05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F8A0381C2E2AAC00CDE156 /* MBProgressHUD.m */; };
+		05FC51501C3529C40013CEB4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FC514F1C3529C30013CEB4 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		05F31D941C1AD4BD0087B173 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
 		05F8A0371C2E2AAC00CDE156 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		05F8A0381C2E2AAC00CDE156 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		05FC514F1C3529C30013CEB4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FC51501C3529C40013CEB4 /* AVFoundation.framework in Frameworks */,
 				05EB5E821C1ED09F00007660 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +518,7 @@
 		ADE23862FAD4C7B04AC8AA2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05FC514F1C3529C30013CEB4 /* AVFoundation.framework */,
 				05EB5E811C1ED09F00007660 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
