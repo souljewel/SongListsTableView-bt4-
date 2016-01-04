@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-#import "Genre.h"
+@class Genre;
 
 enum StateOfSong{
     STATE_DOWNLOADED,

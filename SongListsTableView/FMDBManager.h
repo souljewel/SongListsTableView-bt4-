@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
-#import "Song.h"
+
+@class Song;
 
 @interface FMDBManager : NSObject
-
-
-
 #pragma mark - Genre
 
 #pragma mark - Song

@@ -7,6 +7,8 @@
 //
 
 #import "FMDBManager.h"
+#import "Song.h"
+#import "Genre.h"
 
 static NSString *const DB_NAME = @"MusicDatabase";
 

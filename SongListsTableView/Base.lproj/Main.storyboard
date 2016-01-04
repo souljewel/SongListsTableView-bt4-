@@ -8,6 +8,24 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
+        <!--My Media Player View Controller-->
+        <scene sceneID="RhL-E0-G05">
+            <objects>
+                <viewController id="Xq1-vy-mFh" customClass="MyMediaPlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gPj-o6-Xnu"/>
+                        <viewControllerLayoutGuide type="bottom" id="s2r-IS-IhC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TUa-yU-hP7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mA4-eh-iHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-311" y="-877"/>
+        </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="jfN-ed-Sr4">
             <objects>
@@ -313,23 +331,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sds-HB-sJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="519" y="-53"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="S4J-vs-6rR">
-            <objects>
-                <viewController id="dal-Pi-jbn" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="c8n-eZ-5h8"/>
-                        <viewControllerLayoutGuide type="bottom" id="gHX-oL-BiZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fc1-yt-WC7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vsC-KY-uU2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

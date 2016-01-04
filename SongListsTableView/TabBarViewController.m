@@ -7,7 +7,10 @@
 //
 
 #import "TabBarViewController.h"
-
+#import "Genre.h"
+#import "MusicManager.h"
+#import "Song.h"
+#import "FMDBManager.h"
 
 @interface TabBarViewController ()
 

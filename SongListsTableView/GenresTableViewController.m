@@ -16,6 +16,7 @@
 #import "PlaylistTableViewController.h"
 #import "DownloadManager.h"
 #import "MBProgressHUD.h"
+#import "Genre.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 

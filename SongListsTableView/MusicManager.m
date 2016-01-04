@@ -7,6 +7,8 @@
 //
 
 #import "MusicManager.h"
+#import "Song.h"
+#import "FMDBManager.h"
 
 @implementation MusicManager
 

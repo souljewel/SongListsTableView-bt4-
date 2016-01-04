@@ -7,10 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ParseOperation.h"
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
-#import "Genre.h"
+
 
 @interface BTCategory : NSObject
 

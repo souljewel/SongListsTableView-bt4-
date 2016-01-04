@@ -27,7 +27,8 @@
         self.MyIdentifier = @"MyTableViewSong";
         self.kCellIdentifier = @"cellID";
         self.kTableCellNibName = @"TableCell";
-        self.searchSongSoundCloudAPILinks = @"http://api.soundcloud.com/tracks.json?client_id=4346c8125f4f5c40ad666bacd8e96498&q=";//hello&limit=50";
+        self.clientIDSoundCloud = @"4346c8125f4f5c40ad666bacd8e96498";
+        self.searchSongSoundCloudAPILinks = [@"http://api.soundcloud.com/tracks.json?client_id=" stringByAppendingString:[self.clientIDSoundCloud stringByAppendingString:@"&q="]];//hello&limit=50";
     }
     return self;
 }

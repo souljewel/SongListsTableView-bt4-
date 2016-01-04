@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Song.h"
+
+@class Song;
 
 @interface SearchTableViewCell : UITableViewCell
 

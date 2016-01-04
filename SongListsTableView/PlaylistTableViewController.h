@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Genre.h"
+
+
+@class Genre;
 
 @interface PlaylistTableViewController : UITableViewController
 

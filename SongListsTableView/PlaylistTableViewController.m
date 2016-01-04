@@ -15,6 +15,8 @@
 #import "MusicManager.h"
 #import "SVPullToRefresh.h"
 #import "MBProgressHUD.h"
+#import "Genre.h"
+#import "Song.h"
 
 #define kCustomRowCount 7
 @interface PlaylistTableViewController ()<UIScrollViewDelegate>
@@ -374,6 +376,7 @@
                 for (UIView *view in self.tableView.subviews) {
                     for (MyTableViewCell *cell in view.subviews) {
                         //do
+
                         if([cell isKindOfClass:[MyTableViewCell class]]){
                             if([cell.songItem.songSoundCloudId compare:soundCloudId] == 0){
                                 [cell refreshButtonState:STATE_NOT_DOWNLOAD];

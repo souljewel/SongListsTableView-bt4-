@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Song.h"
-#import "FMDBManager.h"
+
+@class Song;
 
 @interface MusicManager : NSObject
 @property NSMutableArray *lstItems;

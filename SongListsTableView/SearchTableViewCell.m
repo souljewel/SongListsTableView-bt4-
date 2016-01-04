@@ -7,6 +7,7 @@
 //
 
 #import "SearchTableViewCell.h"
+#import "Song.h"
 
 @implementation SearchTableViewCell
 

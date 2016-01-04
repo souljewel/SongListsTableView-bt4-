@@ -17,4 +17,5 @@
 @property NSString *kCellIdentifier;
 @property NSString *kTableCellNibName;
 @property NSString *searchSongSoundCloudAPILinks;
+@property NSString *clientIDSoundCloud;
 @end

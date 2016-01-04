@@ -13,6 +13,7 @@
 #import "CommonHelper.h"
 #import "IconDownloader.h"
 #import "MBProgressHUD.h"
+#import "Song.h"
 
 @interface SongTableViewController ()
 

@@ -44,6 +44,7 @@
 		05A505551C2BFE670038BCA9 /* icon_check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505521C2BFE670038BCA9 /* icon_check@3x.png */; };
 		05DA296C1C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA29691C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m */; };
 		05DA296D1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */; };
+		05DD19071C3A144A0072C2D9 /* MyMediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */; };
 		05E8B3791C195410006372E6 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3781C195410006372E6 /* TabBarViewController.m */; };
 		05E8B3961C197E9A006372E6 /* GenresTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E8B3951C197E9A006372E6 /* GenresTableViewController.m */; };
 		05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05EB5E1A1C1EABC200007660 /* FMDBManager.m */; };
@@ -117,6 +118,8 @@
 		05DA29691C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SVInfiniteScrolling.m"; path = "SVPullToRefresh/UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		05DA296A1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+SVPullToRefresh.h"; path = "SVPullToRefresh/UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SVPullToRefresh.m"; path = "SVPullToRefresh/UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		05DD19051C3A144A0072C2D9 /* MyMediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMediaPlayerViewController.h; sourceTree = "<group>"; };
+		05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMediaPlayerViewController.m; sourceTree = "<group>"; };
 		05E8B3771C195410006372E6 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		05E8B3781C195410006372E6 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		05E8B3941C197E9A006372E6 /* GenresTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenresTableViewController.h; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 		0581BCF01C181EE1006C0113 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				05DD18FE1C3A13D60072C2D9 /* MediaPlayer */,
 				05E8B3801C19564C006372E6 /* TabBar */,
 			);
 			name = Screen;
@@ -340,6 +344,39 @@
 				05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */,
 			);
 			name = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		05DD18FE1C3A13D60072C2D9 /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				05DD19011C3A140B0072C2D9 /* Controller */,
+				05DD19001C3A14060072C2D9 /* View */,
+				05DD18FF1C3A13F70072C2D9 /* Model */,
+			);
+			name = MediaPlayer;
+			sourceTree = "<group>";
+		};
+		05DD18FF1C3A13F70072C2D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		05DD19001C3A14060072C2D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		05DD19011C3A140B0072C2D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05DD19051C3A144A0072C2D9 /* MyMediaPlayerViewController.h */,
+				05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		05E8B3801C19564C006372E6 /* TabBar */ = {
@@ -622,6 +659,7 @@
 				055E80E01C321B6500BFFFFC /* SearchTableViewCell.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
+				05DD19071C3A144A0072C2D9 /* MyMediaPlayerViewController.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
 				05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */,
 				055F618B1C311977002045E6 /* BaseTableViewController.m in Sources */,

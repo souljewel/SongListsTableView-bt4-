@@ -7,6 +7,7 @@
 //
 
 #import "Song.h"
+#import "Genre.h"
 
 @implementation Song
 

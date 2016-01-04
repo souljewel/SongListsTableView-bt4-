@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MusicManager.h"
-#import "Song.h"
+
+@class MusicManager;
 
 @interface TabBarViewController : UITabBarController
 

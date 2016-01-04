@@ -10,6 +10,7 @@
 #import "CommonHelper.h"
 #import "Song.h"
 #import "DownloadManager.h"
+#import "SearchTableViewCell.h"
 
 @interface SearchResultTableViewController ()
 

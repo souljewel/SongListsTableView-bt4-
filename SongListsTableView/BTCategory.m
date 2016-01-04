@@ -7,10 +7,12 @@
 //
 
 #import "BTCategory.h"
+#import "ParseOperation.h"
+#import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "Genre.h"
 
 @implementation BTCategory
-
-
 
 #pragma mark class implementation
 
