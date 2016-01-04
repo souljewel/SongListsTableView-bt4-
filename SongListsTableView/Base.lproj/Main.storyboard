@@ -13,18 +13,31 @@
             <objects>
                 <viewController id="Xq1-vy-mFh" customClass="MyMediaPlayerViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gPj-o6-Xnu"/>
-                        <viewControllerLayoutGuide type="bottom" id="s2r-IS-IhC"/>
+                        <viewControllerLayoutGuide type="top" id="f6c-rt-dCR"/>
+                        <viewControllerLayoutGuide type="bottom" id="uRR-cF-HZ0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="TUa-yU-hP7">
+                    <view key="view" contentMode="scaleToFill" id="6oS-jQ-hbd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkJ-2z-CEc" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="width" secondItem="6oS-jQ-hbd" secondAttribute="width" id="Etg-JP-uak"/>
+                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="height" secondItem="6oS-jQ-hbd" secondAttribute="height" multiplier="2/3" id="QsY-2v-eWo"/>
+                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="leading" secondItem="6oS-jQ-hbd" secondAttribute="leading" id="jIK-cV-ZMT"/>
+                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="top" secondItem="f6c-rt-dCR" secondAttribute="bottom" id="wEY-CO-S1Z"/>
+                        </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mA4-eh-iHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-311" y="-877"/>
+            <point key="canvasLocation" x="-303" y="-877"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="jfN-ed-Sr4">
