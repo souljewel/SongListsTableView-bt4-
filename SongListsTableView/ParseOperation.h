@@ -15,8 +15,6 @@ enum TypeOfDownload{
 
 @interface ParseOperation : NSOperation
 
-
-
 // A block to call when an error is encountered during parsing.
 @property (nonatomic, copy) void (^errorHandler)(NSError *error);
 

@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ParseOperation.h"
 
+@class MyMediaPlayerViewController;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MyMediaPlayerViewController* myMediaPlayerViewController;
 
 // the queue to run our "ParseOperation"
 @property (nonatomic, strong) NSOperationQueue *queue;

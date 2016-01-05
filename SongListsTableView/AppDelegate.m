@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MyMediaPlayerViewController.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //init MediaPlayerViewController
+    self.myMediaPlayerViewController = [[MyMediaPlayerViewController alloc] init];
     return YES;
 }
 

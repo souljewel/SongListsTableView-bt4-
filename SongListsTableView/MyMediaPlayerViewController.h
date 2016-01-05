@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class MediaPlayer;
 @interface MyMediaPlayerViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *discView;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnPlayRandom;
+@property (weak, nonatomic) IBOutlet UIButton *btnPrevious;
+@property (weak, nonatomic) IBOutlet UIButton *btnPlay;
+@property (weak, nonatomic) IBOutlet UIButton *btnNext;
+@property (weak, nonatomic) IBOutlet UIButton *btnRepeat;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *imgDisc;
+
+@property (nonatomic,strong) MediaPlayer *mediaPlayer;
 @end

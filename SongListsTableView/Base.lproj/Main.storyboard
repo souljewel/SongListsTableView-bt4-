@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nVF-Aj-YU3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="adX-jp-ZGH">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -8,7 +8,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--My Media Player View Controller-->
+        <!--Now Playing-->
         <scene sceneID="RhL-E0-G05">
             <objects>
                 <viewController id="Xq1-vy-mFh" customClass="MyMediaPlayerViewController" sceneMemberID="viewController">
@@ -16,28 +16,103 @@
                         <viewControllerLayoutGuide type="top" id="f6c-rt-dCR"/>
                         <viewControllerLayoutGuide type="bottom" id="uRR-cF-HZ0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6oS-jQ-hbd">
+                    <view key="view" contentMode="scaleToFill" id="6oS-jQ-hbd" userLabel="PlayMusicView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkJ-2z-CEc" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q38-Jl-YUj" userLabel="lblTitle">
+                                <rect key="frame" x="0.0" y="497" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pYV-p1-TWa" userLabel="btnPlay">
+                                <rect key="frame" x="267" y="523" width="67" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pYV-p1-TWa" secondAttribute="height" multiplier="1:1" id="GoI-dq-TvZ"/>
+                                </constraints>
+                                <state key="normal" image="playMusicClick.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmu-0s-ueK" userLabel="btnNext">
+                                <rect key="frame" x="375" y="544" width="36" height="26"/>
+                                <state key="normal" image="next.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obv-kz-M8p" userLabel="btnPrev">
+                                <rect key="frame" x="190" y="544" width="36" height="26"/>
+                                <state key="normal" image="previous.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dpM-FT-TFV" userLabel="btnRepeat">
+                                <rect key="frame" x="461" y="546" width="19" height="22"/>
+                                <state key="normal" image="repeat.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yLq-vq-qfK" userLabel="btnRandom">
+                                <rect key="frame" x="118" y="546" width="21" height="22"/>
+                                <state key="normal" image="random.png"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MB7-E2-lfX" userLabel="discView">
+                                <rect key="frame" x="123" y="149" width="355" height="249"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disk.png" translatesAutoresizingMaskIntoConstraints="NO" id="J4E-L8-Ygx">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="249"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="J4E-L8-Ygx" secondAttribute="trailing" id="Lhg-9V-mqO"/>
+                                    <constraint firstItem="J4E-L8-Ygx" firstAttribute="leading" secondItem="MB7-E2-lfX" secondAttribute="leading" id="mQu-he-Y7H"/>
+                                    <constraint firstItem="J4E-L8-Ygx" firstAttribute="top" secondItem="MB7-E2-lfX" secondAttribute="top" id="znB-6z-KSR"/>
+                                    <constraint firstAttribute="bottom" secondItem="J4E-L8-Ygx" secondAttribute="bottom" id="zqi-GS-ZuS"/>
+                                </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundPlayMusic.png" translatesAutoresizingMaskIntoConstraints="NO" id="xyL-6c-Xgp">
+                                <rect key="frame" x="0.0" y="64" width="600" height="418"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="xyL-6c-Xgp" secondAttribute="height" id="kwt-Bb-35P"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="width" secondItem="6oS-jQ-hbd" secondAttribute="width" id="Etg-JP-uak"/>
-                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="height" secondItem="6oS-jQ-hbd" secondAttribute="height" multiplier="2/3" id="QsY-2v-eWo"/>
-                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="leading" secondItem="6oS-jQ-hbd" secondAttribute="leading" id="jIK-cV-ZMT"/>
-                            <constraint firstItem="YkJ-2z-CEc" firstAttribute="top" secondItem="f6c-rt-dCR" secondAttribute="bottom" id="wEY-CO-S1Z"/>
+                            <constraint firstItem="Kmu-0s-ueK" firstAttribute="leading" secondItem="pYV-p1-TWa" secondAttribute="trailing" constant="41" id="1VF-Ba-AId"/>
+                            <constraint firstItem="dpM-FT-TFV" firstAttribute="leading" secondItem="pYV-p1-TWa" secondAttribute="trailing" constant="127" id="1pi-pR-ZhW"/>
+                            <constraint firstItem="MB7-E2-lfX" firstAttribute="height" secondItem="xyL-6c-Xgp" secondAttribute="height" multiplier="1/2" constant="40" id="29s-ve-b7a"/>
+                            <constraint firstItem="Obv-kz-M8p" firstAttribute="centerY" secondItem="pYV-p1-TWa" secondAttribute="centerY" id="45m-T7-HAr"/>
+                            <constraint firstItem="Kmu-0s-ueK" firstAttribute="centerY" secondItem="pYV-p1-TWa" secondAttribute="centerY" id="9p3-2v-Pqa"/>
+                            <constraint firstItem="uRR-cF-HZ0" firstAttribute="top" secondItem="pYV-p1-TWa" secondAttribute="bottom" constant="10" id="D25-bN-3Ag"/>
+                            <constraint firstItem="xyL-6c-Xgp" firstAttribute="centerX" secondItem="6oS-jQ-hbd" secondAttribute="centerX" id="Jvl-jd-3ya"/>
+                            <constraint firstItem="q38-Jl-YUj" firstAttribute="width" secondItem="xyL-6c-Xgp" secondAttribute="width" id="Ma3-2r-nR5"/>
+                            <constraint firstItem="MB7-E2-lfX" firstAttribute="centerX" secondItem="xyL-6c-Xgp" secondAttribute="centerX" id="UeP-Cw-N04"/>
+                            <constraint firstItem="pYV-p1-TWa" firstAttribute="leading" secondItem="yLq-vq-qfK" secondAttribute="trailing" constant="128" id="WZx-kd-VMt"/>
+                            <constraint firstItem="xyL-6c-Xgp" firstAttribute="top" secondItem="f6c-rt-dCR" secondAttribute="bottom" id="d86-WD-Vq0"/>
+                            <constraint firstItem="pYV-p1-TWa" firstAttribute="leading" secondItem="Obv-kz-M8p" secondAttribute="trailing" constant="41" id="dfJ-Kp-OCl"/>
+                            <constraint firstItem="xyL-6c-Xgp" firstAttribute="leading" secondItem="6oS-jQ-hbd" secondAttribute="leading" id="gDz-oe-sxT"/>
+                            <constraint firstItem="MB7-E2-lfX" firstAttribute="width" secondItem="xyL-6c-Xgp" secondAttribute="width" multiplier="1/2" constant="55" id="gma-gV-3cO"/>
+                            <constraint firstItem="dpM-FT-TFV" firstAttribute="centerY" secondItem="pYV-p1-TWa" secondAttribute="centerY" id="kWA-3g-GMe"/>
+                            <constraint firstItem="yLq-vq-qfK" firstAttribute="centerY" secondItem="pYV-p1-TWa" secondAttribute="centerY" id="m7o-Vw-nuG"/>
+                            <constraint firstItem="pYV-p1-TWa" firstAttribute="centerX" secondItem="6oS-jQ-hbd" secondAttribute="centerX" id="nqQ-5n-P4y"/>
+                            <constraint firstItem="q38-Jl-YUj" firstAttribute="centerX" secondItem="6oS-jQ-hbd" secondAttribute="centerX" id="uKk-XQ-R4L"/>
+                            <constraint firstItem="q38-Jl-YUj" firstAttribute="top" secondItem="xyL-6c-Xgp" secondAttribute="bottom" constant="15" id="vIC-4M-FcB"/>
+                            <constraint firstAttribute="trailing" secondItem="xyL-6c-Xgp" secondAttribute="trailing" id="wds-fM-slb"/>
+                            <constraint firstItem="MB7-E2-lfX" firstAttribute="centerY" secondItem="xyL-6c-Xgp" secondAttribute="centerY" id="x6s-wv-bsV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Now Playing" id="IXq-hq-QSI"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="btnNext" destination="Kmu-0s-ueK" id="vyO-qU-NoX"/>
+                        <outlet property="btnPlay" destination="pYV-p1-TWa" id="JjG-fs-Sbo"/>
+                        <outlet property="btnPlayRandom" destination="yLq-vq-qfK" id="W9B-p6-5XK"/>
+                        <outlet property="btnPrevious" destination="Obv-kz-M8p" id="iR0-T6-43U"/>
+                        <outlet property="btnRepeat" destination="dpM-FT-TFV" id="yi3-b8-Rhe"/>
+                        <outlet property="discView" destination="MB7-E2-lfX" id="edU-Yt-K4z"/>
+                        <outlet property="imgDisc" destination="J4E-L8-Ygx" id="Anj-gU-ir3"/>
+                        <outlet property="lblTitle" destination="q38-Jl-YUj" id="GTw-9D-aVl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mA4-eh-iHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-303" y="-877"/>
+            <point key="canvasLocation" x="420" y="-932"/>
         </scene>
         <!--Tab Bar View Controller-->
         <scene sceneID="jfN-ed-Sr4">
@@ -75,7 +150,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XwU-Vp-hkH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501" y="-786"/>
+            <point key="canvasLocation" x="1313" y="-786"/>
         </scene>
         <!--Title-->
         <scene sceneID="SRr-YH-0r3">
@@ -152,7 +227,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r00-26-yIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2034" y="-834"/>
+            <point key="canvasLocation" x="2846" y="-834"/>
         </scene>
         <!--Categories-->
         <scene sceneID="i1I-GC-4gb">
@@ -202,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rAD-0a-sT8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="-800"/>
+            <point key="canvasLocation" x="2062" y="-800"/>
         </scene>
         <!--Search-->
         <scene sceneID="XMB-1s-RXc">
@@ -345,10 +420,35 @@
             </objects>
             <point key="canvasLocation" x="519" y="-53"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aop-qD-9fi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="adX-jp-ZGH" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EKG-va-twL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Xq1-vy-mFh" kind="relationship" relationship="rootViewController" id="5wz-Zc-orh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DYL-1O-o3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-303" y="-877"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="backgroundPlayMusic.png" width="413" height="418"/>
+        <image name="disk.png" width="240" height="240"/>
         <image name="icon_plus.png" width="22" height="22"/>
         <image name="icon_tab_download.png" width="17" height="25"/>
         <image name="icon_tab_genres.png" width="24" height="24"/>
+        <image name="next.png" width="36" height="26"/>
+        <image name="playMusicClick.png" width="67" height="67"/>
+        <image name="previous.png" width="36" height="26"/>
+        <image name="random.png" width="21" height="17"/>
+        <image name="repeat.png" width="19" height="17"/>
     </resources>
 </document>

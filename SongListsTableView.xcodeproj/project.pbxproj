@@ -25,6 +25,14 @@
 		054444E01C19202400297601 /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 054444DF1C19202400297601 /* Song.m */; };
 		054444E31C192BF800297601 /* MusicManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 054444E21C192BF800297601 /* MusicManager.m */; };
 		05485EDA1C1A64AB00ED62D9 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05485ED91C1A64AB00ED62D9 /* MyTableViewCell.m */; };
+		054A08021C3B95DC0078411E /* disk.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A07FC1C3B95DC0078411E /* disk.png */; };
+		054A08031C3B95DC0078411E /* disk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A07FD1C3B95DC0078411E /* disk@2x.png */; };
+		054A08041C3B95DC0078411E /* disk@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A07FE1C3B95DC0078411E /* disk@3x.png */; };
+		054A08081C3B969E0078411E /* backgroundPlayMusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A08051C3B969E0078411E /* backgroundPlayMusic.png */; };
+		054A08091C3B969E0078411E /* backgroundPlayMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A08061C3B969E0078411E /* backgroundPlayMusic@2x.png */; };
+		054A080A1C3B969E0078411E /* backgroundPlayMusic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 054A08071C3B969E0078411E /* backgroundPlayMusic@3x.png */; };
+		054A080C1C3BA56F0078411E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054A080B1C3BA56F0078411E /* QuartzCore.framework */; };
+		054A080F1C3BBE760078411E /* MediaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 054A080E1C3BBE760078411E /* MediaPlayer.m */; };
 		055E80E01C321B6500BFFFFC /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 055E80DF1C321B6500BFFFFC /* SearchTableViewCell.m */; };
 		055F61881C30CC2C002045E6 /* TableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 055F61871C30CC2C002045E6 /* TableCell.xib */; };
 		055F618B1C311977002045E6 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055F618A1C311977002045E6 /* BaseTableViewController.m */; };
@@ -45,7 +53,6 @@
 		05DA296C1C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA29691C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m */; };
 		05DA296D1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */; };
 		05DD19071C3A144A0072C2D9 /* MyMediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */; };
-		05DD192D1C3A84BC0072C2D9 /* backgroundPlayMusic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19091C3A84BC0072C2D9 /* backgroundPlayMusic@3x.png */; };
 		05DD192E1C3A84BC0072C2D9 /* next@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD190A1C3A84BC0072C2D9 /* next@3x.png */; };
 		05DD192F1C3A84BC0072C2D9 /* nextClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD190B1C3A84BC0072C2D9 /* nextClick.png */; };
 		05DD19301C3A84BC0072C2D9 /* nextClick@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD190C1C3A84BC0072C2D9 /* nextClick@3x.png */; };
@@ -58,8 +65,6 @@
 		05DD19371C3A84BC0072C2D9 /* pauseClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19131C3A84BC0072C2D9 /* pauseClick.png */; };
 		05DD19381C3A84BC0072C2D9 /* previousClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19141C3A84BC0072C2D9 /* previousClick.png */; };
 		05DD19391C3A84BC0072C2D9 /* playMusicClick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19151C3A84BC0072C2D9 /* playMusicClick@2x.png */; };
-		05DD193A1C3A84BC0072C2D9 /* backgroundPlayMusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19161C3A84BC0072C2D9 /* backgroundPlayMusic.png */; };
-		05DD193B1C3A84BC0072C2D9 /* backgroundPlayMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19171C3A84BC0072C2D9 /* backgroundPlayMusic@2x.png */; };
 		05DD193C1C3A84BC0072C2D9 /* previousClick@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19181C3A84BC0072C2D9 /* previousClick@2x.png */; };
 		05DD193D1C3A84BC0072C2D9 /* random.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD19191C3A84BC0072C2D9 /* random.png */; };
 		05DD193E1C3A84BC0072C2D9 /* random@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05DD191A1C3A84BC0072C2D9 /* random@2x.png */; };
@@ -124,6 +129,15 @@
 		054444E21C192BF800297601 /* MusicManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicManager.m; sourceTree = "<group>"; };
 		05485ED81C1A64AB00ED62D9 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		05485ED91C1A64AB00ED62D9 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		054A07FC1C3B95DC0078411E /* disk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disk.png; sourceTree = "<group>"; };
+		054A07FD1C3B95DC0078411E /* disk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disk@2x.png"; sourceTree = "<group>"; };
+		054A07FE1C3B95DC0078411E /* disk@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disk@3x.png"; sourceTree = "<group>"; };
+		054A08051C3B969E0078411E /* backgroundPlayMusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPlayMusic.png; sourceTree = "<group>"; };
+		054A08061C3B969E0078411E /* backgroundPlayMusic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundPlayMusic@2x.png"; sourceTree = "<group>"; };
+		054A08071C3B969E0078411E /* backgroundPlayMusic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundPlayMusic@3x.png"; sourceTree = "<group>"; };
+		054A080B1C3BA56F0078411E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		054A080D1C3BBE760078411E /* MediaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaPlayer.h; sourceTree = "<group>"; };
+		054A080E1C3BBE760078411E /* MediaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaPlayer.m; sourceTree = "<group>"; };
 		055E80DE1C321B6500BFFFFC /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		055E80DF1C321B6500BFFFFC /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
 		055F61871C30CC2C002045E6 /* TableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableCell.xib; sourceTree = "<group>"; };
@@ -156,7 +170,6 @@
 		05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SVPullToRefresh.m"; path = "SVPullToRefresh/UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		05DD19051C3A144A0072C2D9 /* MyMediaPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMediaPlayerViewController.h; sourceTree = "<group>"; };
 		05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMediaPlayerViewController.m; sourceTree = "<group>"; };
-		05DD19091C3A84BC0072C2D9 /* backgroundPlayMusic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundPlayMusic@3x.png"; sourceTree = "<group>"; };
 		05DD190A1C3A84BC0072C2D9 /* next@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@3x.png"; sourceTree = "<group>"; };
 		05DD190B1C3A84BC0072C2D9 /* nextClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nextClick.png; sourceTree = "<group>"; };
 		05DD190C1C3A84BC0072C2D9 /* nextClick@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nextClick@3x.png"; sourceTree = "<group>"; };
@@ -169,8 +182,6 @@
 		05DD19131C3A84BC0072C2D9 /* pauseClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pauseClick.png; sourceTree = "<group>"; };
 		05DD19141C3A84BC0072C2D9 /* previousClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = previousClick.png; sourceTree = "<group>"; };
 		05DD19151C3A84BC0072C2D9 /* playMusicClick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playMusicClick@2x.png"; sourceTree = "<group>"; };
-		05DD19161C3A84BC0072C2D9 /* backgroundPlayMusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundPlayMusic.png; sourceTree = "<group>"; };
-		05DD19171C3A84BC0072C2D9 /* backgroundPlayMusic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundPlayMusic@2x.png"; sourceTree = "<group>"; };
 		05DD19181C3A84BC0072C2D9 /* previousClick@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "previousClick@2x.png"; sourceTree = "<group>"; };
 		05DD19191C3A84BC0072C2D9 /* random.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = random.png; sourceTree = "<group>"; };
 		05DD191A1C3A84BC0072C2D9 /* random@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "random@2x.png"; sourceTree = "<group>"; };
@@ -229,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054A080C1C3BA56F0078411E /* QuartzCore.framework in Frameworks */,
 				05FC51501C3529C40013CEB4 /* AVFoundation.framework in Frameworks */,
 				05EB5E821C1ED09F00007660 /* libsqlite3.tbd in Frameworks */,
 			);
@@ -432,6 +444,8 @@
 		05DD18FF1C3A13F70072C2D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				054A080D1C3BBE760078411E /* MediaPlayer.h */,
+				054A080E1C3BBE760078411E /* MediaPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -455,7 +469,12 @@
 		05DD19081C3A83F30072C2D9 /* musicPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				05DD19091C3A84BC0072C2D9 /* backgroundPlayMusic@3x.png */,
+				054A08051C3B969E0078411E /* backgroundPlayMusic.png */,
+				054A08061C3B969E0078411E /* backgroundPlayMusic@2x.png */,
+				054A08071C3B969E0078411E /* backgroundPlayMusic@3x.png */,
+				054A07FC1C3B95DC0078411E /* disk.png */,
+				054A07FD1C3B95DC0078411E /* disk@2x.png */,
+				054A07FE1C3B95DC0078411E /* disk@3x.png */,
 				05DD190A1C3A84BC0072C2D9 /* next@3x.png */,
 				05DD190B1C3A84BC0072C2D9 /* nextClick.png */,
 				05DD190C1C3A84BC0072C2D9 /* nextClick@3x.png */,
@@ -468,8 +487,6 @@
 				05DD19131C3A84BC0072C2D9 /* pauseClick.png */,
 				05DD19141C3A84BC0072C2D9 /* previousClick.png */,
 				05DD19151C3A84BC0072C2D9 /* playMusicClick@2x.png */,
-				05DD19161C3A84BC0072C2D9 /* backgroundPlayMusic.png */,
-				05DD19171C3A84BC0072C2D9 /* backgroundPlayMusic@2x.png */,
 				05DD19181C3A84BC0072C2D9 /* previousClick@2x.png */,
 				05DD19191C3A84BC0072C2D9 /* random.png */,
 				05DD191A1C3A84BC0072C2D9 /* random@2x.png */,
@@ -671,6 +688,7 @@
 		ADE23862FAD4C7B04AC8AA2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				054A080B1C3BA56F0078411E /* QuartzCore.framework */,
 				05FC514F1C3529C30013CEB4 /* AVFoundation.framework */,
 				05EB5E811C1ED09F00007660 /* libsqlite3.tbd */,
 			);
@@ -734,6 +752,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054A08041C3B95DC0078411E /* disk@3x.png in Resources */,
 				05DD19461C3A84BC0072C2D9 /* repeat@3x.png in Resources */,
 				05DD193F1C3A84BC0072C2D9 /* nextClick@2x.png in Resources */,
 				054444D21C190FFA00297601 /* icon_tab_genres.png in Resources */,
@@ -744,13 +763,16 @@
 				05DD19491C3A84BC0072C2D9 /* repeat@2x.png in Resources */,
 				05DD19381C3A84BC0072C2D9 /* previousClick.png in Resources */,
 				05EB5E211C1EB66D00007660 /* MusicDatabase in Resources */,
+				054A080A1C3B969E0078411E /* backgroundPlayMusic@3x.png in Resources */,
 				054444D11C190FFA00297601 /* icon_tab_download@3x.png in Resources */,
 				055F61881C30CC2C002045E6 /* TableCell.xib in Resources */,
 				05DD19311C3A84BC0072C2D9 /* pauseClick@3x.png in Resources */,
 				0581BCE71C181C63006C0113 /* LaunchScreen.storyboard in Resources */,
 				054444D31C190FFA00297601 /* icon_tab_genres@2x.png in Resources */,
 				05DD19301C3A84BC0072C2D9 /* nextClick@3x.png in Resources */,
+				054A08081C3B969E0078411E /* backgroundPlayMusic.png in Resources */,
 				05A505531C2BFE670038BCA9 /* icon_check.png in Resources */,
+				054A08031C3B95DC0078411E /* disk@2x.png in Resources */,
 				05DD193D1C3A84BC0072C2D9 /* random.png in Resources */,
 				05DD193E1C3A84BC0072C2D9 /* random@2x.png in Resources */,
 				05DD19351C3A84BC0072C2D9 /* random@3x.png in Resources */,
@@ -761,14 +783,15 @@
 				05DD194B1C3A84BC0072C2D9 /* playMusicClick.png in Resources */,
 				05DD19331C3A84BC0072C2D9 /* previous@3x.png in Resources */,
 				05A505541C2BFE670038BCA9 /* icon_check@2x.png in Resources */,
+				054A08091C3B969E0078411E /* backgroundPlayMusic@2x.png in Resources */,
 				05A5054E1C2BEFB70038BCA9 /* icon_plus@2x.png in Resources */,
 				054444D41C190FFA00297601 /* icon_tab_genres@3x.png in Resources */,
 				05DD19441C3A84BC0072C2D9 /* randomClick@3x.png in Resources */,
-				05DD192D1C3A84BC0072C2D9 /* backgroundPlayMusic@3x.png in Resources */,
 				05DD19481C3A84BC0072C2D9 /* pauseClick@2x.png in Resources */,
 				05DD19471C3A84BC0072C2D9 /* repeatClick.png in Resources */,
 				05DD192F1C3A84BC0072C2D9 /* nextClick.png in Resources */,
 				05DD19401C3A84BC0072C2D9 /* previous.png in Resources */,
+				054A08021C3B95DC0078411E /* disk.png in Resources */,
 				05DD19451C3A84BC0072C2D9 /* repeat.png in Resources */,
 				054444CF1C190FFA00297601 /* icon_tab_download.png in Resources */,
 				054444CB1C190FFA00297601 /* addToSong@2x.png in Resources */,
@@ -776,12 +799,10 @@
 				05A505551C2BFE670038BCA9 /* icon_check@3x.png in Resources */,
 				05DD194A1C3A84BC0072C2D9 /* repeatClick@2x.png in Resources */,
 				05DD19431C3A84BC0072C2D9 /* previous@2x.png in Resources */,
-				05DD193B1C3A84BC0072C2D9 /* backgroundPlayMusic@2x.png in Resources */,
 				05DD19341C3A84BC0072C2D9 /* previousClick@3x.png in Resources */,
 				05DD19501C3A84BC0072C2D9 /* repeatOneClick@3x.png in Resources */,
 				05DD19361C3A84BC0072C2D9 /* randomClick@2x.png in Resources */,
 				05DD194C1C3A84BC0072C2D9 /* repeatClick@3x.png in Resources */,
-				05DD193A1C3A84BC0072C2D9 /* backgroundPlayMusic.png in Resources */,
 				054444CA1C190FFA00297601 /* addGenres@2x.png in Resources */,
 				0581BCE21C181C63006C0113 /* Main.storyboard in Resources */,
 				05DD194F1C3A84BC0072C2D9 /* repeatOneClick@2x.png in Resources */,
@@ -804,6 +825,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				053DF20A1C2AA545006BACB4 /* PlaylistTableViewController.m in Sources */,
+				054A080F1C3BBE760078411E /* MediaPlayer.m in Sources */,
 				054444E01C19202400297601 /* Song.m in Sources */,
 				05EFE3E51C296677000BE950 /* ParseOperation.m in Sources */,
 				0541E1871C2B820400081A19 /* DownloadManager.m in Sources */,
