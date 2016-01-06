@@ -365,12 +365,12 @@
 		0581BCD61C181C63006C0113 /* SongListsTableView */ = {
 			isa = PBXGroup;
 			children = (
+				0581BCDA1C181C63006C0113 /* AppDelegate.h */,
+				0581BCDB1C181C63006C0113 /* AppDelegate.m */,
 				0581BCEE1C181EBF006C0113 /* Common */,
 				0581BCEF1C181ECC006C0113 /* ThirdParty */,
 				0581BCF01C181EE1006C0113 /* Screen */,
 				0581BCF11C181EED006C0113 /* Resource */,
-				0581BCDA1C181C63006C0113 /* AppDelegate.h */,
-				0581BCDB1C181C63006C0113 /* AppDelegate.m */,
 				0581BCE31C181C63006C0113 /* Assets.xcassets */,
 				0581BCE51C181C63006C0113 /* LaunchScreen.storyboard */,
 				0581BCE81C181C63006C0113 /* Info.plist */,

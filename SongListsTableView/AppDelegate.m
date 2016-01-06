@@ -70,22 +70,15 @@
 #pragma mark - MediaPlayer
 
 - (void) showMediaPlayerViewWithAnimation{
-//    [self.window.rootViewController.view addSubview:_myMediaPlayerViewController.view];
-//    [self.window.rootViewController.view bringSubviewToFront:_myMediaPlayerViewController.view];
-//
-    
-    if(_myMediaPlayerViewController == nil){
-        //    [self.window.rootViewController presentViewController:_myMediaPlayerViewController animated:YES completion:nil];
+    if(_navigationMediaPlayerViewController == nil){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        self.myMediaPlayerViewController = [storyboard instantiateViewControllerWithIdentifier:@"playMusicVC"];
-        //    [self.window.rootViewController presentViewController:ivc animated:NO completion:nil];
-        //    NSLog(@"It's hitting log");
+        self.navigationMediaPlayerViewController = [storyboard instantiateViewControllerWithIdentifier:@"navigationPlayMusicVC"];
     }
     
-    [self.window.rootViewController addChildViewController:_myMediaPlayerViewController];
-
-    [self.window.rootViewController.view addSubview:_myMediaPlayerViewController.view];
-    [[MyAnimationHelper shareInstanced] fadeInAnimation:self.window.rootViewController.view];
+    [self.window.rootViewController addChildViewController:_navigationMediaPlayerViewController];
+    [self.window.rootViewController.view addSubview:_navigationMediaPlayerViewController.view];
+    [[MyAnimationHelper shareInstanced] slideDown:UIViewAnimationOptionCurveEaseInOut view:self.navigationMediaPlayerViewController.view seconds:0.8f];
+//    [[MyAnimationHelper shareInstanced] fadeInAnimation:self.window.rootViewController.view];
 }
 
 

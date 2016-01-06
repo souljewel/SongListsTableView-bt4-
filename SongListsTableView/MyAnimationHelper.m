@@ -35,14 +35,19 @@
 -(void)fadeInAnimation:(UIView *)aView {
     
     CATransition *transition = [CATransition animation];
-    transition.type =kCATransitionFade;
+    transition.type =kCATransitionFromTop;
     transition.duration = 5.5f;
     transition.delegate = self;
+    
+//    CATransition *transition = [CATransition animation];
+//    [transition setDuration:2.25];
+//    [transition setType:kCATransitionPush];
+//    [transition setSubtype:kCATransitionFromBottom];
+//    [transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     [aView.layer addAnimation:transition forKey:nil];
 }
 
 - (void) spinWithOptions: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds{
-    // this spin completes 360 degrees every 2 seconds
     [UIView animateWithDuration: aSeconds
                           delay: 0.0f
                         options: options
@@ -61,4 +66,39 @@
                          //                         }
                      }];
 }
+
+- (void) slideDown:(UIViewAnimationOptions)options view:(UIView *)aView seconds:(float)aSeconds{
+    aView.frame = CGRectMake(0, -aView.frame.size.height, aView.frame.size.width, aView.frame.size.height);
+    [UIView animateWithDuration: aSeconds
+                          delay: 0.0f
+                        options: options
+                     animations: ^{
+                         NSLog(@"animations ======");
+                         aView.transform = CGAffineTransformMakeTranslation(0, aView.frame.size.height);
+                     }
+                     completion: ^(BOOL finished) {
+                         NSLog(@"complete ======");
+//                                                  if (finished) {
+//                                                      if (animating) {
+//                                                          // if flag still set, keep spinning with constant speed
+//                                                          [self spinWithOptions: UIViewAnimationOptionCurveLinear];
+//                                                      } else if (options != UIViewAnimationOptionCurveEaseOut) {
+//                                                          // one last spin, with deceleration
+//                                                          [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
+//                                                      }
+//                                                  }
+                     }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 @end

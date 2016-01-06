@@ -18,5 +18,5 @@
 // ----------------------------------------
 -(void)fadeInAnimation:(UIView *)aView;
 - (void) spinWithOptions: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds;
-
+- (void) slideDown: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds;
 @end
