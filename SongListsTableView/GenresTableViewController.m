@@ -17,6 +17,7 @@
 #import "DownloadManager.h"
 #import "MBProgressHUD.h"
 #import "Genre.h"
+#import "MyNavigationViewController.h"
 
 @interface GenresTableViewController ()<UIAlertViewDelegate,UITabBarControllerDelegate>
 
@@ -46,8 +47,6 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
             [weakSelf.refreshControl endRefreshing];
         }
     }];
-    
-//    [self.refreshControl beginRefreshing];
 }
 
 // ----------------------
@@ -62,12 +61,15 @@ static NSString *CategoryIdentifier = @"CategoryTableView";
     self.refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.tableView.frame.size.width, 100.0f)];
     [self.refreshControl addTarget:self action:@selector(reload:) forControlEvents:UIControlEventValueChanged];
     [self.tableView.tableHeaderView addSubview:self.refreshControl];
-    
+
     //load data
     [self reload:nil];
     
     //show loading progress
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    //add PlayMusic button
+    [MyNavigationViewController addPlayMusicButtonWithNavigationitem:self.navigationItem];
 }
 
 - (void)viewDidLoad {

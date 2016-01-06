@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MyMediaPlayerViewController.h"
+#import "MyAnimationHelper.h"
 
 @interface AppDelegate ()
 
@@ -18,9 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    //init MediaPlayerViewController
-    self.myMediaPlayerViewController = [[MyMediaPlayerViewController alloc] init];
     return YES;
 }
 
@@ -68,4 +66,57 @@
     [alert addAction:OKAction];
     [self.window.rootViewController presentViewController:alert animated:YES completion:nil];
 }
+
+#pragma mark - MediaPlayer
+
+- (void) showMediaPlayerViewWithAnimation{
+//    [self.window.rootViewController.view addSubview:_myMediaPlayerViewController.view];
+//    [self.window.rootViewController.view bringSubviewToFront:_myMediaPlayerViewController.view];
+//
+    
+    if(_myMediaPlayerViewController == nil){
+        //    [self.window.rootViewController presentViewController:_myMediaPlayerViewController animated:YES completion:nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.myMediaPlayerViewController = [storyboard instantiateViewControllerWithIdentifier:@"playMusicVC"];
+        //    [self.window.rootViewController presentViewController:ivc animated:NO completion:nil];
+        //    NSLog(@"It's hitting log");
+    }
+    
+    [self.window.rootViewController addChildViewController:_myMediaPlayerViewController];
+
+    [self.window.rootViewController.view addSubview:_myMediaPlayerViewController.view];
+    [[MyAnimationHelper shareInstanced] fadeInAnimation:self.window.rootViewController.view];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

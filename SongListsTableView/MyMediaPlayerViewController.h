@@ -23,4 +23,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgDisc;
 
 @property (nonatomic,strong) MediaPlayer *mediaPlayer;
+
 @end

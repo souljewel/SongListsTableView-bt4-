@@ -50,6 +50,8 @@
 		05A505531C2BFE670038BCA9 /* icon_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505501C2BFE670038BCA9 /* icon_check.png */; };
 		05A505541C2BFE670038BCA9 /* icon_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505511C2BFE670038BCA9 /* icon_check@2x.png */; };
 		05A505551C2BFE670038BCA9 /* icon_check@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A505521C2BFE670038BCA9 /* icon_check@3x.png */; };
+		05C3613B1C3CA741009A447C /* MyAnimationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C3613A1C3CA741009A447C /* MyAnimationHelper.m */; };
+		05C361411C3CB39C009A447C /* MyNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C361401C3CB39C009A447C /* MyNavigationViewController.m */; };
 		05DA296C1C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA29691C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m */; };
 		05DA296D1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DA296B1C2D413800A93A18 /* UIScrollView+SVPullToRefresh.m */; };
 		05DD19071C3A144A0072C2D9 /* MyMediaPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DD19061C3A144A0072C2D9 /* MyMediaPlayerViewController.m */; };
@@ -163,6 +165,10 @@
 		05A505501C2BFE670038BCA9 /* icon_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_check.png; sourceTree = "<group>"; };
 		05A505511C2BFE670038BCA9 /* icon_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@2x.png"; sourceTree = "<group>"; };
 		05A505521C2BFE670038BCA9 /* icon_check@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_check@3x.png"; sourceTree = "<group>"; };
+		05C361391C3CA741009A447C /* MyAnimationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnimationHelper.h; sourceTree = "<group>"; };
+		05C3613A1C3CA741009A447C /* MyAnimationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnimationHelper.m; sourceTree = "<group>"; };
+		05C3613F1C3CB39C009A447C /* MyNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNavigationViewController.h; sourceTree = "<group>"; };
+		05C361401C3CB39C009A447C /* MyNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNavigationViewController.m; sourceTree = "<group>"; };
 		05DA29671C2D413800A93A18 /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVPullToRefresh.h; path = SVPullToRefresh/SVPullToRefresh.h; sourceTree = "<group>"; };
 		05DA29681C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+SVInfiniteScrolling.h"; path = "SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		05DA29691C2D413800A93A18 /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+SVInfiniteScrolling.m"; path = "SVPullToRefresh/UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -315,6 +321,8 @@
 				054444E21C192BF800297601 /* MusicManager.m */,
 				05485ED81C1A64AB00ED62D9 /* MyTableViewCell.h */,
 				05485ED91C1A64AB00ED62D9 /* MyTableViewCell.m */,
+				05C3613F1C3CB39C009A447C /* MyNavigationViewController.h */,
+				05C361401C3CB39C009A447C /* MyNavigationViewController.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -387,6 +395,8 @@
 				05EB5E1A1C1EABC200007660 /* FMDBManager.m */,
 				05A505471C2BD6280038BCA9 /* CommonHelper.h */,
 				05A505481C2BD6280038BCA9 /* CommonHelper.m */,
+				05C361391C3CA741009A447C /* MyAnimationHelper.h */,
+				05C3613A1C3CA741009A447C /* MyAnimationHelper.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -831,10 +841,12 @@
 				0541E1871C2B820400081A19 /* DownloadManager.m in Sources */,
 				055F61911C312A79002045E6 /* SearchViewController.m in Sources */,
 				055E80E01C321B6500BFFFFC /* SearchTableViewCell.m in Sources */,
+				05C3613B1C3CA741009A447C /* MyAnimationHelper.m in Sources */,
 				054444E31C192BF800297601 /* MusicManager.m in Sources */,
 				05EF83A11C297DE5006080E5 /* BTCategory.m in Sources */,
 				05DD19071C3A144A0072C2D9 /* MyMediaPlayerViewController.m in Sources */,
 				05EB5E1B1C1EABC200007660 /* FMDBManager.m in Sources */,
+				05C361411C3CB39C009A447C /* MyNavigationViewController.m in Sources */,
 				05F8A0391C2E2AAC00CDE156 /* MBProgressHUD.m in Sources */,
 				055F618B1C311977002045E6 /* BaseTableViewController.m in Sources */,
 				05EB5E7C1C1ECFF600007660 /* FMDatabase.m in Sources */,

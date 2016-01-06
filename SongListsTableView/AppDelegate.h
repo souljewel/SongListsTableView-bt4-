@@ -23,6 +23,6 @@
 @property (nonatomic, strong) ParseOperation *parser;
 
 - (void)handleError:(NSError *)error;
-
+- (void) showMediaPlayerViewWithAnimation;
 @end
 

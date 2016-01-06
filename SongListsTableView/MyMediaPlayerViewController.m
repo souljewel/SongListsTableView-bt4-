@@ -9,6 +9,7 @@
 #import "MyMediaPlayerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MediaPlayer.h"
+#import "MyAnimationHelper.h"
 
 @interface MyMediaPlayerViewController ()
 
@@ -19,43 +20,24 @@
 // an ivar for your class:
 BOOL animating;
 
-- (void) spinWithOptions: (UIViewAnimationOptions) options {
-    // this spin completes 360 degrees every 2 seconds
-    [UIView animateWithDuration: 10.5f
-                          delay: 0.0f
-                        options: options
-                     animations: ^{
-                         self.discView.transform = CGAffineTransformRotate(self.discView.transform, M_PI / 2);
-                     }
-                     completion: ^(BOOL finished) {
-                         if (finished) {
-                             if (animating) {
-                                 // if flag still set, keep spinning with constant speed
-                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
-                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
-                                 // one last spin, with deceleration
-                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
-                             }
-                         }
-                     }];
-}
 
-- (void) startSpin {
-    if (!animating) {
-        animating = YES;
-        [self spinWithOptions: UIViewAnimationOptionCurveEaseIn];
-    }
-}
 
-- (void) stopSpin {
-    // set the flag to stop spinning after one last 90 degree increment
-    animating = NO;
-}
+//- (void) startSpin {
+//    if (!animating) {
+//        animating = YES;
+//        [self spinWithOptions: UIViewAnimationOptionCurveEaseIn];
+//    }
+//}
+
+//- (void) stopSpin {
+//    // set the flag to stop spinning after one last 90 degree increment
+//    animating = NO;
+//}
 
 
 - (void) initData{
     //rotate disc
-    [self startSpin];
+    [[MyAnimationHelper shareInstanced] spinWithOptions:UIViewAnimationOptionCurveEaseIn view:self.discView seconds:10.0f];
 }
 
 - (void)viewDidLoad {
