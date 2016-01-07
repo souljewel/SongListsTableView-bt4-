@@ -19,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    //add play music view and register for notification
+    if(_navigationMediaPlayerViewController == nil){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        self.navigationMediaPlayerViewController = [storyboard instantiateViewControllerWithIdentifier:@"navigationPlayMusicVC"];
+        self.navigationMediaPlayerViewController.view.frame = CGRectMake(0, self.navigationMediaPlayerViewController.view.frame.size.height, self.navigationMediaPlayerViewController.view.frame.size.width, self.navigationMediaPlayerViewController.view.frame.size.height);
+        //register notification
+        [(MyMediaPlayerViewController*)_navigationMediaPlayerViewController.topViewController registerNotification];
+    }
+
     return YES;
 }
 
@@ -70,15 +80,23 @@
 #pragma mark - MediaPlayer
 
 - (void) showMediaPlayerViewWithAnimation{
-    if(_navigationMediaPlayerViewController == nil){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        self.navigationMediaPlayerViewController = [storyboard instantiateViewControllerWithIdentifier:@"navigationPlayMusicVC"];
+    
+//    [[MyAnimationHelper shareInstanced] fadeInAnimation:self.window.rootViewController.view];
+    //add to controller first time
+    if([_navigationMediaPlayerViewController isBeingPresented] == false){
+        if([[_window.rootViewController childViewControllers] containsObject:_navigationMediaPlayerViewController] == false){
+            NSLog(@"");
+            [self.window.rootViewController addChildViewController:_navigationMediaPlayerViewController];
+            [self.window.rootViewController.view addSubview:_navigationMediaPlayerViewController.view];
+        }
     }
     
-    [self.window.rootViewController addChildViewController:_navigationMediaPlayerViewController];
-    [self.window.rootViewController.view addSubview:_navigationMediaPlayerViewController.view];
-    [[MyAnimationHelper shareInstanced] slideDown:UIViewAnimationOptionCurveEaseInOut view:self.navigationMediaPlayerViewController.view seconds:0.8f];
-//    [[MyAnimationHelper shareInstanced] fadeInAnimation:self.window.rootViewController.view];
+    //slide view up
+    [[MyAnimationHelper shareInstanced] slideUp:UIViewAnimationOptionCurveEaseInOut view:_navigationMediaPlayerViewController.view seconds:0.8f];
+}
+
+- (void) hideMediaPlayerViewWithAnimation{
+    [[MyAnimationHelper shareInstanced] slideDown:UIViewAnimationOptionCurveEaseInOut view:_navigationMediaPlayerViewController.view seconds:0.8f];
 }
 
 

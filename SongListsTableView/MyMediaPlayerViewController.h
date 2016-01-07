@@ -24,4 +24,15 @@
 
 @property (nonatomic,strong) MediaPlayer *mediaPlayer;
 
+- (IBAction)playClicked:(id)sender;
+- (IBAction)nextClicked:(id)sender;
+- (IBAction)previousClicked:(id)sender;
+- (IBAction)repeatClicked:(id)sender;
+- (IBAction)randomClicked:(id)sender;
+- (IBAction)hideMusicPlayerClicked:(id)sender;
+
+// ----------------------------------------
+// instance method
+// ----------------------------------------
+- (void) registerNotification;
 @end

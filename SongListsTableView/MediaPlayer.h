@@ -9,23 +9,33 @@
 #import <Foundation/Foundation.h>
 
 @class AVPlayer;
+@class Song;
+
+enum StateMediaPlayer{
+    STATE_PLAYING,
+    STATE_PAUSE,
+    STATE_STOP
+};
+
+typedef enum StateMediaPlayer StateMediaPlayer;
 
 @interface MediaPlayer : NSObject{
     
 }
 
-+ (id) sharedInstance;
+//+ (id) sharedInstance;
 
 @property (nonatomic) NSInteger currentIndex;//index of URLArray
 @property (nonatomic, strong) NSArray *URLArray;
 @property (nonatomic, strong) NSURL *selectedURL;
 @property (nonatomic, strong) AVPlayer *audioPlayer;
+@property (nonatomic) StateMediaPlayer mediaPlayerState;
+@property (nonatomic, strong) Song* songToPlay;
 
-
-- (void)playWithURLString:(NSString*) urlString;
+- (void)play;
 - (void)pause;
 - (void)stop;
 - (void)next;
 - (void)previous;
-
+- (void)setSongToPlay:(Song*) songToPlay;
 @end

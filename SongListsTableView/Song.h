@@ -28,7 +28,10 @@ enum StateOfSong{
 @property NSInteger songPlaysCount;
 @property NSString* songSoundCloudId;
 
+@property NSString* songStreamURL;
+@property NSInteger songTimeInSeconds;
+
 @property enum StateOfSong songState;
 
--(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId;
+-(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId songStreamURL:(NSString*)songStreamURL songTimeInSeconds:(NSInteger)miliseconds;
 @end

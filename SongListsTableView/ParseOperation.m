@@ -86,7 +86,11 @@
                     }
                 }
                 
-                Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:newSongState soundCloudId:soundCloudId];
+                NSInteger trackDuration = [[track valueForKey:[_elementsToParse objectAtIndex:6]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:6]] integerValue];
+                NSString* trackStreamURL = [[track valueForKey:[_elementsToParse objectAtIndex:7]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:7]];
+
+                
+                Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:newSongState soundCloudId:soundCloudId songStreamURL:trackStreamURL songTimeInSeconds:trackDuration];
                 [songs addObject:newSong];
             }
             
@@ -128,8 +132,14 @@
                             }
                         }
                         
-                        Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:newSongState soundCloudId:soundCloudId];
+                        NSInteger trackDuration = [[track valueForKey:[_elementsToParse objectAtIndex:5]] isEqual: [NSNull null]] ? 0 : [[track valueForKey:[_elementsToParse objectAtIndex:5]] integerValue];
+                        NSString* trackStreamURL = [[track valueForKey:[_elementsToParse objectAtIndex:6]] isEqual: [NSNull null]] ? @"" : [track valueForKey:[_elementsToParse objectAtIndex:6]];
+
+                        
+                        Song *newSong = [[Song alloc] initSong:trackTitle songImageName:trackImageUrl songGenre:nil likesCount:trackLikesCount playsCount:trackPlayCount songState:newSongState soundCloudId:soundCloudId songStreamURL:trackStreamURL songTimeInSeconds:trackDuration];
                         [songs addObject:newSong];
+                        
+#warning save streamURL and duration in database
                     }
                     self.lstResult = [NSArray arrayWithArray:songs];
                 }

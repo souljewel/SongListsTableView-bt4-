@@ -19,4 +19,7 @@
 -(void)fadeInAnimation:(UIView *)aView;
 - (void) spinWithOptions: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds;
 - (void) slideDown: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds;
+- (void) slideUp: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds;
+
+- (void) imagesAnimationWithImageName:(NSString*) imageName viewToChangeImage:(UIView*)aView;
 @end

@@ -77,7 +77,7 @@
     self.offsetToLoad = 0;
     self.downloadsPerOne = 40;
     
-    // Add an observer that will respond to loginComplete
+    // Add an observer that will respond to database change
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"insertSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"deleteSong" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDatabaseChange:) name:@"updateSong" object:nil];
@@ -132,9 +132,7 @@
                 }
                 [weakSelf.tableView endUpdates];
             }
-            
         }];
-        
         
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
     });
@@ -226,7 +224,12 @@
     return cell;
 }
 
-
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    // send Song to PlayMusic controller
+    Song *songEntry = lstSongs[indexPath.row];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:songEntry forKey:@"songToPlay"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"songToPlay" object:nil userInfo:userInfo];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

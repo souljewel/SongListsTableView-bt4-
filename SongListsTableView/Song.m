@@ -13,11 +13,13 @@
 
 // ----------------------
 // init song with title, image name, genre
--(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId
+-(id) initSong:(NSString*)songTitle songImageName:(NSString*)songImageName songGenre:(Genre*)genre likesCount:(NSInteger)likesCount playsCount:(NSInteger)playsCount songState:(enum StateOfSong)songState soundCloudId:(NSString*)soundCloudId songStreamURL:(NSString*)songStreamURL songTimeInSeconds:(NSInteger)miliseconds
 {
     self = [super init];
     
     if(self){
+        self.songStreamURL = songStreamURL;
+        self.songTimeInSeconds = miliseconds/1000;
         self.songSoundCloudId = soundCloudId;
         self.songState = songState;
         self.songTitle = songTitle;

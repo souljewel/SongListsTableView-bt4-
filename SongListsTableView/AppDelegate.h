@@ -22,5 +22,6 @@
 
 - (void)handleError:(NSError *)error;
 - (void) showMediaPlayerViewWithAnimation;
+- (void) hideMediaPlayerViewWithAnimation;
 @end
 

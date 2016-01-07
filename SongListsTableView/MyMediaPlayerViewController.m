@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "MediaPlayer.h"
 #import "MyAnimationHelper.h"
+#import "Song.h"
+#import "AppDelegate.h"
 
 @interface MyMediaPlayerViewController ()
 
@@ -36,8 +38,12 @@ BOOL animating;
 
 
 - (void) initData{
-    //rotate disc
-    [[MyAnimationHelper shareInstanced] spinWithOptions:UIViewAnimationOptionCurveEaseIn view:self.discView seconds:10.0f];
+    self.mediaPlayer = [[MediaPlayer alloc] init];
+}
+
+- (void) registerNotification{
+    //register for notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(diReceiveSongToPlay:) name:@"songToPlay" object:nil];
 }
 
 - (void)viewDidLoad {
@@ -62,4 +68,42 @@ BOOL animating;
 }
 */
 
+- (IBAction)playClicked:(id)sender {
+    //rotate disc
+    [_mediaPlayer play];
+    [[MyAnimationHelper shareInstanced] spinWithOptions:UIViewAnimationOptionCurveEaseIn view:self.discView seconds:10.0f];
+}
+
+- (IBAction)nextClicked:(id)sender {
+    
+}
+
+- (IBAction)previousClicked:(id)sender {
+    
+}
+
+- (IBAction)repeatClicked:(id)sender {
+    
+}
+
+- (IBAction)randomClicked:(id)sender {
+    
+}
+
+- (IBAction)hideMusicPlayerClicked:(id)sender {
+    [(AppDelegate*)[[UIApplication sharedApplication] delegate] hideMediaPlayerViewWithAnimation];
+}
+
+#pragma mark Database change notifications
+
+- (void)diReceiveSongToPlay:(NSNotification *)notification {
+    NSLog(@"Database did change Playlist");
+    if ([notification.name isEqualToString:@"songToPlay"])
+    {
+        NSDictionary *dic = notification.userInfo;
+        Song* songToPlay = (Song*)[dic objectForKey:@"songToPlay"];
+        [_mediaPlayer setSongToPlay:songToPlay];
+        [self playClicked:nil];
+    }
+}
 @end

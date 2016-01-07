@@ -35,8 +35,8 @@ static NSArray *searchSongKeysArray;
 - (id)init {
     if (self = [super init]) {
         categoryKeysArray = @[@"audio",@"music"];
-        songKeysArray = @[@"tracks",@"title",@"likes_count",@"playback_count",@"artwork_url",@"urn"];
-        searchSongKeysArray = @[@"title",@"likes_count",@"playback_count",@"artwork_url",@"id"];
+        songKeysArray = @[@"tracks",@"title",@"likes_count",@"playback_count",@"artwork_url",@"urn",@"duration",@"stream_url"];
+        searchSongKeysArray = @[@"title",@"likes_count",@"playback_count",@"artwork_url",@"id",@"duration",@"stream_url"];
     }
     return self;
 }

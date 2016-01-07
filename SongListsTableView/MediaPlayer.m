@@ -8,19 +8,21 @@
 
 #import "MediaPlayer.h"
 #import <AVFoundation/AVFoundation.h>
+#import "Song.h"
+#import "CommonHelper.h"
 
 @implementation MediaPlayer
 
 #pragma mark Singleton Methods
 
-+ (id)sharedInstance {
-    static MediaPlayer *sharedMyManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedMyManager = [[self alloc] init];
-    });
-    return sharedMyManager;
-}
+//+ (id)sharedInstance {
+//    static MediaPlayer *sharedMyManager = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        sharedMyManager = [[self alloc] init];
+//    });
+//    return sharedMyManager;
+//}
 
 - (id)init {
     if (self = [super init]) {
@@ -31,6 +33,8 @@
         } else {
             NSLog(@"error initializing audio session: %@", [error description]);
         }
+        
+        _mediaPlayerState = STATE_STOP;
     }
     return self;
 }
@@ -38,8 +42,9 @@
 // ----------------------------------------
 // Audio player control
 // ----------------------------------------
-- (void) playWithURLString:(NSString *)urlString{
-    NSURL *url = [NSURL URLWithString:urlString];
+- (void) play{
+    NSString* urlWithClientID = [[[_songToPlay songStreamURL] stringByAppendingString:@"?client_id="] stringByAppendingString:[[CommonHelper sharedManager] clientIDSoundCloud]];
+    NSURL *url = [NSURL URLWithString:urlWithClientID];
     
     if(url != nil){
         self.selectedURL = url;
@@ -52,6 +57,7 @@
         } else {
             if(self.audioPlayer.rate <= 0.0f){
                 [self.audioPlayer play];
+                self.mediaPlayerState = STATE_PLAYING;
             }
             
 #warning set button to pause
@@ -72,6 +78,7 @@
 - (void) pause{
     if(self.audioPlayer.rate > 0.0f){
         [self.audioPlayer pause];
+        self.mediaPlayerState = STATE_PAUSE;
     }
 }
 
@@ -89,6 +96,9 @@
     
 }
 
+- (void) setSongToPlay:(Song *)songToPlay{
+    self.songToPlay = songToPlay;
+}
 #pragma mark - AVAudioPlayer delegate methods
 
 //-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
