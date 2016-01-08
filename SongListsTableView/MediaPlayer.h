@@ -37,5 +37,5 @@ typedef enum StateMediaPlayer StateMediaPlayer;
 - (void)stop;
 - (void)next;
 - (void)previous;
-- (void)setSongToPlay:(Song*) songToPlay;
+
 @end

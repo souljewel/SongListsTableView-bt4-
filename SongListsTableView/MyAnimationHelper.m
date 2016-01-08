@@ -48,22 +48,37 @@
 }
 
 - (void) spinWithOptions: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds{
-    [UIView animateWithDuration: aSeconds
+#warning fix spin
+    float secondPerRound = 20;
+    int numberOfRounds = (int) aSeconds / secondPerRound;
+    __block int currentRound = 0;
+    bool animation = false;
+    [UIView animateWithDuration: secondPerRound
                           delay: 0.0f
                         options: options
                      animations: ^{
-                         aView.transform = CGAffineTransformRotate(aView.transform, M_PI / 2);
+                         aView.transform = CGAffineTransformRotate(aView.transform, M_PI);
                      }
                      completion: ^(BOOL finished) {
-                         //                         if (finished) {
-                         //                             if (animating) {
-                         //                                 // if flag still set, keep spinning with constant speed
-                         //                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
-                         //                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
-                         //                                 // one last spin, with deceleration
-                         //                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
-                         //                             }
-                         //                         }
+                         if (finished) {
+//                             if (animating) {
+//                                 // if flag still set, keep spinning with constant speed
+////                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
+//                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
+//                                 // one last spin, with deceleration
+////                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
+//                             }
+                             currentRound++;
+                             if ( currentRound < numberOfRounds){
+                                 if (currentRound == numberOfRounds-1){
+                                     [self spinWithOptions:UIViewAnimationOptionCurveEaseOut view:aView seconds:aSeconds];
+                                 }else{
+                                     [self spinWithOptions:UIViewAnimationOptionCurveLinear view:aView seconds:aSeconds];
+                                 }
+                             }else{
+
+                             }
+                         }
                      }];
 }
 

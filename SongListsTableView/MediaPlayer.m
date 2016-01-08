@@ -96,9 +96,9 @@
     
 }
 
-- (void) setSongToPlay:(Song *)songToPlay{
-    self.songToPlay = songToPlay;
-}
+//- (void) setSongToPlay:(Song *)songToPlay{
+//    self.songToPlay = songToPlay;
+//}
 #pragma mark - AVAudioPlayer delegate methods
 
 //-(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag

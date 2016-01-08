@@ -28,9 +28,25 @@
         self.kCellIdentifier = @"cellID";
         self.kTableCellNibName = @"TableCell";
         self.clientIDSoundCloud = @"4346c8125f4f5c40ad666bacd8e96498";
-        self.searchSongSoundCloudAPILinks = [@"http://api.soundcloud.com/tracks.json?client_id=" stringByAppendingString:[self.clientIDSoundCloud stringByAppendingString:@"&q="]];//hello&limit=50";
+        self.searchSongSoundCloudAPILinks = [self addClientIdStringTo:@"http://api.soundcloud.com/tracks.json"];
+        self.GetAllCategoriesLinks = @"https://api-v2.soundcloud.com/explore/categories";
+        self.GetAllSongsByCategoryTitleLinks = @"https://api-v2.soundcloud.com/explore/";
     }
     return self;
+}
+
+- (NSString*) addClientIdStringTo:(NSString*) aString{
+    return [aString stringByAppendingString:[@"?client_id=" stringByAppendingString:_clientIDSoundCloud]] ;
+}
+
+- (NSString*) getAllCategoriesLinksURL{
+    return [_GetAllCategoriesLinks stringByAppendingString:[@"?client_id=" stringByAppendingString:_clientIDSoundCloud]];
+}
+
+- (NSString*) getAllSongsByCategoryTitleLinksURL:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad{
+    NSString *stringURL = [[[_GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",numberOfDownload] stringByAppendingString:[@"&offset=" stringByAppendingString:[NSString stringWithFormat:@"%ld",offsetToLoad]]]]] stringByAppendingString:[@"&client_id=" stringByAppendingString:_clientIDSoundCloud]];
+    
+    return stringURL;
 }
 
 @end

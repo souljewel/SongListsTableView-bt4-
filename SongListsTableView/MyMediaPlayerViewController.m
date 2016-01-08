@@ -38,7 +38,7 @@ BOOL animating;
 
 
 - (void) initData{
-    self.mediaPlayer = [[MediaPlayer alloc] init];
+//    self.mediaPlayer = [[MediaPlayer alloc] init];
 }
 
 - (void) registerNotification{
@@ -71,7 +71,7 @@ BOOL animating;
 - (IBAction)playClicked:(id)sender {
     //rotate disc
     [_mediaPlayer play];
-    [[MyAnimationHelper shareInstanced] spinWithOptions:UIViewAnimationOptionCurveEaseIn view:self.discView seconds:10.0f];
+    [[MyAnimationHelper shareInstanced] spinWithOptions:UIViewAnimationOptionCurveEaseIn view:self.discView seconds:_mediaPlayer.songToPlay.songTimeInSeconds];
 }
 
 - (IBAction)nextClicked:(id)sender {
@@ -102,8 +102,12 @@ BOOL animating;
     {
         NSDictionary *dic = notification.userInfo;
         Song* songToPlay = (Song*)[dic objectForKey:@"songToPlay"];
-        [_mediaPlayer setSongToPlay:songToPlay];
-        [self playClicked:nil];
+        if(_mediaPlayer == nil){
+            self.mediaPlayer = [[MediaPlayer alloc] init];
+        }
+        _mediaPlayer.songToPlay = songToPlay;
+        
+        [(AppDelegate*)[[UIApplication sharedApplication] delegate] showMediaPlayerViewWithAnimation];
     }
 }
 @end

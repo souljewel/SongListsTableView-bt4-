@@ -18,4 +18,9 @@
 @property NSString *kTableCellNibName;
 @property NSString *searchSongSoundCloudAPILinks;
 @property NSString *clientIDSoundCloud;
+@property NSString *GetAllCategoriesLinks;
+@property NSString *GetAllSongsByCategoryTitleLinks;
+
+- (NSString*) getAllCategoriesLinksURL;
+- (NSString*) getAllSongsByCategoryTitleLinksURL:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad;
 @end

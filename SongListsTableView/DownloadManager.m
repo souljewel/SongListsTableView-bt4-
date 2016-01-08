@@ -14,8 +14,7 @@
 @implementation DownloadManager
 
 #pragma mark static variables
-static NSString *const GetAllCategoriesLinks = @"https://api-v2.soundcloud.com/explore/categories";
-static NSString *const GetAllSongsByCategoryTitleLinks = @"https://api-v2.soundcloud.com/explore/";//Classical?limit=50&offset=0";
+
 static NSArray *categoryKeysArray;
 static NSArray *songKeysArray;
 static NSArray *searchSongKeysArray;
@@ -45,7 +44,7 @@ static NSArray *searchSongKeysArray;
 // load the category from api
 - (NSURLSessionDataTask *)loadGenresWithBlock:(void (^)(NSArray *lstResults, NSError *error))block {
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:GetAllCategoriesLinks]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[CommonHelper sharedManager] getAllCategoriesLinksURL]]];
     
     // create an session data task to obtain and the XML feed
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request
@@ -127,8 +126,8 @@ static NSArray *searchSongKeysArray;
 // load the songs with genre title from api
 - (NSURLSessionDataTask *)loadSongWithBlock:(NSString*) genreTitle numberOfDownload:(NSInteger)numberOfDownload offset:(NSInteger)offsetToLoad onComplete:(void (^)(NSArray *lstCategories, NSError *error))block
 {
-    NSString *stringURL = [[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",numberOfDownload] stringByAppendingString:[@"&offset=" stringByAppendingString:[NSString stringWithFormat:@"%ld",offsetToLoad]]]]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:stringURL]];
+//    NSString *stringURL = [[GetAllSongsByCategoryTitleLinks stringByAppendingString:genreTitle] stringByAppendingString:[@"?limit=" stringByAppendingString:[[NSString stringWithFormat:@"%ld",numberOfDownload] stringByAppendingString:[@"&offset=" stringByAppendingString:[NSString stringWithFormat:@"%ld",offsetToLoad]]]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[[CommonHelper sharedManager] getAllSongsByCategoryTitleLinksURL:genreTitle numberOfDownload:numberOfDownload offset:offsetToLoad]]];
     
     // create an session data task to obtain and the XML feed
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request
