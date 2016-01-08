@@ -49,30 +49,32 @@
 
 - (void) spinWithOptions: (UIViewAnimationOptions) options view:(UIView*)aView seconds:(float)aSeconds{
 #warning fix spin
-    float secondPerRound = 20;
-    int numberOfRounds = (int) aSeconds / secondPerRound;
+    float secondPerHalfRound = 10;
+    int numberOfRounds = (int) aSeconds / (secondPerHalfRound*2);
     __block int currentRound = 0;
     bool animation = false;
-    [UIView animateWithDuration: secondPerRound
+    [UIView animateWithDuration: secondPerHalfRound
                           delay: 0.0f
                         options: options
                      animations: ^{
-                         aView.transform = CGAffineTransformRotate(aView.transform, M_PI);
+                         aView.transform = CGAffineTransformMakeRotation(M_PI);
                      }
                      completion: ^(BOOL finished) {
                          if (finished) {
 //                             if (animating) {
-//                                 // if flag still set, keep spinning with constant speed
+//
 ////                                 [self spinWithOptions: UIViewAnimationOptionCurveLinear];
 //                             } else if (options != UIViewAnimationOptionCurveEaseOut) {
-//                                 // one last spin, with deceleration
+//
 ////                                 [self spinWithOptions: UIViewAnimationOptionCurveEaseOut];
 //                             }
                              currentRound++;
                              if ( currentRound < numberOfRounds){
                                  if (currentRound == numberOfRounds-1){
+                                     // one last spin, with deceleration
                                      [self spinWithOptions:UIViewAnimationOptionCurveEaseOut view:aView seconds:aSeconds];
                                  }else{
+                                     // if flag still set, keep spinning with constant speed
                                      [self spinWithOptions:UIViewAnimationOptionCurveLinear view:aView seconds:aSeconds];
                                  }
                              }else{
