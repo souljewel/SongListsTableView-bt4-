@@ -20,8 +20,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q38-Jl-YUj" userLabel="lblTitle">
-                                <rect key="frame" x="0.0" y="497" width="600" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="q38-Jl-YUj" userLabel="lblTitle">
+                                <rect key="frame" x="150" y="497" width="300" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -95,7 +95,7 @@
                             <constraint firstItem="Kmu-0s-ueK" firstAttribute="centerY" secondItem="pYV-p1-TWa" secondAttribute="centerY" id="9p3-2v-Pqa"/>
                             <constraint firstItem="uRR-cF-HZ0" firstAttribute="top" secondItem="pYV-p1-TWa" secondAttribute="bottom" constant="10" id="D25-bN-3Ag"/>
                             <constraint firstItem="xyL-6c-Xgp" firstAttribute="centerX" secondItem="6oS-jQ-hbd" secondAttribute="centerX" id="Jvl-jd-3ya"/>
-                            <constraint firstItem="q38-Jl-YUj" firstAttribute="width" secondItem="xyL-6c-Xgp" secondAttribute="width" id="Ma3-2r-nR5"/>
+                            <constraint firstItem="q38-Jl-YUj" firstAttribute="width" secondItem="xyL-6c-Xgp" secondAttribute="width" multiplier="1/2" id="Ma3-2r-nR5"/>
                             <constraint firstItem="MB7-E2-lfX" firstAttribute="centerX" secondItem="xyL-6c-Xgp" secondAttribute="centerX" id="UeP-Cw-N04"/>
                             <constraint firstItem="pYV-p1-TWa" firstAttribute="leading" secondItem="yLq-vq-qfK" secondAttribute="trailing" constant="128" id="WZx-kd-VMt"/>
                             <constraint firstItem="xyL-6c-Xgp" firstAttribute="top" secondItem="f6c-rt-dCR" secondAttribute="bottom" id="d86-WD-Vq0"/>

@@ -39,6 +39,7 @@ BOOL animating;
 
 - (void) initData{
 //    self.mediaPlayer = [[MediaPlayer alloc] init];
+    _lblTitle.text = _mediaPlayer.songToPlay.songTitle;
 }
 
 - (void) registerNotification{
@@ -107,7 +108,9 @@ BOOL animating;
         }
         _mediaPlayer.songToPlay = songToPlay;
         
+        
         [(AppDelegate*)[[UIApplication sharedApplication] delegate] showMediaPlayerViewWithAnimation];
+
     }
 }
 @end
