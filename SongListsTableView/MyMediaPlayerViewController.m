@@ -40,6 +40,8 @@ BOOL animating;
 - (void) initData{
 //    self.mediaPlayer = [[MediaPlayer alloc] init];
     _lblTitle.text = _mediaPlayer.songToPlay.songTitle;
+    _lblTitle.numberOfLines = 0;
+    [_lblTitle sizeToFit];
 }
 
 - (void) registerNotification{
@@ -58,6 +60,7 @@ BOOL animating;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -108,7 +111,13 @@ BOOL animating;
         }
         _mediaPlayer.songToPlay = songToPlay;
         
-        
+        //reload data if change
+        if(_lblTitle != nil){
+            _lblTitle.text = _mediaPlayer.songToPlay.songTitle;
+            _lblTitle.numberOfLines = 0;
+            [_lblTitle sizeToFit];
+        }
+
         [(AppDelegate*)[[UIApplication sharedApplication] delegate] showMediaPlayerViewWithAnimation];
 
     }
